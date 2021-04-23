@@ -421,23 +421,7 @@ export default {
         arrows: false,
         slidesToShow: 6,
         focusOnSelect: true,
-        responsive: [
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              centerMode: true,
 
-            },
-          },
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToScroll: 1,
-            },
-          },
-        ],
       },
     };
   },
@@ -657,10 +641,9 @@ export default {
         margin: 0 auto;
       }
       .bottom_slide {
-        padding: 0 10px;
+        padding: 10px;
         img {
           width: 100%;
-
         }
       }
       .slick-arrow {
