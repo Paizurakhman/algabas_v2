@@ -126,7 +126,7 @@
       </div>
       <div class="slider" v-if="current === 'lessons'">
         <button class="main-button">Смотреть все</button>
-        <VueSlickCarousel ref="c1" :asNavFor="$refs.c2">
+        <VueSlickCarousel ref="c1" :asNavFor="$refs.c2" :focusOnSelect="true">
           <div><h3>1</h3></div>
           <div><h3>2</h3></div>
           <div><h3>3</h3></div>
@@ -327,6 +327,7 @@ export default {
   },
   data() {
     return {
+      homePageData: null,
       current: "lessons",
       show: false,
       q: 0,
@@ -386,27 +387,6 @@ export default {
         },
       ],
       count: 0,
-      // settingsSliderNav: {
-      //   slidesToShow: 4,
-      //   focusOnSelect: true,
-      //   responsive: [
-      //     {
-      //       breakpoint: 768,
-      //       settings: {
-      //         slidesToShow: 1,
-      //         slidesToScroll: 1,
-      //         centerMode: true,
-      //       },
-      //     },
-      //     {
-      //       breakpoint: 1000,
-      //       settings: {
-      //         slidesToShow: 3,
-      //         slidesToScroll: 1,
-      //       },
-      //     },
-      //   ],
-      // },
     };
   },
   computed: {

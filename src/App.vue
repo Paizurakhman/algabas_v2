@@ -1,10 +1,28 @@
 <template>
   <div id="app">
-    <Navbar />
+    <Navbar :nav="header" />
     <router-view />
     <Footer />
   </div>
 </template>
+
+<script>
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+export default {
+  components: { Footer, Navbar },
+  data: () => ({
+    header: "header",
+  }),
+  mounted() {
+    this.$axios
+      .get(
+        `http://www.back-collibri.astudiodigital.ru/api/get-contacts?lang=${this.$lang}`
+      )
+      .then((response) => console.log(response));
+  },
+};
+</script>
 
 <style lang="scss">
 .contacts_form {
@@ -16,17 +34,17 @@
     left: 10%;
     bottom: 30%;
   }
-   .fix_el:nth-child(2) {
+  .fix_el:nth-child(2) {
     position: absolute;
     left: 10%;
     top: 30%;
   }
-   .fix_el:nth-child(3) {
+  .fix_el:nth-child(3) {
     position: absolute;
     right: 10%;
     top: 30%;
   }
-   .fix_el:nth-child(4) {
+  .fix_el:nth-child(4) {
     position: absolute;
     right: 10%;
     bottom: 10%;
@@ -67,10 +85,3 @@
   }
 }
 </style>
-<script>
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-export default {
-  components: { Footer, Navbar },
-};
-</script>
