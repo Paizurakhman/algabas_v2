@@ -1,78 +1,96 @@
 <template>
-  <div class="tab-nav">
+  <div>
+    <div class="tab-nav">
+      <div class="select">
+        <button class="current" @click="isSelect = !isSelect">
+          {{ selected }}
+        </button>
 
-    <div class="select">
-
-        <button class="current" @click="isSelect = !isSelect">{{ selected }}</button>
-
-      <svg :class="{ active_select: isSelect }" @click="isSelect = !isSelect" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 1L6 6L11 1" stroke="black" stroke-width="2"/>
-      </svg>
+        <svg
+          :class="{ active_select: isSelect }"
+          @click="isSelect = !isSelect"
+          width="12"
+          height="8"
+          viewBox="0 0 12 8"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M1 1L6 6L11 1" stroke="black" stroke-width="2" />
+        </svg>
+      </div>
+      <transition name="button">
+        <nav class="tab" v-if="isSelect">
+          <button
+            @click="updateTab('lessons')"
+            :class="{ active: current === 'lessons' }"
+          >
+            Занятия
+          </button>
+          <button
+            @click="updateTab('garden')"
+            :class="{ active: current === 'garden' }"
+          >
+            Садик
+          </button>
+        </nav>
+      </transition>
+      <nav class="tab_desktop">
+        <button
+          @click="updateTab('lessons')"
+          :class="{ active: current === 'lessons' }"
+        >
+          Занятия
+        </button>
+        <button
+          @click="updateTab('garden')"
+          :class="{ active: current === 'garden' }"
+        >
+          Садик
+        </button>
+      </nav>
     </div>
-    <transition name="button">
-    <nav class="tab" v-if="isSelect">
-      <button
-          @click="updateTab('lessons')"
-          :class="{ active: current === 'lessons'}"
-      >Занятия</button>
-      <button
-          @click="updateTab('garden')"
-          :class="{ active: current === 'garden'}"
-      >Садик</button>
-    </nav>
-    </transition>
-    <nav class="tab_desktop">
-      <button
-          @click="updateTab('lessons')"
-          :class="{ active: current === 'lessons'}"
-      >Занятия</button>
-      <button
-          @click="updateTab('garden')"
-          :class="{ active: current === 'garden'}"
-      >Садик</button>
-    </nav>
+    <div class="bottom"></div>
   </div>
-  <div class="bottom"></div>
 </template>
 
 <script>
 export default {
   name: "TabBar",
-  props: ['current'],
+  props: ["current"],
   data() {
     return {
       isSelect: false,
-    }
+    };
   },
   methods: {
-    updateTab(by){
-      this.$emit('tabChange', by)
-      this.isSelect = false
-    }
+    updateTab(by) {
+      this.$emit("tabChange", by);
+      this.isSelect = false;
+    },
   },
   computed: {
     selected() {
-      if (this.current === 'lessons') {
-        return 'Занятия'
+      if (this.current === "lessons") {
+        return "Занятия";
       }
-      if (this.current === 'garden') {
-        return 'Садик'
+      if (this.current === "garden") {
+        return "Садик";
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="sass">
-  .tab-nav
+.tab-nav
+  width: 100%
+  button
     width: 100%
-    button
-      width: 100%
-      height: 80px
-      border-radius: 0
-      font-size: 18px
-      font-weight: 600
-      cursor: pointer
+    height: 80px
+    border-radius: 0
+    font-size: 18px
+    font-weight: 600
+    cursor: pointer
 
     button.active
       background: #FCD635
