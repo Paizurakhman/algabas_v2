@@ -1,0 +1,14 @@
+@mixin flexible($width, $mgn)
+  display: flex
+  justify-content: space-between
+  align-items: baseline
+  max-width: $width
+  margin: $mgn auto
+
+@mixin grid($col, $n, $width, $gap-topBottom, $gap-leftRight)
+  display: grid
+  grid-template-columns: repeat($col, $n)
+  max-width: $width
+  margin: 0 auto
+  grid-gap: $gap-topBottom $gap-leftRight
+

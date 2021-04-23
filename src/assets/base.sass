@@ -1,0 +1,157 @@
+// variables
+@import "variables"
+
+.container
+  max-width: 1200px
+// Gilroy fonts
+@font-face
+  font-family: $regular
+  src: url("fonts/Gilroy-Regular.ttf") format("opentype")
+  font-style: normal
+  font-weight: 400
+
+@font-face
+  font-family: $semi-bold
+  src: url("fonts/Gilroy-SemiBold.ttf") format("opentype")
+  font-style: normal
+  font-weight: 600
+
+@font-face
+  font-family: $bold
+  src: url("fonts/Gilroy-Bold.ttf") format("opentype")
+  font-style: normal
+  font-weight: 700
+
+// Baby font
+@font-face
+  font-family: $font-family-baby
+  src: url("fonts/Baby Eliot.otf") format("opentype")
+  font-style: normal
+
+//  base styles
+*
+  font-family: $regular
+  margin: 0
+  padding: 0
+
+body, html
+  background: $background
+  color: $primary
+
+// semi-bold text
+.text-semi-bold
+  font-family: $semi-bold
+
+.main-button
+  border: 0
+  width: 260px
+  height: 64px
+  color: #ffffff
+  background: $secondary
+  font-size: 18px
+  border-radius: 30px
+  cursor: pointer
+  transition: all .3s ease
+  &:hover
+    background: transparent
+    border: 1px solid $secondary
+    color: $secondary
+    
+
+.main-heading
+  display: inline-block
+  font-size: 3em
+  font-family: $bold
+  line-height: 58px
+  &:nth-child(2)
+    color: $secondary
+
+.margin
+  margin: 0 5px 30px
+
+.block
+  display: block
+
+
+.title_page 
+  text-align: center
+  margin: 0 -15px
+  width: fit-content
+  margin: 0 auto
+  h1 
+    font-family: $semi-bold
+    font-weight: 700
+    font-size: 3em
+    .orange_text
+        display: block
+  h2
+    font-family: $semi-bold
+    font-weight: 700
+    font-size: 2.3em
+  .orange_text 
+      color: #ff7948
+
+
+
+.page_info
+  height: 70vh
+  position: relative
+  .page_main_img 
+    max-width: 50%
+    width: 100%
+    position: absolute
+    bottom: 0
+    left: 0
+    img
+      width: 70%
+  .socials
+    margin-top: 40px
+    a
+      margin-right: 20px
+  .desk-none
+    display: block
+
+  .mob-none
+    display: none
+
+.btn_info
+  background: #FFFFFF
+  border-radius: 50px
+  display: block
+  padding: 15px 3rem
+  font-size: 18px
+  font-family: $regular
+
+
+
+@media screen and (max-width: 576px)
+  .page_info
+    height: auto !important
+  .page_main_img 
+    max-width: 100% !important
+    position: static !important
+    text-align: center !important
+    margin-bottom: 2rem
+    img 
+      width: 100%
+  .btn_info
+    width: 100%
+    
+  
+@media screen and (max-width: 768px)
+    p
+      font-size: 1.5em
+
+    .title_page
+      h2
+        font-size: 3em
+
+    .main-heading
+      line-height: 30px
+      margin-bottom: 20px !important
+
+
+    .review-item 
+      .review
+        p
+          font-size: 14px

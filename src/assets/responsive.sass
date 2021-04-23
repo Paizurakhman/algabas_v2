@@ -1,0 +1,298 @@
+@import "mixins"
+
+.none_mob
+  display: block
+
+.mobile
+  display: none !important
+
+.desktop
+  display: block
+
+@media screen and (max-width: 1024px)
+  .none-image
+    display: none
+  body
+    font-size: 12px
+
+    #section-two
+        .title
+          @include flexible(700px, 0)
+
+    #section-three
+      .cards
+        margin: 10px 20px !important
+
+    #section-four
+
+      img
+        max-width: 400px
+
+      button
+        width: 200px !important
+        height: 60px !important
+
+    #section-five
+      .wrapper
+        margin: 0 20px !important
+        .card-command
+          p
+            margin: 0
+  .fix_elems
+    img
+      width: 40px !important
+      &:nth-child(2)
+        right: 0 !important
+  #section-six
+    padding: 0 !important
+    .reviews
+      margin: 0 20px !important
+          //@include grid(2, 1fr, 1200px, 10px, 50px)
+
+  #img
+      display: block !important
+
+  #section-six
+    padding: 0 !important
+    .wrapper
+      padding: 40px 0 !important
+      h1:nth-child(2)
+        margin-bottom: 50px !important
+      .reviews
+        margin: 0 20px !important
+
+  #section-seven
+    form
+      max-width: 600px
+      margin: 0 auto !important
+
+  #section-seven .form img
+    position: relative !important
+    right: 0 !important
+
+  .baby
+    top: -50px !important
+
+  .romb
+    width: 60px
+    top: 50%
+    right: 10% !important
+
+  .vector
+    width: 50px
+    left: 25% !important
+    top: 5% !important
+  .tick
+    width: 40px
+    top: 50% !important
+
+  .index
+    .click
+      left: 58%
+
+  .mobile_image
+    width: 100%
+@media screen and (max-width: 576px)
+
+  html
+    overflow-x: hidden
+  body
+    font-size: 10px
+    overflow-x: hidden
+
+  .header
+    margin-top: 10px !important
+    position: relative
+
+    .baby
+      max-width: 35% !important
+      height: 100% !important
+      top: 35% !important
+
+    .babies
+      max-width: 50% !important
+      top: 35%
+
+    .star
+      width: 30px
+      top: 60% !important
+      left: 90% !important
+
+    .romb
+      width: 30px
+      top: 30%
+      right: 0 !important
+    .click
+      top: 65% !important
+      max-width: 70px !important
+      right: 40% !important
+    .vector
+      width: 30px
+      left: 1% !important
+      top: 30% !important
+    .tick
+      width: 30px
+      top: 52% !important
+    .principles
+      width: 300px
+      margin-top: 200px !important
+  .advantages
+    grid-template-columns: repeat(2, 1fr) !important
+    padding: 0 20px !important
+    p
+      font-size: 16px !important
+
+  #section-two
+    .fix_elems
+      img
+        &:nth-child(1)
+          top: 2% !important
+        &:nth-child(2)
+          right: 0 !important
+
+        &:nth-child(4)
+          bottom: 15% !important
+
+  .home #section-three
+    padding-top: 30px
+    padding-bottom: 40px !important
+    .fix_elems
+      img
+        &:nth-child(1)
+          top: 3% !important
+        &:nth-child(2)
+          display: none
+
+        &:nth-child(3)
+          bottom: 1%
+        &:nth-child(4)
+          display: none
+
+
+  .cards
+    flex-wrap: wrap
+    .card
+      width: 100%
+      margin: 20px auto !important
+
+  #section-four
+    .fix_elems
+      img
+        &:nth-child(1)
+          left: 20% !important
+        &:nth-child(2)
+          right: 10% !important
+
+        &:nth-child(3)
+          bottom: 20% !important
+    .card_content
+      padding-top: 0 !important
+
+    .wrapper
+      width: 100% !important
+      p
+        font-size: 2em !important
+      button
+        width: 100% !important
+
+  .mobile_image
+    position: relative !important
+    width: 100%
+
+  #section-five
+    .fix_elems
+      img
+        &:nth-child(1)
+          top: 2% !important
+        &:nth-child(2)
+          top: 30% !important
+          right: 10% !important
+
+        &:nth-child(3)
+          bottom: 30% !important
+    .wrapper
+      .card-command
+        flex-wrap: wrap
+        div
+          margin: 0 auto 30px !important
+
+  #section-six
+    padding: 0 !important
+    .fix_elems
+      img
+        &:nth-child(1)
+          top: 2% !important
+        &:nth-child(2)
+          right: 0 !important
+
+        &:nth-child(3)
+          top: 3% !important
+        &:nth-child(4)
+          left: 0 !important
+          bottom: 4% !important
+    .wrapper
+      h1:nth-child(2)
+        margin-bottom: 20px !important
+      .reviews
+        grid-template-columns: repeat(1, 1fr) !important
+
+  #img
+    img
+      width: 300px
+
+  #section-seven
+    .fix_elems
+      img
+        &:nth-child(1)
+          top: 45% !important
+        &:nth-child(2)
+          right: 0 !important
+          top: 5% !important
+
+    margin: 0 10px
+
+    button
+      width: 100%
+
+  .a-card
+    margin: 20px auto
+
+  .form
+    form
+      margin: 0 !important
+
+    img
+      right: 0 !important
+
+  .main-heading
+    line-height: 30px
+    font-weight: 700
+
+  #section-six .wrapper
+    margin-top: 30px
+
+  .title
+    position: relative
+    h2
+      text-align: center !important
+      margin: 0 20px
+    .none_mob
+      display: none !important
+
+  .fixed-items img
+    width: 40px
+
+
+  .mobile
+    display: block !important
+
+  .desktop
+    display: none !important
+
+  .sales_card
+    svg
+      display: none
+
+  .container_schedule
+    .days_of_the_week
+      text-align: center !important
