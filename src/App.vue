@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar :nav="header" :class="{ activeNavbar: navFix }" />
+    <Navbar :nav="header"  />
     <router-view />
     <Footer />
   </div>
@@ -23,22 +23,8 @@ export default {
       .then((response) => console.log(response));
   },
 
-  methods: {
-    handleScroll: function () {
-      let vm = this;
-      window.onscroll = () => {
-        if (window.scrollY > 0) {
-          vm.navFix = true;
-        }else{
-          vm.navFix = false;
-        }
-      };
-    },
-  },
 
-  mounted() {
-    this.handleScroll();
-  },
+
 };
 </script>
 

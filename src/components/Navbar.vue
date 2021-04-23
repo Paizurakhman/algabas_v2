@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav :class="{ activeNavbar: navFix }">
     <div class="nav_content">
       <img src="../assets/logo.svg" alt="logo" />
       <div class="links mob-none">
@@ -10,7 +10,9 @@
         <router-link to="/Gallery">Галерея</router-link>
         <router-link to="/Contacts">Контакты</router-link>
       </div>
-      <button class="mob-none">Заказать звонок</button>
+      <button class="mob-none" :class="{ 'main-button': navFix }">
+        Заказать звонок
+      </button>
       <div class="social-networks mob-none">
         <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
         <img src="../assets/icons/instagram.png" alt="instagram" />
@@ -62,6 +64,7 @@ export default {
   props: ["header"],
   data: () => ({
     mobileNav: false,
+    navFix: false,
   }),
 
   methods: {
@@ -73,7 +76,20 @@ export default {
         document.body.style.overflowY = "auto";
       }
     },
+    handleScroll: function () {
+      let vm = this;
+      window.onscroll = () => {
+        if (window.scrollY > 0) {
+          vm.navFix = true;
+        } else {
+          vm.navFix = false;
+        }
+      };
+    },
+  },
 
+  mounted() {
+    this.handleScroll();
   },
 
   watch: {
@@ -91,10 +107,10 @@ export default {
 
 <style lang="scss">
 @import "src/assets/variables";
-nav{
-  transition: all .5s ease;
+nav {
+  transition: all 0.5s ease;
 }
-.activeNavbar{
+.activeNavbar {
   background-color: #fff;
   position: sticky;
   top: 0;
