@@ -125,29 +125,34 @@
         <TabBar @tabChange="current = $event" :current="current" />
       </div>
       <div class="slider" v-if="current === 'lessons'">
-        <button class="main-button">Смотреть все</button>
-        <VueSlickCarousel ref="c1" :asNavFor="$refs.c2">
-          <div><h3>1</h3></div>
-          <div><h3>2</h3></div>
-          <div><h3>3</h3></div>
-          <div><h3>4</h3></div>
-          <div><h3>5</h3></div>
-          <div><h3>6</h3></div>
-        </VueSlickCarousel>
-        <VueSlickCarousel
-          ref="c2"
-          :asNavFor="$refs.c1"
-          :slidesToShow="4"
-          :focusOnSelect="true"
-        >
-          <div><h3>1</h3></div>
-          <div><h3>2</h3></div>
-          <div><h3>3</h3></div>
-          <div><h3>4</h3></div>
-          <div><h3>5</h3></div>
-          <div><h3>6</h3></div>
-        </VueSlickCarousel>
+        <div class="container">
+
+          <VueSlickCarousel
+              ref="c1"
+              :asNavFor="$refs.c2"
+              v-bind="settingsMainNav"
+              class="slider_top"
+          >
+            <div class="main_slide" v-for="slide in slides" :key="slide.id">
+              <img :src="slide.src" alt="img">
+            </div>
+
+          </VueSlickCarousel>
+          <VueSlickCarousel
+              class="slider_nav"
+            ref="c2"
+            :asNavFor="$refs.c1"
+            v-bind="settingsSliderNav"
+          >
+            <div class="bottom_slide" v-for="slide in slides" :key="slide.id">
+              <img :src="slide.src" alt="img">
+            </div>
+
+          </VueSlickCarousel>
+        </div>
+
       </div>
+      <button class="main-button">Смотреть все</button>
     </section>
 
     <section id="section-three">
@@ -336,6 +341,9 @@ export default {
         { id: 3, src: require("@/assets/img/slider_img.png") },
         { id: 4, src: require("@/assets/img/slider_img.png") },
         { id: 5, src: require("@/assets/img/slider_img.png") },
+        { id: 6, src: require("@/assets/img/slider_img.png") },
+        { id: 7, src: require("@/assets/img/slider_img.png") },
+        { id: 8, src: require("@/assets/img/slider_img.png") },
       ],
       cards: [
         {
@@ -386,27 +394,32 @@ export default {
         },
       ],
       count: 0,
-      // settingsSliderNav: {
-      //   slidesToShow: 4,
-      //   focusOnSelect: true,
-      //   responsive: [
-      //     {
-      //       breakpoint: 768,
-      //       settings: {
-      //         slidesToShow: 1,
-      //         slidesToScroll: 1,
-      //         centerMode: true,
-      //       },
-      //     },
-      //     {
-      //       breakpoint: 1000,
-      //       settings: {
-      //         slidesToShow: 3,
-      //         slidesToScroll: 1,
-      //       },
-      //     },
-      //   ],
-      // },
+      settingsMainNav: {
+        arrows: true
+      },
+
+      settingsSliderNav: {
+        arrows: false,
+        slidesToShow: 6,
+        focusOnSelect: true,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              centerMode: true,
+            },
+          },
+          {
+            breakpoint: 1000,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      },
     };
   },
   computed: {
@@ -613,6 +626,27 @@ export default {
         }
       }
     }
+    .slider {
+      .slider_nav {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      .main_slide{
+        max-width: 960px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .bottom_slide {
+        padding: 0 10px;
+        img {
+          width: 100%;
+
+        }
+      }
+      .slick-arrow {
+
+      }
+    }
 
     .wrapper {
       position: relative;
@@ -707,12 +741,12 @@ export default {
             right: 0 !important;
           }
 
-          &:nth-child(3) {
-            bottom: 15%;
-            right: 8% !important;
+            &:nth-child(3) {
+              bottom: 15%;
+              right: 8% !important;
+            }
           }
         }
-      }
 
       .wrapper {
         position: relative;
