@@ -157,11 +157,7 @@
           <img src="../assets/img/white_wave.svg" alt="" />
           <img src="../assets/img/black_romb.svg" alt="" />
         </div>
-        <img
-          class="mobile_image"
-          src="../assets/frames/girl-removebg-preview.png"
-          alt=""
-        />
+
         <div class="container">
           <div class="wrapper">
             <h1>{{ homePageData.sales.title }}</h1>
@@ -191,11 +187,11 @@
         </div>
 
         <div class="card-command">
-          <div v-for="command in 4" :key="command">
-            <img src="../assets/img/image22.png" alt="" />
-            <p class="name text-bold">Анастасия</p>
-            <p>Стаж 3 года</p>
-            <p>Младшая группа</p>
+          <div v-for="command in homePageData.our_team" :key="command.id">
+            <img :src="$staticImageUrl.staticImgUrl(command.avatar)" alt="" />
+            <p class="name text-bold">{{ command.name }}</p>
+            <p>Стаж {{ command.year }} года</p>
+            <p>{{ command.group_name }}</p>
           </div>
         </div>
         <button class="main-button">Подробнее</button>
@@ -526,6 +522,7 @@ export default {
   #section-two {
     position: relative;
     background: $background;
+    padding-bottom: 50px;
 
     .fix_elems {
       img {
@@ -551,6 +548,7 @@ export default {
       }
     }
     .slider {
+      margin-bottom: 90px;
       .slider_nav {
         max-width: 960px;
         margin: 0 auto;
@@ -558,7 +556,10 @@ export default {
       .main_slide {
         max-width: 960px;
         margin: 0 auto;
-        overflow: hidden;
+        img {
+          height: 30vh;
+          object-fit: cover;
+        }
       }
       .bottom_slide {
         padding: 0 10px;
@@ -567,6 +568,42 @@ export default {
         }
       }
       .slick-arrow {
+        width: 40px;
+        height: 40px;
+        &:before{
+          display: none;
+        }
+      }
+      .slick-prev {
+        left: 0;
+        background-size: cover;
+        background-image: url("../assets/icons/prev.svg");
+      }
+      .slick-next {
+        right: 0;
+        background-size: cover;
+        background-image: url("../assets/icons/next.svg");
+      }
+      .slider_top {
+        .slick-dots {
+          bottom: -50px;
+          button {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border: 1px solid #181818;
+            border-radius: 50px;
+            &:before {
+              display: none;
+            }
+          }
+          .slick-active button {
+            background: #181818;
+          }
+          li {
+            margin: 0 10px;
+          }
+        }
       }
     }
 

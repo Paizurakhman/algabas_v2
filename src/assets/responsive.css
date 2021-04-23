@@ -1,0 +1,351 @@
+.none_mob {
+  display: block;
+}
+
+.mobile {
+  display: none !important;
+}
+
+.desktop {
+  display: block;
+}
+
+@media screen and (max-width: 1024px) {
+  .none-image {
+    display: none;
+  }
+
+  body {
+    font-size: 12px;
+  }
+  body #section-two .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  body #section-three .cards {
+    margin: 10px 20px !important;
+  }
+  body #section-four img {
+    max-width: 400px;
+  }
+  body #section-four button {
+    width: 200px !important;
+    height: 60px !important;
+  }
+  body #section-five .wrapper {
+    margin: 0 20px !important;
+  }
+  body #section-five .wrapper .card-command p {
+    margin: 0;
+  }
+
+  .fix_elems img {
+    width: 40px !important;
+  }
+  .fix_elems img:nth-child(2) {
+    right: 0 !important;
+  }
+
+  #section-six {
+    padding: 0 !important;
+  }
+  #section-six .reviews {
+    margin: 0 20px !important;
+  }
+
+  #img {
+    display: block !important;
+  }
+
+  #section-six {
+    padding: 0 !important;
+  }
+  #section-six .wrapper {
+    padding: 40px 0 !important;
+  }
+  #section-six .wrapper h1:nth-child(2) {
+    margin-bottom: 50px !important;
+  }
+  #section-six .wrapper .reviews {
+    margin: 0 20px !important;
+  }
+
+  #section-seven form {
+    max-width: 600px;
+    margin: 0 auto !important;
+  }
+
+  #section-seven .form img {
+    position: relative !important;
+    right: 0 !important;
+  }
+
+  .baby {
+    top: -50px !important;
+  }
+
+  .romb {
+    width: 60px;
+    top: 50%;
+    right: 10% !important;
+  }
+
+  .vector {
+    width: 50px;
+    left: 25% !important;
+    top: 5% !important;
+  }
+
+  .tick {
+    width: 40px;
+    top: 50% !important;
+  }
+
+  .index .click {
+    left: 58%;
+  }
+
+  .mobile_image {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .slider_nav {
+    display: none !important;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    font-size: 10px;
+    overflow-x: hidden;
+  }
+
+  .header {
+    margin-top: 10px !important;
+    position: relative;
+  }
+  .header .baby {
+    max-width: 35% !important;
+    height: 100% !important;
+    top: 35% !important;
+  }
+  .header .babies {
+    max-width: 50% !important;
+    top: 35%;
+  }
+  .header .star {
+    width: 30px;
+    top: 60% !important;
+    left: 90% !important;
+  }
+  .header .romb {
+    width: 30px;
+    top: 30%;
+    right: 0 !important;
+  }
+  .header .click {
+    top: 65% !important;
+    max-width: 70px !important;
+    right: 40% !important;
+  }
+  .header .vector {
+    width: 30px;
+    left: 1% !important;
+    top: 30% !important;
+  }
+  .header .tick {
+    width: 30px;
+    top: 52% !important;
+  }
+  .header .principles {
+    width: 300px;
+    margin-top: 200px !important;
+  }
+
+  .advantages {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 20px !important;
+  }
+  .advantages p {
+    font-size: 16px !important;
+  }
+
+  #section-two .fix_elems img:nth-child(1) {
+    top: 2% !important;
+  }
+  #section-two .fix_elems img:nth-child(2) {
+    right: 0 !important;
+  }
+  #section-two .fix_elems img:nth-child(4) {
+    bottom: 15% !important;
+  }
+
+  .home #section-three {
+    padding-top: 30px;
+    padding-bottom: 40px !important;
+  }
+  .home #section-three .fix_elems img:nth-child(1) {
+    top: 3% !important;
+  }
+  .home #section-three .fix_elems img:nth-child(2) {
+    display: none;
+  }
+  .home #section-three .fix_elems img:nth-child(3) {
+    bottom: 1%;
+  }
+  .home #section-three .fix_elems img:nth-child(4) {
+    display: none;
+  }
+
+  .cards {
+    flex-wrap: wrap;
+  }
+  .cards .card {
+    width: 100%;
+    margin: 20px auto !important;
+  }
+
+  #section-four .fix_elems img:nth-child(1) {
+    left: 20% !important;
+  }
+  #section-four .fix_elems img:nth-child(2) {
+    right: 10% !important;
+  }
+  #section-four .fix_elems img:nth-child(3) {
+    bottom: 20% !important;
+  }
+  #section-four .card_content {
+    padding-top: 0 !important;
+  }
+  #section-four .wrapper {
+    width: 100% !important;
+  }
+  #section-four .wrapper p {
+    font-size: 2em !important;
+  }
+  #section-four .wrapper button {
+    width: 100% !important;
+  }
+
+  .mobile_image {
+    position: relative !important;
+    width: 100%;
+  }
+
+  #section-five .fix_elems img:nth-child(1) {
+    top: 2% !important;
+  }
+  #section-five .fix_elems img:nth-child(2) {
+    top: 30% !important;
+    right: 10% !important;
+  }
+  #section-five .fix_elems img:nth-child(3) {
+    bottom: 30% !important;
+  }
+  #section-five .wrapper .card-command {
+    flex-wrap: wrap;
+  }
+  #section-five .wrapper .card-command div {
+    margin: 0 auto 30px !important;
+  }
+
+  #section-six {
+    padding: 0 !important;
+  }
+  #section-six .fix_elems img:nth-child(1) {
+    top: 2% !important;
+  }
+  #section-six .fix_elems img:nth-child(2) {
+    right: 0 !important;
+  }
+  #section-six .fix_elems img:nth-child(3) {
+    top: 3% !important;
+  }
+  #section-six .fix_elems img:nth-child(4) {
+    left: 0 !important;
+    bottom: 4% !important;
+  }
+  #section-six .wrapper h1:nth-child(2) {
+    margin-bottom: 20px !important;
+  }
+  #section-six .wrapper .reviews {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  #img img {
+    width: 300px;
+  }
+
+  #section-seven {
+    margin: 0 10px;
+  }
+  #section-seven .fix_elems img:nth-child(1) {
+    top: 45% !important;
+  }
+  #section-seven .fix_elems img:nth-child(2) {
+    right: 0 !important;
+    top: 5% !important;
+  }
+  #section-seven button {
+    width: 100%;
+  }
+
+  .a-card {
+    margin: 20px auto;
+  }
+
+  .form form {
+    margin: 0 !important;
+  }
+  .form img {
+    right: 0 !important;
+  }
+
+  .main-heading {
+    line-height: 30px;
+    font-weight: 700;
+  }
+
+  #section-six .wrapper {
+    margin-top: 30px;
+  }
+
+  .title {
+    position: relative;
+  }
+  .title h2 {
+    text-align: center !important;
+    margin: 0 20px;
+  }
+  .title .none_mob {
+    display: none !important;
+  }
+
+  .fixed-items img {
+    width: 40px;
+  }
+
+  .mobile {
+    display: block !important;
+  }
+
+  .desktop {
+    display: none !important;
+  }
+
+  .sales_card svg {
+    display: none;
+  }
+
+  .container_schedule .days_of_the_week {
+    text-align: center !important;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */
