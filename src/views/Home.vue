@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="homePageData">
     <div class="header">
       <h4>Детский сад</h4>
       <div class="baby"></div>
@@ -124,34 +124,7 @@
         </div>
         <TabBar @tabChange="current = $event" :current="current" />
       </div>
-      <div class="slider" v-if="current === 'lessons'">
-        <div class="container">
-
-          <VueSlickCarousel
-              ref="c1"
-              :asNavFor="$refs.c2"
-              v-bind="settingsMainNav"
-              class="slider_top"
-          >
-            <div class="main_slide" v-for="slide in slides" :key="slide.id">
-              <img :src="slide.src" alt="img">
-            </div>
-
-          </VueSlickCarousel>
-          <VueSlickCarousel
-              class="slider_nav"
-            ref="c2"
-            :asNavFor="$refs.c1"
-            v-bind="settingsSliderNav"
-          >
-            <div class="bottom_slide" v-for="slide in slides" :key="slide.id">
-              <img :src="slide.src" alt="img">
-            </div>
-
-          </VueSlickCarousel>
-        </div>
-
-      </div>
+      <TabBarContent :slides="homePageData.gallery" :activeTab="current"/>
       <button class="main-button">Смотреть все</button>
     </section>
 
@@ -184,25 +157,19 @@
           <img src="../assets/img/white_wave.svg" alt="" />
           <img src="../assets/img/black_romb.svg" alt="" />
         </div>
-        <img
-          class="mobile_image"
-          src="../assets/frames/girl-removebg-preview.png"
-          alt=""
-        />
+
         <div class="container">
           <div class="wrapper">
-            <h1>Lorem ipsum dolor sit amet.</h1>
+            <h1>{{ homePageData.sales.title }}</h1>
             <p>
-              Lorem ipsum dolor sit amet. <br />
-              * lorem ipsum dolor sti amet
+              {{ homePageData.sales.short_description }}
             </p>
-            <p>Цена - 8 000 тг.</p>
             <button>ПОДРОБНЕЕ</button>
           </div>
         </div>
         <img
           class="none-image"
-          src="../assets/frames/girl-removebg-preview.png"
+          :src="$staticImageUrl.staticImgUrl(homePageData.sales.img_block)"
           alt=""
         />
       </div>
@@ -220,11 +187,11 @@
         </div>
 
         <div class="card-command">
-          <div v-for="command in 4" :key="command">
-            <img src="../assets/img/image22.png" alt="" />
-            <p class="name text-bold">Анастасия</p>
-            <p>Стаж 3 года</p>
-            <p>Младшая группа</p>
+          <div v-for="command in homePageData.our_team" :key="command.id">
+            <img :src="$staticImageUrl.staticImgUrl(command.avatar)" alt="" />
+            <p class="name text-bold">{{ command.name }}</p>
+            <p>Стаж {{ command.year }} года</p>
+            <p>{{ command.group_name }}</p>
           </div>
         </div>
         <button class="main-button">Подробнее</button>
@@ -242,7 +209,7 @@
         <h1 class="main-heading">Отзывы</h1>
         <h1 class="main-heading block">наших клиентов</h1>
         <div class="reviews">
-          <div v-for="review in reviews">
+          <div v-for="review in homePageData.review" :key="review.key">
             <ReviewItem :review="review" />
           </div>
         </div>
@@ -318,9 +285,7 @@
 import Card from "@/components/Card";
 import ReviewItem from "@/components/ReviewItem";
 import TabBar from "@/components/TabBar";
-import VueSlickCarousel from "vue-slick-carousel";
-import "vue-slick-carousel/dist/vue-slick-carousel.css";
-import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+import TabBarContent from "@/components/TabBarContent";
 
 export default {
   name: "Home",
@@ -328,23 +293,14 @@ export default {
     TabBar,
     ReviewItem,
     Card,
-    VueSlickCarousel,
+    TabBarContent,
   },
   data() {
     return {
+      homePageData: null,
       current: "lessons",
       show: false,
       q: 0,
-      slides: [
-        { id: 1, src: require("@/assets/img/slider_img.png") },
-        { id: 2, src: require("@/assets/img/slider_img.png") },
-        { id: 3, src: require("@/assets/img/slider_img.png") },
-        { id: 4, src: require("@/assets/img/slider_img.png") },
-        { id: 5, src: require("@/assets/img/slider_img.png") },
-        { id: 6, src: require("@/assets/img/slider_img.png") },
-        { id: 7, src: require("@/assets/img/slider_img.png") },
-        { id: 8, src: require("@/assets/img/slider_img.png") },
-      ],
       cards: [
         {
           id: "young_group",
@@ -371,58 +327,7 @@ export default {
           price: "60 000",
         },
       ],
-      reviews: [
-        {
-          id: 1,
-          text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem convallis lacinia diam lorem nullam auctor. Ac, sed semper risus, non felis, non quis potenti tincidunt. Netus vel varius mattis nunc aliquam. Amet in elit diam amet. ",
-        },
-        {
-          id: 2,
-          text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem convallis lacinia diam lorem nullam auctor. Ac, sed semper risus, non felis, non quis potenti tincidunt. Netus vel varius mattis nunc aliquam. Amet in elit diam amet. Lorem convallis lacinia diam lorem nullam auctor. Ac, sed semper risus, non felis, non quis potenti tincidunt.",
-        },
-        {
-          id: 3,
-          text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem convallis lacinia diam lorem nullam auctor. Ac, sed semper risus, non felis, non quis potenti tincidunt. Netus vel varius mattis nunc aliquam. Amet in elit diam amet. Lorem convallis lacinia diam lorem nullam auctor. Ac, sed semper risus, non felis, non quis potenti tincidunt.",
-        },
-        {
-          id: 4,
-          text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem convallis lacinia diam lorem nullam auctor. Ac, sed semper risus, non felis, non quis potenti tincidunt. Netus vel varius mattis nunc aliquam. Amet in elit diam amet. ",
-        },
-      ],
       count: 0,
-      settingsMainNav: {
-        arrows: true,
-        responsive: [
-          {
-            breakpoint: 576,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              centerMode: false,
-              arrows: false,
-              dots: true
-            },
-          },
-          {
-            breakpoint: 1028,
-            settings: {
-              slidesToScroll: 1,
-              arrows: false
-            },
-          },
-        ],
-      },
-
-      settingsSliderNav: {
-        arrows: false,
-        slidesToShow: 6,
-        focusOnSelect: true,
-
-      },
     };
   },
   computed: {
@@ -444,6 +349,18 @@ export default {
         this.q = index;
       }
     },
+  },
+
+  mounted() {
+    this.$axios
+      .get(
+        `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`
+      )
+      .then(
+        (response) => (
+          (this.homePageData = response.data), console.log(this.homePageData)
+        )
+      );
   },
 };
 </script>
@@ -631,24 +548,22 @@ export default {
       }
     }
     .slider {
-      margin-bottom: 50px;
+      margin-bottom: 90px;
       .slider_nav {
         max-width: 960px;
         margin: 0 auto;
       }
-      .main_slide{
+      .main_slide {
         max-width: 960px;
         margin: 0 auto;
         img {
           width: 100%;
-          cursor: pointer;
         }
       }
       .bottom_slide {
         padding: 10px;
         img {
           width: 100%;
-          cursor: pointer;
         }
       }
       .slick-arrow {
@@ -784,17 +699,17 @@ export default {
             right: 0 !important;
           }
 
-            &:nth-child(3) {
-              bottom: 15%;
-              right: 8% !important;
-            }
+          &:nth-child(3) {
+            bottom: 15%;
+            right: 8% !important;
           }
         }
+      }
 
       .wrapper {
         position: relative;
         text-align: left;
-        width: 40%;
+        width: 50%;
 
         h1 {
           font-size: 3em;
