@@ -17,7 +17,6 @@ const getImageFunc = {
 Vue.prototype.$axios = axios;
 Vue.prototype.$lang = 'ru';
 Vue.prototype.$staticImageUrl = getImageFunc;
-
 Vue.config.productionTip = false
 
 

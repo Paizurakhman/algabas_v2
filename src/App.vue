@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar :nav="header" />
+    <Navbar :nav="header" :class="{ activeNavbar: navFix }" />
     <router-view />
     <Footer />
   </div>
@@ -13,6 +13,7 @@ export default {
   components: { Footer, Navbar },
   data: () => ({
     header: "header",
+    navFix: false,
   }),
   mounted() {
     this.$axios
@@ -20,6 +21,23 @@ export default {
         `http://www.back-collibri.astudiodigital.ru/api/get-contacts?lang=${this.$lang}`
       )
       .then((response) => console.log(response));
+  },
+
+  methods: {
+    handleScroll: function () {
+      let vm = this;
+      window.onscroll = () => {
+        if (window.scrollY > 0) {
+          vm.navFix = true;
+        }else{
+          vm.navFix = false;
+        }
+      };
+    },
+  },
+
+  mounted() {
+    this.handleScroll();
   },
 };
 </script>

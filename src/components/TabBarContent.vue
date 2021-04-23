@@ -91,6 +91,9 @@ export default {
       ],
     },
   }),
+  mounted() {
+    this.$nextTick(this.$forceUpdate);
+  },
 };
 </script>
 

@@ -1,36 +1,8 @@
 <template>
   <nav>
-    <img src="../assets/logo.svg" alt="logo" />
-    <div class="links mob-none">
-      <router-link to="/">Главная</router-link>
-      <router-link to="/Sales">Акции</router-link>
-      <router-link to="/Reviews">Отзывы</router-link>
-      <router-link to="/OurTeam">Наши сотрудники</router-link>
-      <router-link to="/Gallery">Галерея</router-link>
-      <router-link to="/Contacts">Контакты</router-link>
-    </div>
-    <button class="mob-none">Заказать звонок</button>
-    <div class="social-networks mob-none">
-      <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
-      <img src="../assets/icons/instagram.png" alt="instagram" />
-      <img src="../assets/icons/facebook.png" alt="facebook" />
-    </div>
-    <div class="language mob-none">
-      <h5 class="lang">RU</h5>
-      <h5 class="lang">KZ</h5>
-    </div>
-
-    <div
-      @click="toggleMenu"
-      class="mobile_burger_toggle desk-none"
-      :class="{ burger_active: mobileNav }"
-    >
-      <span></span>
-    </div>
-    <div v-if="mobileNav" class="bg"></div>
-    <div class="mobile_nav" :class="{ mobileNavActive: mobileNav }">
+    <div class="nav_content">
       <img src="../assets/logo.svg" alt="logo" />
-      <div class="links">
+      <div class="links mob-none">
         <router-link to="/">Главная</router-link>
         <router-link to="/Sales">Акции</router-link>
         <router-link to="/Reviews">Отзывы</router-link>
@@ -38,16 +10,46 @@
         <router-link to="/Gallery">Галерея</router-link>
         <router-link to="/Contacts">Контакты</router-link>
       </div>
-      <div class="language">
-        <h5>RU</h5>
-        <h5>KZ</h5>
+      <button class="mob-none">Заказать звонок</button>
+      <div class="social-networks mob-none">
+        <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
+        <img src="../assets/icons/instagram.png" alt="instagram" />
+        <img src="../assets/icons/facebook.png" alt="facebook" />
       </div>
-      <div class="contacts">
-        <p>+7 (777) 777-77-77</p>
-        <div class="social-networks desk-none">
-          <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
-          <img src="../assets/icons/instagram.png" alt="instagram" />
-          <img src="../assets/icons/facebook.png" alt="facebook" />
+      <div class="language mob-none">
+        <h5 class="lang">RU</h5>
+        <h5 class="lang">KZ</h5>
+      </div>
+
+      <div
+        @click="toggleMenu"
+        class="mobile_burger_toggle desk-none"
+        :class="{ burger_active: mobileNav }"
+      >
+        <span></span>
+      </div>
+      <div v-if="mobileNav" class="bg"></div>
+      <div class="mobile_nav" :class="{ mobileNavActive: mobileNav }">
+        <img src="../assets/logo.svg" alt="logo" />
+        <div class="links">
+          <router-link to="/">Главная</router-link>
+          <router-link to="/Sales">Акции</router-link>
+          <router-link to="/Reviews">Отзывы</router-link>
+          <router-link to="/OurTeam">Наши сотрудники</router-link>
+          <router-link to="/Gallery">Галерея</router-link>
+          <router-link to="/Contacts">Контакты</router-link>
+        </div>
+        <div class="language">
+          <h5>RU</h5>
+          <h5>KZ</h5>
+        </div>
+        <div class="contacts">
+          <p>+7 (777) 777-77-77</p>
+          <div class="social-networks desk-none">
+            <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
+            <img src="../assets/icons/instagram.png" alt="instagram" />
+            <img src="../assets/icons/facebook.png" alt="facebook" />
+          </div>
         </div>
       </div>
     </div>
@@ -57,7 +59,7 @@
 <script>
 export default {
   name: "Navbar",
-  props:["header"],
+  props: ["header"],
   data: () => ({
     mobileNav: false,
   }),
@@ -71,6 +73,7 @@ export default {
         document.body.style.overflowY = "auto";
       }
     },
+
   },
 
   watch: {
@@ -88,7 +91,16 @@ export default {
 
 <style lang="scss">
 @import "src/assets/variables";
-nav {
+nav{
+  transition: all .5s ease;
+}
+.activeNavbar{
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav_content {
   display: flex;
   justify-content: space-between;
   align-items: center;
