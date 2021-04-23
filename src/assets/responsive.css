@@ -117,6 +117,9 @@
     display: none !important;
   }
 
+  .slider {
+    margin-bottom: 90px !important;
+  }
   .slider .main_slide img {
     height: 30vh;
     object-fit: cover;

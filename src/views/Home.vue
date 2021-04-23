@@ -631,7 +631,7 @@ export default {
       }
     }
     .slider {
-      margin-bottom: 90px;
+      margin-bottom: 50px;
       .slider_nav {
         max-width: 960px;
         margin: 0 auto;
