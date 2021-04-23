@@ -556,13 +556,9 @@ export default {
       .main_slide {
         max-width: 960px;
         margin: 0 auto;
-        img {
-          height: 30vh;
-          object-fit: cover;
-        }
       }
       .bottom_slide {
-        padding: 0 10px;
+        padding: 10px;
         img {
           width: 100%;
         }
