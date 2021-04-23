@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar :nav="header" />
+    <Navbar :nav="header"  />
     <router-view />
     <Footer />
   </div>
@@ -13,6 +13,7 @@ export default {
   components: { Footer, Navbar },
   data: () => ({
     header: "header",
+    navFix: false,
   }),
   mounted() {
     this.$axios
@@ -21,6 +22,9 @@ export default {
       )
       .then((response) => console.log(response));
   },
+
+
+
 };
 </script>
 

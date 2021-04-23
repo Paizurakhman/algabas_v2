@@ -358,7 +358,7 @@ export default {
       )
       .then(
         (response) => (
-          (this.homePageData = response.data), console.log(this.homePageData)
+          (this.homePageData = response.data)
         )
       );
   },
