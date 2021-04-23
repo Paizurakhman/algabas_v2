@@ -395,7 +395,26 @@ export default {
       ],
       count: 0,
       settingsMainNav: {
-        arrows: true
+        arrows: true,
+        responsive: [
+          {
+            breakpoint: 576,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              centerMode: false,
+              arrows: false,
+              dots: true
+            },
+          },
+          {
+            breakpoint: 1028,
+            settings: {
+              slidesToScroll: 1,
+              arrows: false
+            },
+          },
+        ],
       },
 
       settingsSliderNav: {
@@ -409,12 +428,12 @@ export default {
               slidesToShow: 1,
               slidesToScroll: 1,
               centerMode: true,
+
             },
           },
           {
-            breakpoint: 1000,
+            breakpoint: 1024,
             settings: {
-              slidesToShow: 3,
               slidesToScroll: 1,
             },
           },
@@ -602,6 +621,7 @@ export default {
   #section-two {
     position: relative;
     background: $background;
+    padding-bottom: 50px;
 
     .fix_elems {
       img {
@@ -627,6 +647,7 @@ export default {
       }
     }
     .slider {
+      margin-bottom: 90px;
       .slider_nav {
         max-width: 960px;
         margin: 0 auto;
@@ -634,7 +655,10 @@ export default {
       .main_slide{
         max-width: 960px;
         margin: 0 auto;
-        overflow: hidden;
+        img {
+          height: 30vh;
+          object-fit: cover;
+        }
       }
       .bottom_slide {
         padding: 0 10px;
@@ -644,7 +668,42 @@ export default {
         }
       }
       .slick-arrow {
-
+        width: 40px;
+        height: 40px;
+        &:before{
+          display: none;
+        }
+      }
+      .slick-prev {
+        left: 0;
+        background-size: cover;
+        background-image: url("../assets/icons/prev.svg");
+      }
+      .slick-next {
+        right: 0;
+        background-size: cover;
+        background-image: url("../assets/icons/next.svg");
+      }
+      .slider_top {
+        .slick-dots {
+          bottom: -50px;
+          button {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border: 1px solid #181818;
+            border-radius: 50px;
+            &:before {
+              display: none;
+            }
+          }
+          .slick-active button {
+            background: #181818;
+          }
+          li {
+            margin: 0 10px;
+          }
+        }
       }
     }
 
