@@ -117,6 +117,11 @@
     display: none !important;
   }
 
+  .slider .main_slide img {
+    height: 30vh;
+    object-fit: cover;
+  }
+
   html {
     overflow-x: hidden;
   }
