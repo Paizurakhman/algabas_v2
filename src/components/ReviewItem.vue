@@ -1,7 +1,7 @@
 <template>
   <div class="review-item">
     <div class="review">
-      <p>{{review.text}}</p>
+      <p>{{review.question}}</p>
     </div>
     <div class="contact-profile">
       <img src="@/assets/img/avatar.png" alt="" class="avatar" />

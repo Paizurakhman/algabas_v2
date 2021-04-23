@@ -8,10 +8,19 @@ import './assets/base.sass'
 // responsive style
 import './assets/responsive.sass'
 
+const getImageFunc = {
+    staticImgUrl: (img) => {
+        return 'http://static-collibri.astudiodigital.ru/' + img
+    }
+}
+
 Vue.prototype.$axios = axios;
 Vue.prototype.$lang = 'ru';
+Vue.prototype.$staticImageUrl = getImageFunc;
 
 Vue.config.productionTip = false
+
+
 
 new Vue({
     router,
