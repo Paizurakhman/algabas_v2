@@ -164,7 +164,6 @@ export default {
   position: relative;
 }
 .sales_card {
-  //background: linear-gradient(90deg, #fcd635 0%, #ffed2b 100%);
   padding: 70px 0;
   position: relative;
   margin-bottom: 130px;

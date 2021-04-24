@@ -52,10 +52,10 @@ const routes = [{
             import ('../views/innerGallery.vue')
     },
     {
-        path: '/berries/:id',
-        name: 'Berries',
+        path: '/group/:id',
+        name: 'GroupPage',
         component: () =>
-            import ('../views/Berries.vue'),
+            import ('../views/GroupPage.vue'),
         props: true
     }
 ]

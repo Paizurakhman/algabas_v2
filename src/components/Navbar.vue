@@ -1,7 +1,7 @@
 <template>
   <nav :class="{ activeNavbar: navFix }">
     <div class="nav_content">
-      <img class="logo" src="../assets/logo.png" alt="logo" />
+      <router-link to="/"><img class="logo" src="../assets/logo.png" alt="logo" /></router-link>
       <div class="links mob-none">
         <router-link to="/">Главная</router-link>
         <router-link to="/about">О нас</router-link>
@@ -37,7 +37,7 @@
       </div>
       <div v-if="mobileNav" class="bg"></div>
       <div class="mobile_nav" :class="{ mobileNavActive: mobileNav }">
-        <img class="logo" src="../assets/logo.png" alt="logo" />
+        <router-link to="/"><img class="logo" src="../assets/logo.png" alt="logo" /></router-link>
           <div class="mobile_header">
             <div class="links">
               <router-link to="/">Главная</router-link>
@@ -148,6 +148,8 @@ export default {
 
 nav {
   transition: all 0.5s ease;
+  position: relative;
+  z-index: 9;
   img.logo {
     width: 80px;
   }

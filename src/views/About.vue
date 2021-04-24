@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about" v-if="aboutPageData">
     <div class="page_info">
       <div class="container h-100">
         <div class="row h-100 align-items-center">
