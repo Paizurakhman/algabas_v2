@@ -49,7 +49,7 @@ export default {
   methods: {
     updateTab(by){
       this.$emit('tabChange', by)
-      this.isSelect = false
+      this.isSelect = false;
     }
   },
   computed: {

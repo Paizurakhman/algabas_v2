@@ -141,7 +141,7 @@ export default {
 @import "src/assets/variables";
 
 .router-link-exact-active {
-  color: red !important;
+  color: #ff7948 !important;
 }
 
 nav {
@@ -194,9 +194,6 @@ nav {
   .desk-none {
     display: none;
   }
-  .mob-none {
-    display: block;
-  }
   .links a {
     margin: 0 10px;
     text-decoration: none;
@@ -223,10 +220,13 @@ nav {
     margin: 0 10px;
   }
   .language {
+    display: flex;
+    align-items: center;
     h5.lang {
       display: inline-block;
       margin-left: 10px;
       font-family: $bold;
+      margin-bottom: 0;
       font-size: 18px;
       &:first-child {
         color: $secondary;
@@ -365,6 +365,13 @@ nav {
     .mobile_nav {
       width: 100%;
     }
+  }
+}
+@media screen and (max-width: 768px) {
+    .language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

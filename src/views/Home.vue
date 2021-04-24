@@ -13,7 +13,9 @@
       <div class="index">
         <h1>ALGABAS</h1>
         <h4>с современной методикой обучения</h4>
-        <button @click.self="modalShow" class="main-button">Заказать звонок</button>
+        <button @click.self="modalShow" class="main-button">
+          Заказать звонок
+        </button>
         <img class="click" src="../assets/img/image4.png" alt="" />
       </div>
       <div class="principles">
@@ -118,12 +120,14 @@
         </h2>
       </div>
       <div class="cards">
-        <div
-          v-for="(cardItem, index) in homePageData.groups"
-          :key="index"
-          class="col-xl-4"
-        >
-          <Card :cardItem="cardItem" />
+        <div class="row">
+          <div
+            v-for="(cardItem, index) in homePageData.groups"
+            :key="index"
+            class="col-xl-4 col-md-6 col-lg-4 mb-4"
+          >
+            <Card :cardItem="cardItem" />
+          </div>
         </div>
       </div>
     </section>
@@ -200,7 +204,11 @@
         <div class="reviews">
           <div class="container">
             <div class="row">
-              <div v-for="review in homePageData.review" :key="review.key" class="col-xl-6">
+              <div
+                v-for="review in homePageData.review"
+                :key="review.key"
+                class="col-xl-6"
+              >
                 <ReviewItem :review="review" />
               </div>
             </div>
@@ -285,7 +293,7 @@ import Card from "@/components/Card";
 import ReviewItem from "@/components/ReviewItem";
 import TabBar from "@/components/TabBar";
 import TabBarContent from "@/components/TabBarContent";
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Home",
@@ -332,11 +340,9 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-        'GET_MODAL_SHOW'
-    ]),
+    ...mapActions(["GET_MODAL_SHOW"]),
     modalShow() {
-      this.GET_MODAL_SHOW()
+      this.GET_MODAL_SHOW();
     },
     hideOrShow(index) {
       if (this.q === index) {
@@ -348,9 +354,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters([
-        'SHOW_MODAL'
-    ])
+    ...mapGetters(["SHOW_MODAL"]),
   },
 
   mounted() {

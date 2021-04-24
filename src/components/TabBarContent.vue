@@ -91,7 +91,6 @@ export default {
       arrows: false,
       slidesToShow: 6,
       focusOnSelect: true,
-
     },
   }),
   mounted() {
