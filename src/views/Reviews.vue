@@ -1,14 +1,15 @@
 <template>
-  <div class="reviews" v-if="reviewsPageData">
+  <div class="reviews">
     <div class="page_info">
       <div class="container h-100">
         <div class="row h-100 align-items-center">
           <div class="col-xl-7 col-md-6 position-static">
-            <div class="page_main_img">
+            <div class="page_main_img" v-if="reviewsPageData">
               <img :src="$staticImageUrl.staticImgUrl(reviewsPageData.page.image)" alt="" />
             </div>
+            <div v-else></div>
           </div>
-          <div class="col-xl-5 col-md-6">
+          <div class="col-xl-5 col-md-6" v-if="reviewsPageData">
             <div class="title_page">
               <h1><span class="orange_text">Отзывы</span>{{ reviewsPageData.page.title }}</h1>
             </div>
@@ -18,6 +19,7 @@
               </p>
             </div>
           </div>
+          <div v-else></div>
         </div>
       </div>
     </div>
@@ -126,7 +128,7 @@ export default {
     },
   },
 
- created() {
+  mounted () {
      this.$axios
      .get(
         `http://www.back-collibri.astudiodigital.ru/api/review?lang=${this.$lang}`
