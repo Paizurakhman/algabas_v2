@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="sales_content">
-      <div class="sales_card left_card">
+      <div class="sales_card left_card" v-for="card in salesPageData.sales" :key="card.id">
         <svg
           class="wave"
           width="420"
@@ -93,8 +93,8 @@
           <div class="row">
             <div class="col-xl-6 m_order_1">
               <div class="sales_description">
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>Lorem ipsum dolor sit amet. * lorem ipsum dolor sti amet</p>
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.short_description }}</p>
                 <p class="price">Цена - 8 000 тг.</p>
               </div>
               <button class="btn btn_info">ПОДРОБНЕЕ</button>
@@ -105,7 +105,7 @@
           </div>
         </div>
       </div>
-      <div class="sales_card right_card bg_green">
+      <!-- <div class="sales_card right_card bg_green">
         <div class="container">
           <div class="row">
             <div class="col-xl-6 m_order_2">
@@ -138,7 +138,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="contacts_form">
       <span class="fix_el"><img src="@/assets/img/Vector1.svg" alt="" /></span>
@@ -163,7 +163,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data:()=>({
+      salesPageData: null
+    }),
+    mounted() {
+    this.$axios
+      .get(
+        `http://www.back-collibri.astudiodigital.ru/api/sales?lang=${this.$lang}`
+      )
+      .then((response) => (this.salesPageData = response.data));
+  },
+};
 </script>
 
 <style lang="scss">

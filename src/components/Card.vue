@@ -1,18 +1,24 @@
 <template>
   <div class="a-card">
-    <img :src="require(`../assets/frames/` + cardItem.image)">
-    <h4>{{cardItem.title}}</h4>
-    <p>{{cardItem.description}}</p>
-    <div class="footer">
-      <p class="title">График работы:</p>
-      <p>08:00 - 19:00</p>
-      <p class="title mgn">Цена:</p>
-      <p>{{cardItem.price}} тг.</p>
+    <div class="card_image" :style="{ backgroundColor: cardItem.color }">
+      <img :src="$staticImageUrl.staticImgUrl(cardItem.image)" />
+      <h4>{{ cardItem.title }}</h4>
     </div>
-    <router-link class="btn_details" :to="{ name: 'Berries', params: {id: cardItem.id}}">Подробнее</router-link>
+    <p class="name_card">{{ cardItem.name }}</p>
+    <p>{{ cardItem.short_description }}</p>
+    <div class="footer">
+      <p class="title" v-if="cardItem.schedule">График работы:</p>
+      <p v-if="cardItem.schedule">{{ cardItem.schedule }}</p>
+      <p v-if="cardItem.cost" class="title mgn">Цена:</p>
+      <p v-if="cardItem.cost">{{ cardItem.cost }} тг.</p>
+    </div>
+    <router-link
+      class="btn_details"
+      :to="{ name: 'Berries', params: { id: cardItem.id } }"
+      >Подробнее</router-link
+    >
   </div>
 </template>
-
 <script>
 export default {
 name: "Card",
@@ -23,18 +29,29 @@ name: "Card",
 <style lang="sass">
   @import "src/assets/variables"
   .a-card
-    max-width: 400px
     text-align: left
     margin: 0 20px
-
+    .card_image
+      margin-bottom: 20px
+      position: relative
+    
     img
       width: 100%
-      margin-bottom: 10px
+      max-height: 185px
+      object-fit: contain
+      object-position: right
 
     h4
       margin-bottom: 10px
       font-size: 24px
-
+      position: absolute
+      top: 10%
+      left: 5%
+      color: #fff
+      width: 50%
+      font-weight: 600
+    .name_card
+      font-weight: 600
     p
       margin-bottom: 10px
       font-size: 18px

@@ -7,7 +7,7 @@
         v-bind="settingsMainNav"
         class="slider_top"
       >
-        <div class="main_slide" v-for="slide in slides.class" :key="slide.id">
+        <div class="main_slide" v-for="slide in slides[0].images" :key="slide.id">
           <img :src="$staticImageUrl.staticImgUrl(slide.image)" alt="img" />
         </div>
       </VueSlickCarousel>
@@ -17,7 +17,7 @@
         :asNavFor="$refs.c1"
         v-bind="settingsSliderNav"
       >
-        <div class="bottom_slide" v-for="slide in slides.class" :key="slide.id">
+        <div class="bottom_slide" v-for="slide in slides[0].images" :key="slide.id">
           <img :src="$staticImageUrl.staticImgUrl(slide.image)" alt="img" />
         </div>
       </VueSlickCarousel>
@@ -32,7 +32,7 @@
       >
         <div
           class="main_slide"
-          v-for="slide in slides.kindergarten"
+          v-for="slide in slides[1].images"
           :key="slide.id"
         >
           <img :src="$staticImageUrl.staticImgUrl(slide.image)" alt="img" />
@@ -46,7 +46,7 @@
       >
         <div
           class="bottom_slide"
-          v-for="slide in slides.kindergarten"
+          v-for="slide in slides[1].images"
           :key="slide.id"
         >
           <img :src="$staticImageUrl.staticImgUrl(slide.image)" alt="img" />

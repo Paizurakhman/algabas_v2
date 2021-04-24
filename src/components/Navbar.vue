@@ -149,7 +149,7 @@ nav {
   .links a {
     margin: 0 10px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     color: $primary;
   }
   button {

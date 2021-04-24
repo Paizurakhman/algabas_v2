@@ -18,71 +18,43 @@
       </div>
       <div class="principles">
         <div class="card-command row">
-          <div class="col-xl-3 col-md-3 col-6">
-            <h4>1</h4>
-            <p>развивающее пространство для детей от 1 до 6 лет</p>
-          </div>
-          <div class="col-xl-3 col-md-3 col-6 card_team">
-            <h4>2</h4>
-            <p>от 1 до 2 лет от 2 до 3 лет от 4 до 6 лет</p>
-          </div>
-          <div class="col-xl-3 col-md-3 col-6 card_team">
-            <h4>3</h4>
-            <p>Количество детей: до 10 в одну группу</p>
-          </div>
-          <div class="col-xl-3 col-md-3 col-6 card_team">
-            <h4>4</h4>
-            <p>Уникальная методика обучения</p>
+          <div
+            class="col-xl-3 col-md-3 col-6"
+            v-for="(card, index) in homePageData.numbers"
+            :key="index"
+          >
+            <h4>{{ index + 1 }}</h4>
+            <p>{{ card.title }}</p>
           </div>
         </div>
       </div>
     </div>
     <section id="section-one">
-      <div class="our_principles">
-        <div class="title_page">
-          <h2><span class="orange_text">Наши</span> преимущества</h2>
-        </div>
-        <div class="advantages">
-          <div class="one">
-            <img src="../assets/icons/1.png" alt="img" />
-            <p>Увлекательные мероприятия</p>
+      <div class="container">
+        <div class="our_principles">
+          <div class="title_page">
+            <h2><span class="orange_text">Наши</span> преимущества</h2>
           </div>
-          <div class="two">
-            <img src="../assets/icons/2.png" alt="img" />
-            <p>Вкусная и полезная еда</p>
+          <div class="advantages">
+            <div class="row">
+              <div
+                class="one col-xl-3"
+                v-for="(card, index) in homePageData.advantages"
+                :key="index"
+              >
+                <img
+                  :src="$staticImageUrl.staticImgUrl(card.image)"
+                  alt="img"
+                />
+                <p>{{ card.title }}</p>
+              </div>
+            </div>
           </div>
-          <div class="three">
-            <img src="../assets/icons/3.png" alt="img" />
-            <p>Защищаем и оберегаем</p>
+          <div class="fixed-items">
+            <img class="moon" src="../assets/img/Vector4.png" alt="" />
+            <img class="fiveangle" src="../assets/img/fiveangle.png" alt="" />
+            <img class="star" src="../assets/img/star.svg" alt="" />
           </div>
-          <div class="four">
-            <img src="../assets/icons/4.png" alt="img" />
-            <p>Проффесиональные педагоги</p>
-          </div>
-          <div class="five">
-            <img src="../assets/icons/5.png" alt="img" />
-            <p>Креативное развитие</p>
-          </div>
-          <div class="six">
-            <img src="../assets/icons/6.png" alt="img" />
-            <p>Камеры наблюдения</p>
-          </div>
-          <div class="seven">
-            <img src="../assets/icons/7.png" alt="img" />
-            <p>Современные методы</p>
-          </div>
-          <div class="eight">
-            <img src="../assets/icons/8.png" alt="img" />
-            <p>
-              Развитая <br />
-              медицина
-            </p>
-          </div>
-        </div>
-        <div class="fixed-items">
-          <img class="moon" src="../assets/img/Vector4.png" alt="" />
-          <img class="fiveangle" src="../assets/img/fiveangle.png" alt="" />
-          <img class="star" src="../assets/img/star.svg" alt="" />
         </div>
       </div>
     </section>
@@ -124,8 +96,10 @@
         </div>
         <TabBar @tabChange="current = $event" :current="current" />
       </div>
-      <TabBarContent :slides="homePageData.gallery" :activeTab="current"/>
-      <router-link :to="{ name: 'Gallery'}" class="btn_a main-button">Смотреть все</router-link>
+      <TabBarContent :slides="homePageData.gallery" :activeTab="current" />
+      <router-link :to="{ name: 'Gallery' }" class="btn_a main-button"
+        >Смотреть все</router-link
+      >
     </section>
 
     <section id="section-three">
@@ -144,8 +118,12 @@
         </h2>
       </div>
       <div class="cards">
-        <div v-for="cardItem in cards">
-          <Card :card-item="cardItem" />
+        <div
+          v-for="(cardItem, index) in homePageData.groups"
+          :key="index"
+          class="col-xl-4"
+        >
+          <Card :cardItem="cardItem" />
         </div>
       </div>
     </section>
@@ -158,9 +136,9 @@
           <img src="../assets/img/black_romb.svg" alt="" />
         </div>
         <img
-            class="mobile_image"
-            :src="$staticImageUrl.staticImgUrl(homePageData.sales.img_block)"
-            alt=""
+          class="mobile_image"
+          :src="$staticImageUrl.staticImgUrl(homePageData.sales.img_block)"
+          alt=""
         />
         <div class="container">
           <div class="wrapper">
@@ -170,7 +148,9 @@
                 {{ homePageData.sales.short_description }}
               </p>
             </div>
-            <router-link class="btn_a btn_sales" :to="{ name: 'Sales'}">ПОДРОБНЕЕ</router-link>
+            <router-link class="btn_a btn_sales" :to="{ name: 'Sales' }"
+              >ПОДРОБНЕЕ</router-link
+            >
           </div>
         </div>
         <img
@@ -200,7 +180,9 @@
             <p>{{ command.group_name }}</p>
           </div>
         </div>
-        <router-link :to="{ name: 'OurTeam' }" class="btn_a main-button">Подробнее</router-link>
+        <router-link :to="{ name: 'OurTeam' }" class="btn_a main-button"
+          >Подробнее</router-link
+        >
       </div>
     </section>
 
@@ -216,12 +198,17 @@
           <h1>Отзывы <span class="orange_text">наших клиентов</span></h1>
         </div>
         <div class="reviews">
-          <div v-for="review in homePageData.review" :key="review.key">
-            <ReviewItem :review="review" />
+          <div class="container">
+            <div class="row">
+              <div v-for="review in homePageData.review" :key="review.key" class="col-xl-6">
+                <ReviewItem :review="review" />
+              </div>
+            </div>
           </div>
         </div>
-        <router-link :to="{ name: 'Reviews' }" class="btn_a main-button">Смотреть все</router-link>
-
+        <router-link :to="{ name: 'Reviews' }" class="btn_a main-button"
+          >Смотреть все</router-link
+        >
       </div>
     </section>
 
@@ -231,15 +218,19 @@
       </div>
       <div class="container">
         <div class="wrapper">
-          <div class="row row_question" v-for="(des, index) in 4" :key="index">
+          <div
+            class="row row_question"
+            v-for="(des, index) in homePageData.question"
+            :key="index"
+          >
             <div class="question_content col-xl-10">
               <div class="question_head">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
+                <p>{{ des.question }}</p>
               </div>
               <transition name="hide">
                 <div class="question_title" v-if="q === index">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    {{ des.answer }}
                   </p>
                 </div>
               </transition>
@@ -277,7 +268,6 @@
               <input type="text" placeholder="Возраст ребенка" />
             </div>
             <button class="main-button">Отправить</button>
-
           </form>
           <img
             class="none-image"
@@ -351,16 +341,11 @@ export default {
   },
 
   mounted() {
-    console.log(this.$route);
     this.$axios
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`
       )
-      .then(
-        (response) => (
-          (this.homePageData = response.data)
-        )
-      );
+      .then((response) => (this.homePageData = response.data));
   },
 };
 </script>
@@ -480,13 +465,15 @@ export default {
 
     .our_principles {
       padding: 60px 0;
+      max-width: 760px;
+      margin: 0 auto;
     }
 
     .advantages {
       position: relative;
       z-index: 1;
       padding: 50px 0;
-      @include grid(4, 1fr, 760px, 60px, 30px);
+      // @include grid(4, 1fr, 760px, 60px, 30px);
 
       img {
         height: 55px;
@@ -773,12 +760,10 @@ export default {
       position: relative;
       z-index: 1;
       margin-bottom: 50px !important;
-
     }
 
     .wrapper {
       .reviews {
-        @include grid(2, 1fr, 1200px, 10px, 50px);
       }
     }
   }

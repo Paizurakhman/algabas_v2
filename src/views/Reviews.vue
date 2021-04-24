@@ -5,22 +5,16 @@
         <div class="row h-100 align-items-center">
           <div class="col-xl-7 col-md-6 position-static">
             <div class="page_main_img">
-              <img src="@/assets/img/review-bg.png" alt="" />
+              <img :src="$staticImageUrl.staticImgUrl(reviewsPageData.page.image)" alt="" />
             </div>
           </div>
           <div class="col-xl-5 col-md-6">
             <div class="title_page">
-              <h1><span class="orange_text">Отзывы</span> наших клиентов</h1>
+              <h1><span class="orange_text">Отзывы</span>{{ reviewsPageData.page.title }}</h1>
             </div>
             <div class="description_text mt-4">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh
-                libero sed est sapien, risus, tellus sed pulvinar. Sit sed id
-                amet leo mauris sollicitudin vestibulum, arcu erat. Sed massa
-                nunc nullam ullamcorper sit lectus sed. Odio scelerisque
-                adipiscing pellentesque nisi, suscipit. Ut porta lectus vitae
-                nibh. Cum pellentesque ullamcorper semper aliquam fusce lectus
-                purus.
+                {{ reviewsPageData.page.description }}
               </p>
             </div>
           </div>
@@ -94,94 +88,10 @@
         />
       </svg>
 
-      <div class="container">
+      <div class="container" v-if="reviewsPageData">
         <div class="row">
-          <div class="col-xl-6 col-lg-6">
-            <div class="review_card_wrapper">
-              <div class="review_card">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                  convallis lacinia diam lorem nullam auctor. Ac, sed semper
-                  risus, non felis, non quis potenti tincidunt. Netus vel varius
-                  mattis nunc aliquam. Amet in elit diam amet.
-                </p>
-              </div>
-              <div class="socials">
-                <img src="@/assets/img/avatar.png" alt="" class="avatar" />
-                <a href="#">
-                  <img src="@/assets/img/facebook_icon.svg" alt="" />
-                </a>
-                <a href="#">
-                  <img src="@/assets/img/Instagram_icon.svg" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <div class="review_card_wrapper">
-              <div class="review_card">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh
-                  libero sed est sapien, risus, tellus sed pulvinar. Sit sed id
-                  amet leo mauris sollicitudin vestibulum, arcu erat. Sed massa
-                  nunc nullam ullamcorper sit lectus sed. Odio scelerisque
-                  adipiscing pellentesque nisi, suscipit. Ut porta lectus vitae
-                  nibh. Cum pellentesque ullamcorper semper aliquam fusce lectus
-                  purus.
-                </p>
-              </div>
-              <div class="socials">
-                <img src="@/assets/img/avatar.png" alt="" class="avatar" />
-                <a href="#">
-                  <img src="@/assets/img/facebook_icon.svg" alt="" />
-                </a>
-                <a href="#">
-                  <img src="@/assets/img/Instagram_icon.svg" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <div class="review_card_wrapper">
-              <div class="review_card">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                  convallis lacinia diam lorem nullam auctor. Ac, sed semper
-                  risus, non felis, non quis potenti tincidunt. Netus vel varius
-                  mattis nunc aliquam. Amet in elit diam amet.
-                </p>
-              </div>
-              <div class="socials">
-                <img src="@/assets/img/avatar.png" alt="" class="avatar" />
-                <a href="#">
-                  <img src="@/assets/img/facebook_icon.svg" alt="" />
-                </a>
-                <a href="#">
-                  <img src="@/assets/img/Instagram_icon.svg" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <div class="review_card_wrapper">
-              <div class="review_card">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                  convallis lacinia diam lorem nullam auctor. Ac, sed semper
-                  risus, non felis, non quis potenti tincidunt. Netus vel varius
-                  mattis nunc aliquam. Amet in elit diam amet.
-                </p>
-              </div>
-              <div class="socials">
-                <img src="@/assets/img/avatar.png" alt="" class="avatar" />
-                <a href="#">
-                  <img src="@/assets/img/facebook_icon.svg" alt="" />
-                </a>
-                <a href="#">
-                  <img src="@/assets/img/Instagram_icon.svg" alt="" />
-                </a>
-              </div>
-            </div>
+          <div class="col-xl-6 col-lg-6" v-for="(review, index) in reviewsPageData.review" :key="index">
+            <ReviewItem :review="review"/>
           </div>
         </div>
         <button class="btn main-button d_block">Смотреть еще</button>
@@ -201,11 +111,13 @@
 
 <script>
 import ReviewModal from "@/components/ReviewModal";
+import ReviewItem from "@/components/ReviewItem";
+
 export default {
-  components: { ReviewModal },
+  components: { ReviewModal, ReviewItem },
   data: () => ({
     showModal: false,
-    reviewsData: null
+    reviewsPageData: null
   }),
 
   methods: {
@@ -224,7 +136,7 @@ export default {
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/review?lang=${this.$lang}`
       )
-      .then((response) => (console.log(response.data)));
+      .then((response) => (this.reviewsPageData = response.data));
   },
 };
 </script>
