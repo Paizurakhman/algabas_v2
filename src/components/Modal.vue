@@ -29,7 +29,9 @@ export default {
   },
 
   destroyed() {
-    document.body.style.overflowY = "auto";
+    if (!this.SHOW_MODAL) {
+      document.body.style.overflowY = "auto";
+    }
   },
 
   methods: {
@@ -54,6 +56,8 @@ export default {
 .fixed_modal {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   z-index: 9999;
@@ -93,7 +97,6 @@ export default {
 
 @media screen and (max-width: 576px){
   .review_modal {
-    left: 0;
     margin: 0 15px;
   }
 }
