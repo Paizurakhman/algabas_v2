@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fixed_modal">
     <div class="bg" @click.self="closeModal">
       <img
         @click="closeModal"
@@ -8,14 +8,12 @@
         alt="close"
       />
     </div>
-    <div class="fixed_modal">
-      <div class="review_modal">
-        <p class="review_header">Оставить отзыв</p>
-        <input type="text" placeholder="Имя" />
-        <input type="email" placeholder="Email" />
-        <textarea v-model="review" placeholder="Отзыв"></textarea>
-        <button class="main-button">Отправить отзыв</button>
-      </div>
+    <div class="review_modal">
+      <p class="review_header">Оставить отзыв</p>
+      <input type="text" placeholder="Имя" />
+      <input type="email" placeholder="Email" />
+      <textarea v-model="review" placeholder="Отзыв"></textarea>
+      <button class="main-button">Отправить отзыв</button>
     </div>
   </div>
 </template>
@@ -55,7 +53,7 @@ export default {
   width: 100%;
   left: 0;
   height: 100%;
-  z-index: 888;
+
   .close_img {
     float: right;
     margin: 30px;
