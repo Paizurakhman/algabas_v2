@@ -125,40 +125,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="sales_card right_card bg_green">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-6 m_order_2">
-              <img src="@/assets/img/sales2.png" alt="" />
-            </div>
-            <div class="col-xl-6 m_order_1">
-              <div class="sales_description">
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>Lorem ipsum dolor sit amet. * lorem ipsum dolor sti amet</p>
-                <p class="price">Цена - 8 000 тг.</p>
-              </div>
-              <button class="btn btn_info">ПОДРОБНЕЕ</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="sales_card left_card bg_orange">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-6 m_order_1">
-              <div class="sales_description">
-                <h3>Lorem ipsum dolor sit amet.</h3>
-                <p>Lorem ipsum dolor sit amet. * lorem ipsum dolor sti amet</p>
-                <p class="price">Цена - 8 000 тг.</p>
-              </div>
-              <button class="btn btn_info">ПОДРОБНЕЕ</button>
-            </div>
-            <div class="col-xl-6 m_order_2">
-              <img src="@/assets/img/sales3.png" alt="" />
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="contacts_form">
       <span class="fix_el"><img src="@/assets/img/Vector1.svg" alt="" /></span>
