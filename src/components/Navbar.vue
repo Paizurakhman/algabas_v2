@@ -228,8 +228,8 @@ nav {
     h5.lang {
       display: inline-block;
       margin-left: 10px;
-      font-family: $bold;
       font-size: 18px;
+      font-weight: 700;
       margin-bottom: 0;
       &:nth-child(1) {
         color: $secondary;
@@ -270,7 +270,7 @@ nav {
   }
 
   .mobile_nav {
-    //width: 33%
+    width: 33%;
     transform: translateX(100%);
     position: fixed;
     bottom: 0;
@@ -371,10 +371,10 @@ nav {
 }
 @media screen and (max-width: 576px) {
   nav {
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
     .mobile_nav {
-      width: 100%;
+      width: 100% !important;
     }
   }
 }

@@ -193,26 +193,31 @@
         <img src="../assets/img/Vector2.png" alt="" />
         <img src="../assets/img/Vector1.svg" alt="" />
       </div>
-      <div class="wrapper">
-        <div class="title_page">
-          <h1>Отзывы <span class="orange_text">наших клиентов</span></h1>
-        </div>
-        <div class="reviews">
-          <div class="container">
-            <div class="row">
-              <div v-for="review in homePageData.review" :key="review.key" class="col-xl-6">
-                <ReviewItem :review="review" />
-              </div>
-            </div>
+      <div class="review_content">
+        <div class="container">
+          <div class="title_page">
+            <h1>Отзывы <span class="orange_text">наших клиентов</span></h1>
           </div>
+          <div class="reviews my-4">
+              <div class="row">
+                <div v-for="review in homePageData.review" :key="review.key" class="col-xl-6">
+                  <ReviewItem :review="review" />
+                </div>
+              </div>
+          </div>
+          <router-link :to="{ name: 'Reviews' }" class="btn_a main-button"
+            >Смотреть все</router-link
+          >
         </div>
-        <router-link :to="{ name: 'Reviews' }" class="btn_a main-button"
-          >Смотреть все</router-link
-        >
       </div>
     </section>
 
     <div class="questions">
+      <div class="fix_elems">
+        <img src="../assets/img/smile_question.png" alt="">
+        <img src="../assets/img/red_tick.svg" alt="">
+        <img src="../assets/img/yello_bigromb.svg" alt="">
+      </div>
       <div class="title_page">
         <h1><span class="orange_text">Вопросы</span>часто задаваемые</h1>
       </div>
@@ -223,7 +228,7 @@
             v-for="(des, index) in homePageData.question"
             :key="index"
           >
-            <div class="question_content col-xl-10">
+            <div class="question_content col-xl-10 col-10">
               <div class="question_head">
                 <p>{{ des.question }}</p>
               </div>
@@ -235,7 +240,7 @@
                 </div>
               </transition>
             </div>
-            <div class="hide_show col-xl-2">
+            <div class="hide_show col-xl-2 col-2">
               <span
                 :class="{ hide_active: q === index }"
                 @click="hideOrShow(index)"
@@ -743,7 +748,6 @@ export default {
     }
   }
   #section-six {
-    padding: 50px 0;
     position: relative;
     .fix_elems {
       img {
@@ -780,23 +784,43 @@ export default {
       }
     }
   }
+  .review_content {
+    padding: 60px 0;
+  }
   .questions {
+    position: relative;
     background: #fbf9f5;
     padding: 60px 0;
+    .fix_elems {
+      img {
+        &:first-child {
+          left: 1%;
+        }
+        &:nth-child(2) {
+          right: 2%;
+          top: 4%;
+        }
+        &:nth-child(3) {
+          right: 15%;
+        }
+      }
+    }
     .wrapper {
       margin: 50px 0;
       .row_question {
+        margin: 0;
         border-top: 1px solid #ff7948;
         .question_content {
           padding: 0;
           .question_head {
             p {
-              font-size: 24px;
+              font-size: 1.5em;
+              font-weight: 600;
             }
           }
           .question_title {
             p {
-              font-size: 18px;
+              font-size: 1.2em;
             }
           }
           p {
@@ -805,35 +829,37 @@ export default {
           }
         }
         .hide_show {
+          padding: 0;
           span {
+            float: right;
             margin: 16px 0;
             display: block;
             background: #ff7948;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             position: relative;
             border-radius: 50%;
             cursor: pointer;
 
             &::before {
               content: "";
-              width: 30px;
+              width: 20px;
               height: 3px;
               background: white;
               position: absolute;
               top: 48%;
-              left: 20%;
+              left: 25%;
               transition: all 0.2s ease;
             }
 
             &::after {
               content: "";
-              width: 30px;
+              width: 20px;
               height: 3px;
               background: white;
               position: absolute;
               top: 48%;
-              left: 20%;
+              left: 25%;
               transform: rotate(90deg);
               transition: all 0.2s ease;
             }
@@ -867,7 +893,7 @@ export default {
     }
     .form {
       position: relative;
-      padding: 40px 0;
+      padding: 60px 0;
       form {
         max-width: 600px;
         text-align: center;
@@ -887,9 +913,9 @@ export default {
             font-weight: 600;
           }
 
-          .inputs {
-            margin-bottom: 30px;
-          }
+        }
+        .inputs {
+          margin-bottom: 60px;
         }
       }
       img {
