@@ -45,7 +45,7 @@
     </div>
     <div class="sales_content">
       <div
-        class="sales_card left_card"
+        class="sales_card left_card" v-random
         v-for="(card, index) in salesPageData.sales"
         :key="index"
       >
@@ -170,7 +170,7 @@ export default {
   position: relative;
 }
 .sales_card {
-  background: linear-gradient(90deg, #fcd635 0%, #ffed2b 100%);
+  //background: linear-gradient(90deg, #fcd635 0%, #ffed2b 100%);
   padding: 70px 0;
   position: relative;
   margin-bottom: 130px;

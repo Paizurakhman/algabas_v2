@@ -13,6 +13,15 @@ const getImageFunc = {
         return 'http://static-collibri.astudiodigital.ru/' + img
     }
 }
+let colorsOne = ['FCD635', '06DC02', 'F8931D']
+let colorsTwo = ['FFED2B', '3EEB3B', 'FF9900']
+
+Vue.directive('random', {
+    bind(el, binding, vnode) {
+        let index = vnode.key % 3
+        el.style.background = "linear-gradient(90deg, #" + colorsOne[index] + " 0%, #" + colorsTwo[index] + " 100%)"
+    }
+})
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$lang = 'ru';

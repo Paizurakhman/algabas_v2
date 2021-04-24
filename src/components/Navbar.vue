@@ -38,19 +38,21 @@
       <div v-if="mobileNav" class="bg"></div>
       <div class="mobile_nav" :class="{ mobileNavActive: mobileNav }">
         <img class="logo" src="../assets/logo.png" alt="logo" />
-        <div class="links">
-          <router-link to="/">Главная</router-link>
-          <router-link to="/about">О нас</router-link>
-          <router-link to="/sales">Акции</router-link>
-          <router-link to="/reviews">Отзывы</router-link>
-          <router-link to="/ourTeam">Наши сотрудники</router-link>
-          <router-link to="/gallery">Галерея</router-link>
-          <router-link to="/contacts">Контакты</router-link>
-        </div>
-        <div class="language">
-          <h5>RU</h5>
-          <h5>KZ</h5>
-        </div>
+          <div class="mobile_header">
+            <div class="links">
+              <router-link to="/">Главная</router-link>
+              <router-link to="/about">О нас</router-link>
+              <router-link to="/sales">Акции</router-link>
+              <router-link to="/reviews">Отзывы</router-link>
+              <router-link to="/ourTeam">Наши сотрудники</router-link>
+              <router-link to="/gallery">Галерея</router-link>
+              <router-link to="/contacts">Контакты</router-link>
+            </div>
+            <div class="language">
+              <h5 class="lang">RU</h5>
+              <h5 class="lang">KZ</h5>
+            </div>
+          </div>
         <div class="contacts">
           <p>+7 (777) 777-77-77</p>
           <div class="social-networks desk-none">
@@ -59,7 +61,7 @@
             <img src="../assets/icons/facebook.png" alt="facebook" />
           </div>
         </div>
-      </div>
+        </div>
     </div>
     <div class="bg" v-if="SHOW_MODAL">
 
@@ -228,7 +230,8 @@ nav {
       margin-left: 10px;
       font-family: $bold;
       font-size: 18px;
-      &:first-child {
+      margin-bottom: 0;
+      &:nth-child(1) {
         color: $secondary;
       }
     }
@@ -265,6 +268,7 @@ nav {
       }
     }
   }
+
   .mobile_nav {
     //width: 33%
     transform: translateX(100%);
@@ -272,6 +276,9 @@ nav {
     bottom: 0;
     top: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background: #fcf3da;
     z-index: 12;
     transition: all 0.5s ease;
@@ -280,31 +287,35 @@ nav {
     }
     .links {
       a {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         font-size: 18px;
         font-weight: 600;
-        padding: 10px;
+        padding: 10px 0;
       }
     }
     .language {
-      text-align: center;
       h5 {
         margin-top: 10px;
       }
     }
     .contacts {
       position: relative;
-      top: 100px;
-      padding: 20px 0;
       text-align: center;
+      margin-bottom: 60px;
       p {
-        margin: 20px 0;
         font-size: 18px;
-        line-height: 22px;
         font-weight: 600;
       }
     }
   }
+}
+.mobile_header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 .review-enter,
 .review-leave-to {
