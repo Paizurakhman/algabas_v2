@@ -191,31 +191,25 @@
           <input type="text" placeholder="Оставьте свой отзыв" />
         </div>
       </div>
-
-      <transition name="review">
-        <ReviewModal v-if="showModal" @close_modal="hideOrShow" />
-      </transition>
     </div>
   </div>
 </template>
 
 <script>
-import ReviewModal from "@/components/ReviewModal";
+import Modal from "@/components/Modal";
+import { mapGetters, mapActions } from'vuex'
 export default {
-  components: { ReviewModal },
+  components: { Modal },
   data: () => ({
-    showModal: false,
     reviewsData: null
   }),
 
   methods: {
+    ...mapActions([
+        'GET_MODAL_SHOW'
+    ]),
     hideOrShow() {
-      this.showModal = !this.showModal;
-      if (this.showModal) {
-        document.body.style.overflowY = "hidden";
-      } else {
-        document.body.style.overflowY = "auto";
-      }
+      this.GET_MODAL_SHOW()
     },
   },
 
@@ -309,17 +303,6 @@ export default {
     padding: 0 30px;
     pointer-events: none;
   }
-}
-
-.review-enter,
-.review-leave-to {
-  opacity: 0;
-  transform: translateY(-100px);
-}
-
-.review-enter-active,
-.review-leave-active {
-  transition: all 0.5s ease;
 }
 
 @media only screen and(max-width: 768px) {

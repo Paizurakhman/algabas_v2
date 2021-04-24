@@ -1,37 +1,53 @@
 <template>
-  <div class="fixed_modal">
-    <div class="bg" @click.self="closeModal">
-      <img
-        @click="closeModal"
-        class="close_img"
-        src="../assets/icons/close.svg"
-        alt="close"
-      />
+    <div class="fixed_modal">
+      <div class="bg" @click.self="closeModal">
+        <img
+            @click="closeModal"
+            class="close_img"
+            src="../assets/icons/close.svg"
+            alt="close"
+        />
+      </div>
+      <div class="review_modal">
+        <p class="review_header">Оставить отзыв</p>
+        <input type="text" placeholder="Имя" />
+        <input type="email" placeholder="Email" />
+        <textarea v-model="review" placeholder="Отзыв"></textarea>
+        <button class="main-button">Отправить отзыв</button>
+      </div>
     </div>
-    <div class="review_modal">
-      <p class="review_header">Оставить отзыв</p>
-      <input type="text" placeholder="Имя" />
-      <input type="email" placeholder="Email" />
-      <textarea v-model="review" placeholder="Отзыв"></textarea>
-      <button class="main-button">Отправить отзыв</button>
-    </div>
-  </div>
+
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
-  name: "ReviewModal",
+  name: "Modal",
   data() {
     return {
       review: "",
+      show_modal: this.SHOW_MODAL
     };
   },
-  mounted() {},
+
+
+
   methods: {
+    ...mapActions([
+      'GET_MODAL_SHOW'
+    ]),
     closeModal() {
-      this.$emit("close_modal");
+      this.GET_MODAL_SHOW()
+      // this.$emit("close_modal");
     },
   },
+  computed: {
+    ...mapGetters([
+        'SHOW_MODAL'
+    ]),
+
+  }
 };
 </script>
 
