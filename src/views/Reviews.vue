@@ -106,14 +106,13 @@
 </template>
 
 <script>
-import ReviewModal from "@/components/ReviewModal";
 import ReviewItem from "@/components/ReviewItem";
-
+import { mapActions } from "vuex"
 export default {
-  components: { ReviewModal, ReviewItem },
+  components: { ReviewItem },
   data: () => ({
     showModal: false,
-    reviewsPageData: null
+    reviewsPageData: null,
   }),
 
   methods: {
@@ -130,7 +129,8 @@ export default {
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/review?lang=${this.$lang}`
       )
-      .then((response) => (this.reviewsPageData = response.data));
+      .then(response => this.reviewsPageData = response.data)
+      .catch(err => console.log(err.message))
   },
 };
 </script>
