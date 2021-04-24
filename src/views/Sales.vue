@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="salesPageData">
     <div class="page_info">
       <div class="container h-100">
         <div class="row h-100 align-items-center">
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="sales_content">
-      <div class="sales_card left_card" v-for="card in salesPageData.sales" :key="card.id">
+      <div class="sales_card left_card" v-for="(card, index) in salesPageData.sales" :key="index">
         <svg
           class="wave"
           width="420"

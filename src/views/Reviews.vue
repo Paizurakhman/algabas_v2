@@ -1,5 +1,5 @@
 <template>
-  <div class="reviews">
+  <div class="reviews" v-if="reviewsPageData">
     <div class="page_info">
       <div class="container h-100">
         <div class="row h-100 align-items-center">
@@ -106,11 +106,12 @@
 </template>
 
 <script>
-import ReviewModal from "@/components/ReviewModal";
+import modal from "@/components/Modal";
 import ReviewItem from "@/components/ReviewItem";
+import {mapActions} from 'vuex'
 
 export default {
-  components: { ReviewModal, ReviewItem },
+  components: { modal, ReviewItem },
   data: () => ({
     showModal: false,
     reviewsPageData: null
@@ -125,9 +126,9 @@ export default {
     },
   },
 
-  mounted() {
-    this.$axios
-      .get(
+ created() {
+     this.$axios
+     .get(
         `http://www.back-collibri.astudiodigital.ru/api/review?lang=${this.$lang}`
       )
       .then((response) => (this.reviewsPageData = response.data));
