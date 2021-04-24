@@ -13,7 +13,7 @@
       <div class="index">
         <h1>ALGABAS</h1>
         <h4>с современной методикой обучения</h4>
-        <button class="main-button">Заказать звонок</button>
+        <button @click.self="modalShow" class="main-button">Заказать звонок</button>
         <img class="click" src="../assets/img/image4.png" alt="" />
       </div>
       <div class="principles">
@@ -285,6 +285,7 @@ import Card from "@/components/Card";
 import ReviewItem from "@/components/ReviewItem";
 import TabBar from "@/components/TabBar";
 import TabBarContent from "@/components/TabBarContent";
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: "Home",
@@ -331,6 +332,12 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+        'GET_MODAL_SHOW'
+    ]),
+    modalShow() {
+      this.GET_MODAL_SHOW()
+    },
     hideOrShow(index) {
       if (this.q === index) {
         this.q = null;
@@ -338,6 +345,12 @@ export default {
         this.q = index;
       }
     },
+  },
+
+  computed: {
+    ...mapGetters([
+        'SHOW_MODAL'
+    ])
   },
 
   mounted() {

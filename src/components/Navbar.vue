@@ -11,7 +11,11 @@
         <router-link to="/gallery">Галерея</router-link>
         <router-link to="/contacts">Контакты</router-link>
       </div>
-      <button class="mob-none" :class="{ 'button_active_nav': navFix }">
+      <button
+          class="mob-none"
+          :class="{ 'button_active_nav': navFix }"
+          @click="requestCallModal"
+      >
         Заказать звонок
       </button>
       <div class="social-networks mob-none">
@@ -57,18 +61,40 @@
         </div>
       </div>
     </div>
+    <div class="bg" v-if="SHOW_MODAL">
+
+    </div>
+    <img
+        v-if="SHOW_MODAL"
+        @click="requestCallModal"
+        class="close_img"
+        src="../assets/icons/close.svg"
+        alt="close"
+    />
+    <transition name="review">
+      <Modal v-if="SHOW_MODAL"/>
+    </transition>
   </nav>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import Modal from "@/components/Modal";
 export default {
   name: "Navbar",
+  components: {Modal},
   props: ["header"],
   data: () => ({
     mobileNav: false,
     navFix: false,
   }),
   methods: {
+    ...mapActions([
+        'GET_MODAL_SHOW'
+    ]),
+    requestCallModal() {
+      this.GET_MODAL_SHOW()
+    },
     toggleMenu() {
       this.mobileNav = !this.mobileNav;
       if (this.mobileNav) {
@@ -88,6 +114,13 @@ export default {
       };
     },
   },
+
+  computed: {
+    ...mapGetters([
+        'SHOW_MODAL'
+    ])
+  },
+
   mounted() {
     this.handleScroll();
   },
@@ -117,6 +150,24 @@ nav {
     width: 80px;
   }
 }
+
+.bg {
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+
+}
+.close_img {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+}
+
 .activeNavbar {
   background-color: #fff;
   position: sticky;
@@ -254,6 +305,16 @@ nav {
       }
     }
   }
+}
+.review-enter,
+.review-leave-to {
+  //opacity: 0;
+  transform: translateY(-100%);
+}
+
+.review-enter-active,
+.review-leave-active {
+  transition: all 0.5s ease;
 }
 @media screen and (max-width: 1024px) {
   .nav_content {
