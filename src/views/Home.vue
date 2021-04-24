@@ -352,6 +352,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.$route);
     this.$axios
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`

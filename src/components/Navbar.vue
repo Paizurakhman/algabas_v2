@@ -4,11 +4,12 @@
       <img src="../assets/logo.svg" alt="logo" />
       <div class="links mob-none">
         <router-link to="/">Главная</router-link>
-        <router-link to="/Sales">Акции</router-link>
-        <router-link to="/Reviews">Отзывы</router-link>
-        <router-link to="/OurTeam">Наши сотрудники</router-link>
-        <router-link to="/Gallery">Галерея</router-link>
-        <router-link to="/Contacts">Контакты</router-link>
+        <router-link to="/about">О нас</router-link>
+        <router-link to="/sales">Акции</router-link>
+        <router-link to="/reviews">Отзывы</router-link>
+        <router-link to="/our-team">Наши сотрудники</router-link>
+        <router-link to="/gallery">Галерея</router-link>
+        <router-link to="/contacts">Контакты</router-link>
       </div>
       <button class="mob-none" :class="{ 'main-button': navFix }">
         Заказать звонок
@@ -35,11 +36,12 @@
         <img src="../assets/logo.svg" alt="logo" />
         <div class="links">
           <router-link to="/">Главная</router-link>
-          <router-link to="/Sales">Акции</router-link>
-          <router-link to="/Reviews">Отзывы</router-link>
-          <router-link to="/OurTeam">Наши сотрудники</router-link>
-          <router-link to="/Gallery">Галерея</router-link>
-          <router-link to="/Contacts">Контакты</router-link>
+          <router-link to="/about">О нас</router-link>
+          <router-link to="/sales">Акции</router-link>
+          <router-link to="/reviews">Отзывы</router-link>
+          <router-link to="/ourTeam">Наши сотрудники</router-link>
+          <router-link to="/gallery">Галерея</router-link>
+          <router-link to="/contacts">Контакты</router-link>
         </div>
         <div class="language">
           <h5>RU</h5>
@@ -107,6 +109,11 @@ export default {
 
 <style lang="scss">
 @import "src/assets/variables";
+
+.router-link-exact-active {
+  color: red !important;
+}
+
 nav {
   transition: all 0.5s ease;
 }

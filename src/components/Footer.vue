@@ -4,13 +4,13 @@
       <img class="logo" src="../assets/logo-big.png" alt="logo-img">
       <div class="menu padding">
         <p class="title">Меню</p>
-        <router-link to="">Главная</router-link>
-        <router-link to="">О нас</router-link>
-        <router-link to="">Акции</router-link>
-        <router-link to="">Услуги</router-link>
-        <router-link to="">Наши сотрудники</router-link>
-        <router-link to="">Галерея</router-link>
-        <router-link to="">Контакты</router-link>
+        <router-link to="/">Главная</router-link>
+        <router-link to="/about">О нас</router-link>
+        <router-link to="/sales">Акции</router-link>
+        <router-link to="/reviews">Отзывы</router-link>
+        <router-link to="/ourTeam">Наши сотрудники</router-link>
+        <router-link to="/gallery">Галерея</router-link>
+        <router-link to="/contacts">Контакты</router-link>
       </div>
       <div class="contacts padding">
         <p class="title">Контакты</p>
