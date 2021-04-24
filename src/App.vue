@@ -29,6 +29,9 @@ export default {
 </script>
 
 <style lang="scss">
+a.btn_a {
+  text-decoration: none;
+}
 .contacts_form {
   padding: 150px 0;
   background-color: #fbf9f5;
@@ -69,11 +72,11 @@ export default {
     input[type="submit"] {
       margin-top: 60px;
     }
-    .main-button {
-      width: fit-content;
-      padding: 0 60px;
-      margin: 0 auto;
-    }
+    //.main-button {
+    //  width: fit-content;
+    //  padding: 0 60px;
+    //  margin: 0 auto;
+    //}
   }
   .map {
     margin-top: 150px;

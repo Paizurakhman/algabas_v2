@@ -22,6 +22,7 @@
         </div>
       </VueSlickCarousel>
     </div>
+
     <div class="container" v-if="activeTab === 'garden'">
       <VueSlickCarousel
         ref="c1"
@@ -66,29 +67,31 @@ export default {
   data: () => ({
     settingsMainNav: {
       arrows: true,
+      responsive: [
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dots: true
+          },
+        },
+        {
+          breakpoint: 1028,
+          settings: {
+            slidesToScroll: 1,
+            arrows: false
+          },
+        },
+      ],
     },
 
     settingsSliderNav: {
       arrows: false,
       slidesToShow: 6,
       focusOnSelect: true,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: true,
-          },
-        },
-        {
-          breakpoint: 1000,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-          },
-        },
-      ],
+
     },
   }),
   mounted() {
@@ -97,5 +100,71 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.slider {
+  margin-bottom: 90px;
+  .slider_nav {
+    max-width: 960px;
+    margin: 0 auto;
+    .slick-current {
+      border: 1px solid #fcd635;
+      img {
+        filter: alpha(0.5);
+      }
+    }
+  }
+  .main_slide {
+    max-width: 960px;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+  .bottom_slide {
+    padding: 10px;
+    img {
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+  .slick-arrow {
+    width: 40px;
+    height: 40px;
+    &:before{
+      display: none;
+    }
+  }
+  .slick-prev {
+    left: 0;
+    background-size: cover;
+    background-image: url("../assets/icons/prev.svg");
+  }
+  .slick-next {
+    right: 0;
+    background-size: cover;
+    background-image: url("../assets/icons/next.svg");
+  }
+  .slider_top {
+    .slick-dots {
+      bottom: -50px;
+      button {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 1px solid #181818;
+        border-radius: 50px;
+        &:before {
+          display: none;
+        }
+      }
+      .slick-active button {
+        background: #181818;
+      }
+      li {
+        margin: 0 10px;
+      }
+    }
+  }
+}
 </style>

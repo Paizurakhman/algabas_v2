@@ -30,6 +30,7 @@
   }
   body #section-four img {
     max-width: 400px;
+    right: 0;
   }
   body #section-four button {
     width: 200px !important;
@@ -49,13 +50,6 @@
     right: 0 !important;
   }
 
-  #section-six {
-    padding: 0 !important;
-  }
-  #section-six .reviews {
-    margin: 0 20px !important;
-  }
-
   #img {
     display: block !important;
   }
@@ -70,7 +64,7 @@
     margin-bottom: 50px !important;
   }
   #section-six .wrapper .reviews {
-    margin: 0 20px !important;
+    margin: 40px 30px !important;
   }
 
   #section-seven form {

@@ -1,7 +1,7 @@
 <template>
   <nav :class="{ activeNavbar: navFix }">
     <div class="nav_content">
-      <img src="../assets/logo.svg" alt="logo" />
+      <img class="logo" src="../assets/logo.png" alt="logo" />
       <div class="links mob-none">
         <router-link to="/">Главная</router-link>
         <router-link to="/about">О нас</router-link>
@@ -11,7 +11,7 @@
         <router-link to="/gallery">Галерея</router-link>
         <router-link to="/contacts">Контакты</router-link>
       </div>
-      <button class="mob-none" :class="{ 'main-button': navFix }">
+      <button class="mob-none" :class="{ 'button_active_nav': navFix }">
         Заказать звонок
       </button>
       <div class="social-networks mob-none">
@@ -25,15 +25,15 @@
       </div>
 
       <div
-        @click="toggleMenu"
-        class="mobile_burger_toggle desk-none"
-        :class="{ burger_active: mobileNav }"
+          @click="toggleMenu"
+          class="mobile_burger_toggle desk-none"
+          :class="{ burger_active: mobileNav }"
       >
         <span></span>
       </div>
       <div v-if="mobileNav" class="bg"></div>
       <div class="mobile_nav" :class="{ mobileNavActive: mobileNav }">
-        <img src="../assets/logo.svg" alt="logo" />
+        <img class="logo" src="../assets/logo.png" alt="logo" />
         <div class="links">
           <router-link to="/">Главная</router-link>
           <router-link to="/about">О нас</router-link>
@@ -68,7 +68,6 @@ export default {
     mobileNav: false,
     navFix: false,
   }),
-
   methods: {
     toggleMenu() {
       this.mobileNav = !this.mobileNav;
@@ -89,11 +88,9 @@ export default {
       };
     },
   },
-
   mounted() {
     this.handleScroll();
   },
-
   watch: {
     $route(to, from) {
       this.mobileNav = false;
@@ -116,12 +113,25 @@ export default {
 
 nav {
   transition: all 0.5s ease;
+  img.logo {
+    width: 80px;
+  }
 }
 .activeNavbar {
   background-color: #fff;
   position: sticky;
   top: 0;
   z-index: 100;
+  .button_active_nav {
+    background: transparent !important;
+    border: 1px solid $secondary !important;
+    color: $secondary !important;
+    &:hover {
+      background: $secondary !important;
+      color: white !important;
+    }
+  }
+
 }
 .nav_content {
   display: flex;
@@ -130,11 +140,9 @@ nav {
   max-width: 1231px;
   margin: 0 auto;
   box-sizing: border-box;
-
   .desk-none {
     display: none;
   }
-
   .mob-none {
     display: block;
   }
@@ -144,7 +152,6 @@ nav {
     font-size: 14px;
     color: $primary;
   }
-
   button {
     width: 170px;
     height: 50px;
@@ -180,7 +187,6 @@ nav {
     height: 30px;
     cursor: pointer;
     z-index: 15;
-
     span {
       width: 30px;
       height: 5px;
@@ -250,32 +256,26 @@ nav {
   }
 }
 @media screen and (max-width: 1024px) {
-  nav {
+  .nav_content {
     margin: 0 30px;
-
     .desk-none {
       display: block;
     }
-
     .mob-none {
       display: none;
     }
-
     .mobile_burger_toggle {
       display: flex;
       align-items: center;
     }
-
     .mobile_burger_toggle.burger_active {
       span {
         background: transparent;
-
         &::before {
           top: 0;
           transform: rotate(45deg);
           transition: all 0.5s ease;
         }
-
         &::after {
           top: 0;
           transform: rotate(-45deg);
@@ -283,7 +283,6 @@ nav {
         }
       }
     }
-
     .bg {
       position: fixed;
       width: 100%;
@@ -293,7 +292,6 @@ nav {
       background: #00000085;
       z-index: 11;
     }
-
     .mobile_nav.mobileNavActive {
       transform: translateX(0);
     }
@@ -303,7 +301,6 @@ nav {
   nav {
     width: 95%;
     margin: 0 auto;
-
     .mobile_nav {
       width: 100%;
     }
