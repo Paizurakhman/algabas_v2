@@ -70,10 +70,11 @@ export default {
     width: 100%
     button
       width: 100%
-      height: 80px
-      border-radius: 0
+      height: 70px
+      border: 1px solid #181818
       font-size: 18px
       font-weight: 600
+      background: transparent
       cursor: pointer
 
     button.active
@@ -98,6 +99,9 @@ export default {
       position: absolute
       z-index: 10
       width: 100%
+      button
+        background: #fcd635
+        border: #fcd635
 
     .bottom
       height: 50px

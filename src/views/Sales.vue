@@ -155,7 +155,7 @@
           <input type="text" placeholder="Ваше имя" />
           <input type="text" placeholder="Номер телефона" />
           <input type="text" placeholder="Возраст ребенка" />
-          <input type="submit" class="main-button" />
+          <button class="main-button">Отправить</button>
         </form>
       </div>
     </div>
@@ -211,6 +211,7 @@ export default {};
     position: absolute;
     bottom: -70px;
     width: 100%;
+    max-width: 600px;
   }
   .btn_info {
     margin-top: 40px;
@@ -227,7 +228,8 @@ export default {};
 }
 .left_card {
   img {
-    right: -100px;
+    //right: -100px;
+    right: 0;
   }
 }
 .bg_green {

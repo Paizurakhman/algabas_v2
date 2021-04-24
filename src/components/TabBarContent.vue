@@ -22,6 +22,7 @@
         </div>
       </VueSlickCarousel>
     </div>
+
     <div class="container" v-if="activeTab === 'garden'">
       <VueSlickCarousel
         ref="c1"
@@ -66,29 +67,31 @@ export default {
   data: () => ({
     settingsMainNav: {
       arrows: true,
+      responsive: [
+        {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dots: true
+          },
+        },
+        {
+          breakpoint: 1028,
+          settings: {
+            slidesToScroll: 1,
+            arrows: false
+          },
+        },
+      ],
     },
 
     settingsSliderNav: {
       arrows: false,
       slidesToShow: 6,
       focusOnSelect: true,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: true,
-          },
-        },
-        {
-          breakpoint: 1000,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-          },
-        },
-      ],
+
     },
   }),
   mounted() {

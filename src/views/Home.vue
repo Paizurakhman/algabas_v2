@@ -125,7 +125,7 @@
         <TabBar @tabChange="current = $event" :current="current" />
       </div>
       <TabBarContent :slides="homePageData.gallery" :activeTab="current"/>
-      <button class="main-button">Смотреть все</button>
+      <router-link :to="{ name: 'Gallery'}" class="btn_a main-button">Смотреть все</router-link>
     </section>
 
     <section id="section-three">
@@ -157,14 +157,20 @@
           <img src="../assets/img/white_wave.svg" alt="" />
           <img src="../assets/img/black_romb.svg" alt="" />
         </div>
-
+        <img
+            class="mobile_image"
+            :src="$staticImageUrl.staticImgUrl(homePageData.sales.img_block)"
+            alt=""
+        />
         <div class="container">
           <div class="wrapper">
-            <h1>{{ homePageData.sales.title }}</h1>
-            <p>
-              {{ homePageData.sales.short_description }}
-            </p>
-            <button>ПОДРОБНЕЕ</button>
+            <div class="page_title">
+              <h1>{{ homePageData.sales.title }}</h1>
+              <p>
+                {{ homePageData.sales.short_description }}
+              </p>
+            </div>
+            <router-link class="btn_a btn_sales" :to="{ name: 'Sales'}">ПОДРОБНЕЕ</router-link>
           </div>
         </div>
         <img
@@ -194,7 +200,7 @@
             <p>{{ command.group_name }}</p>
           </div>
         </div>
-        <button class="main-button">Подробнее</button>
+        <router-link :to="{ name: 'OurTeam' }" class="btn_a main-button">Подробнее</router-link>
       </div>
     </section>
 
@@ -206,14 +212,16 @@
         <img src="../assets/img/Vector1.svg" alt="" />
       </div>
       <div class="wrapper">
-        <h1 class="main-heading">Отзывы</h1>
-        <h1 class="main-heading block">наших клиентов</h1>
+        <div class="title_page">
+          <h1>Отзывы <span class="orange_text">наших клиентов</span></h1>
+        </div>
         <div class="reviews">
           <div v-for="review in homePageData.review" :key="review.key">
             <ReviewItem :review="review" />
           </div>
         </div>
-        <button class="main-button">Смотреть все</button>
+        <router-link :to="{ name: 'Reviews' }" class="btn_a main-button">Смотреть все</router-link>
+
       </div>
     </section>
 
@@ -261,7 +269,7 @@
           />
           <form>
             <div class="title_page">
-              <h2><span class="orange_text">Свяжитесь</span>с нами</h2>
+              <h2><span class="orange_text">Свяжитесь</span> с нами</h2>
             </div>
             <div class="inputs">
               <input type="text" placeholder="Ваше имя" />
@@ -269,6 +277,7 @@
               <input type="text" placeholder="Возраст ребенка" />
             </div>
             <button class="main-button">Отправить</button>
+
           </form>
           <img
             class="none-image"
@@ -329,16 +338,6 @@ export default {
       ],
       count: 0,
     };
-  },
-  computed: {
-    tabNav() {
-      if (this.current === "lessons") {
-        return "Lessons";
-      }
-      if (this.current === "garden") {
-        return "Garden";
-      }
-    },
   },
 
   methods: {
@@ -651,7 +650,11 @@ export default {
       .wrapper {
         position: relative;
         text-align: left;
+        margin-bottom: 50px;
         width: 50%;
+        .page_title {
+          margin-bottom: 90px;
+        }
 
         h1 {
           font-size: 3em;
@@ -665,10 +668,10 @@ export default {
           line-height: 30px;
         }
 
-        button {
-          width: 260px;
-          height: 80px;
+        .btn_sales {
+          padding: 30px 80px;
           background: white;
+          color: #181818;
           border: 0;
           border-radius: 50px;
           cursor: pointer;
@@ -686,7 +689,6 @@ export default {
 
       img {
         position: absolute;
-        right: 6%;
         bottom: 0;
       }
     }
@@ -742,41 +744,38 @@ export default {
   #section-six {
     padding: 50px 0;
     position: relative;
+    .fix_elems {
+      img {
+        &:nth-child(1) {
+          left: 2%;
+          top: 8%;
+        }
 
-    .reviews {
-      position: relative;
-      z-index: 1;
+        &:nth-child(2) {
+          right: 7%;
+          top: 1%;
+        }
 
-      .fix_elems {
-        img {
-          &:nth-child(1) {
-            left: 2%;
-            top: 8%;
-          }
+        &:nth-child(3) {
+          right: 20%;
+          top: 10%;
+        }
 
-          &:nth-child(2) {
-            right: 7%;
-            top: 1%;
-          }
-
-          &:nth-child(3) {
-            right: 20%;
-            top: 10%;
-          }
-
-          &:nth-child(4) {
-            bottom: 10%;
-            left: 15%;
-          }
+        &:nth-child(4) {
+          bottom: 10%;
+          left: 15%;
         }
       }
     }
 
-    .wrapper {
-      h1 {
-        margin-bottom: 100px;
-      }
+    .reviews {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 50px !important;
 
+    }
+
+    .wrapper {
       .reviews {
         @include grid(2, 1fr, 1200px, 10px, 50px);
       }
