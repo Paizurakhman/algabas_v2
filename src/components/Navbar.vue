@@ -61,6 +61,16 @@
         </div>
       </div>
     </div>
+    <div class="bg" v-if="SHOW_MODAL">
+
+    </div>
+    <img
+        v-if="SHOW_MODAL"
+        @click="requestCallModal"
+        class="close_img"
+        src="../assets/icons/close.svg"
+        alt="close"
+    />
     <transition name="review">
       <Modal v-if="SHOW_MODAL"/>
     </transition>
@@ -140,6 +150,24 @@ nav {
     width: 80px;
   }
 }
+
+.bg {
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+
+}
+.close_img {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+}
+
 .activeNavbar {
   background-color: #fff;
   position: sticky;

@@ -1,13 +1,5 @@
 <template>
-    <div class="fixed_modal">
-      <div class="bg" @click.self="closeModal">
-        <img
-            @click="closeModal"
-            class="close_img"
-            src="../assets/icons/close.svg"
-            alt="close"
-        />
-      </div>
+    <div class="fixed_modal" @click.self="closeModal">
       <div class="review_modal">
         <p class="review_header">Оставить отзыв</p>
         <input type="text" placeholder="Имя" />
@@ -27,11 +19,18 @@ export default {
   data() {
     return {
       review: "",
-      show_modal: this.SHOW_MODAL
     };
   },
 
+  mounted() {
+    if (this.SHOW_MODAL) {
+      document.body.style.overflowY = "hidden";
+    }
+  },
 
+  destroyed() {
+    document.body.style.overflowY = "auto";
+  },
 
   methods: {
     ...mapActions([
@@ -62,25 +61,17 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.bg {
-  position: fixed;
-  top: 0;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  left: 0;
-  height: 100%;
-
-  .close_img {
-    float: right;
-    margin: 30px;
-    cursor: pointer;
-  }
+.close_img {
+  position: relative;
+  float: right;
+  margin: 30px;
+  cursor: pointer;
 }
 .review_modal {
   position: fixed;
-  max-width: 400px;
+  max-width: 500px;
   top: 15vh;
-  padding: 20px;
+  padding: 30px 20px;
   background: #ffffff;
   .review_header {
     font-weight: 600;
@@ -97,6 +88,13 @@ export default {
   }
   button {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .review_modal {
+    left: 0;
+    margin: 0 15px;
   }
 }
 </style>
