@@ -131,7 +131,7 @@ export default {
 
   @media screen and (max-width: 576px){
     footer {
-      padding: 50px 20px;
+      padding: 0 20px;
       .logo_block {
         text-align: center;
       }

@@ -45,7 +45,7 @@
               <router-link to="/about">О нас</router-link>
               <router-link to="/sales">Акции</router-link>
               <router-link to="/reviews">Отзывы</router-link>
-              <router-link to="/ourTeam">Наши сотрудники</router-link>
+              <router-link to="/our-team">Наши сотрудники</router-link>
               <router-link to="/gallery">Галерея</router-link>
               <router-link to="/contacts">Контакты</router-link>
             </div>
