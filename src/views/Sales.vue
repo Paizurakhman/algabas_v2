@@ -210,6 +210,12 @@ export default {
   }
 }
 
+.contacts_form {
+  form {
+    text-align: center;
+  }
+}
+
 .right_card {
   img {
     margin-left: -120px;

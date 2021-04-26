@@ -922,7 +922,7 @@ export default {
           }
         }
         .inputs {
-          margin-bottom: 60px;
+          margin-bottom: 30px;
         }
       }
       img {

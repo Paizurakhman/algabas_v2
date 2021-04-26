@@ -59,6 +59,7 @@
             <router-link to="/about">О нас</router-link>
             <router-link to="/sales">Акции</router-link>
             <router-link to="/reviews">Отзывы</router-link>
+             <router-link to="/services">Услуги</router-link>
             <router-link to="/ourTeam">Наши сотрудники</router-link>
             <router-link to="/gallery">Галерея</router-link>
             <router-link to="/contacts">Контакты</router-link>
@@ -227,9 +228,9 @@ nav {
     font-size: 18px;
     transition: all 0.5s ease;
     &:hover {
-      background: #000;
+      background: #ff7948;
       color: #fff;
-      border: 1px solid #000;
+      border: 1px solid #ff7948;
     }
   }
   .social-networks img {
