@@ -360,24 +360,15 @@ export default {
 
   computed: {
     ...mapGetters(["SHOW_MODAL"]),
-
-    // current() {
-    //   this.currentNull = this.homePageData.gallery[0].title;
-    //   return this.currentNull
-    //   // return this.homePageData.gallery[0].title
-    // },
   },
 
   mounted() {
+    
     this.$axios
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`
       )
-      .then((response) => (this.homePageData = response.data));
-
-    if (this.homePageData) {
-      this.current = this.homePageData.gallery[0].title;
-    }
+      .then((response) => (this.homePageData = response.data, this.current = this.homePageData?.gallery[0].title));
   },
 };
 </script>

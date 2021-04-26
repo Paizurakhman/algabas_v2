@@ -2,7 +2,6 @@
   <div>
     <div class="tab-nav">
       <div class="select">
-
         <button class="current" @click="isSelect = !isSelect">{{ selected }}</button>
 
         <svg :class="{ active_select: isSelect }" @click="isSelect = !isSelect" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +20,10 @@
           >{{ current[1].title }}</button>
         </nav>
       </transition>
+        <pre>{{ current }}</pre>
+
       <nav class="tab_desktop">
+
         <button
             @click="updateTab(current[0].title)"
             :class="{ active: current === current[0].title}"
