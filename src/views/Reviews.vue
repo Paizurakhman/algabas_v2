@@ -103,28 +103,45 @@
         </div>
       </div>
     </div>
+    <div @click.self="hideOrShow" class="bg" v-if="SHOW_MODAL_REVIEW">
+
+    </div>
+    <img
+        v-if="SHOW_MODAL_REVIEW"
+        @click="hideOrShow"
+        class="close_img"
+        src="../assets/icons/close.svg"
+        alt="close"
+    />
+    <Modal style="position:relative;z-index: 100001 !important;" v-if="SHOW_MODAL_REVIEW">
+      <template v-slot:title>Оставить отзыв</template>
+    </Modal>
   </div>
 </template>
 
 <script>
-import modal from "@/components/Modal";
+import Modal from "@/components/Modal";
 import ReviewItem from "@/components/ReviewItem";
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: { modal, ReviewItem },
+  components: { Modal, ReviewItem },
   data: () => ({
-    showModal: false,
     reviewsPageData: null,
   }),
 
   methods: {
     ...mapActions([
-        'GET_MODAL_SHOW'
+        'GET_MODAL_REVIEW'
     ]),
     hideOrShow() {
-      this.GET_MODAL_SHOW()
+      this.GET_MODAL_REVIEW()
     },
+  },
+  computed: {
+    ...mapGetters([
+        'SHOW_MODAL_REVIEW'
+    ])
   },
 
   mounted () {
@@ -240,5 +257,21 @@ export default {
       max-width: 35px;
     }
   }
+}
+.bg {
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  left: 0;
+  height: 100%;
+  z-index: 9999;
+
+}
+.close_img {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100001;
 }
 </style>
