@@ -88,7 +88,7 @@
 
         <div class="container" v-if="index % 2">
           <div class="row">
-            <div class="col-xl-6 m_order_1">
+            <div class="col-xl-6 col-md-6 m_order_1">
               <div class="sales_description">
                 <h3>{{ card.title }}</h3>
                 <p>{{ card.short_description }}</p>
@@ -96,7 +96,7 @@
               </div>
               <button class="btn btn_info">ПОДРОБНЕЕ</button>
             </div>
-            <div class="col-xl-6 m_order_2">
+            <div class="col-xl-6 col-md-6 m_order_2">
               <img :src="$staticImageUrl.staticImgUrl(card.img_block)" alt="" />
             </div>
           </div>
@@ -104,10 +104,10 @@
 
         <div class="container" v-else> 
           <div class="row">
-            <div class="col-xl-6 m_order_2">
+            <div class="col-xl-6 col-md-6 m_order_2">
               <img :src="$staticImageUrl.staticImgUrl(card.img_block)" alt="" />
             </div>
-            <div class="col-xl-6 m_order_1">
+            <div class="col-xl-6 col-md-6 m_order_1">
               <div class="sales_description">
                <h3>{{ card.title }}</h3>
                 <p>{{ card.short_description }}</p>
@@ -200,7 +200,7 @@ export default {
     position: absolute;
     bottom: -70px;
     width: 90%;
-    max-width: 600px;
+    max-width: 500px;
   }
   .btn_info {
     margin-top: 40px;
@@ -268,7 +268,7 @@ export default {
     margin-bottom: 70px;
     img {
       position: relative;
-      top: -50%;
+      top: -40%;
     }
   }
   .sales_description {
