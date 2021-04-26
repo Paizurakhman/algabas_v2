@@ -66,8 +66,7 @@
         <h1>
           Режим дня
           <div class="title_group">
-            <span class="orange_text">{{ groupPageData.groups.title }}</span>
-            “{{ groupPageData.groups.name }}”
+            <span class="orange_text">{{ groupPageData.groups.title }} “{{ groupPageData.groups.name }}”</span>
           </div>
         </h1>
       </div>
@@ -92,8 +91,7 @@
         <h1>
           Расписание занятий
           <div class="title_group">
-            <span class="orange_text">{{ groupPageData.groups.title }}</span>
-            “{{ groupPageData.groups.name }}”
+            <span class="orange_text">{{ groupPageData.groups.title }} “{{ groupPageData.groups.name }}”</span>
           </div>
         </h1>
       </div>

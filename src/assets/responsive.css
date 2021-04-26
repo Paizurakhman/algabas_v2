@@ -107,6 +107,16 @@
   }
 }
 @media screen and (max-width: 576px) {
+  .my_content {
+    padding: 30px 0 !important;
+  }
+  .my_content .wrapper_content {
+    margin-bottom: 0;
+  }
+  .my_content .wrapper_content img {
+    margin-bottom: 20px;
+  }
+
   .slider_nav {
     display: none !important;
   }
