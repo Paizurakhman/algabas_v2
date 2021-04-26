@@ -7,7 +7,11 @@
         v-bind="settingsMainNav"
         class="slider_top"
       >
-        <div class="main_slide" v-for="slide in slides[0].images" :key="slide.id">
+        <div
+          class="main_slide"
+          v-for="slide in slides[0].images"
+          :key="slide.id"
+        >
           <img :src="$staticImageUrl.staticImgUrl(slide.image)" alt="img" />
         </div>
       </VueSlickCarousel>
@@ -17,7 +21,11 @@
         :asNavFor="$refs.c1"
         v-bind="settingsSliderNav"
       >
-        <div class="bottom_slide" v-for="slide in slides[0].images" :key="slide.id">
+        <div
+          class="bottom_slide"
+          v-for="slide in slides[0].images"
+          :key="slide.id"
+        >
           <img :src="$staticImageUrl.staticImgUrl(slide.image)" alt="img" />
         </div>
       </VueSlickCarousel>
@@ -74,14 +82,14 @@ export default {
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: false,
-            dots: true
+            dots: true,
           },
         },
         {
           breakpoint: 1028,
           settings: {
             slidesToScroll: 1,
-            arrows: false
+            arrows: false,
           },
         },
       ],
@@ -96,6 +104,7 @@ export default {
   mounted() {
     this.$nextTick(this.$forceUpdate);
   },
+
 };
 </script>
 
@@ -130,7 +139,7 @@ export default {
   .slick-arrow {
     width: 40px;
     height: 40px;
-    &:before{
+    &:before {
       display: none;
     }
   }
