@@ -100,7 +100,9 @@
       alt="close"
     />
     <transition name="review">
-      <Modal v-if="SHOW_MODAL" />
+      <Modal v-if="SHOW_MODAL">
+        <template v-slot:title>Заказать звонок</template>
+      </Modal>
     </transition>
   </nav>
 </template>

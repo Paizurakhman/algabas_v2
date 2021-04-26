@@ -1,7 +1,9 @@
 <template>
     <div class="fixed_modal" @click.self="closeModal">
       <div class="review_modal">
-        <p class="review_header">Заказать звонок</p>
+        <p class="review_header">
+          <slot name="title"></slot>
+        </p>
         <input type="text" placeholder="Имя" />
         <input type="email" placeholder="Email" />
         <textarea v-model="review" placeholder="Отзыв"></textarea>
@@ -23,29 +25,29 @@ export default {
   },
 
   mounted() {
-    if (this.SHOW_MODAL) {
+    if (this.SHOW_MODAL || this.SHOW_MODAL_REVIEW) {
       document.body.style.overflowY = "hidden";
     }
   },
 
   destroyed() {
-    if (!this.SHOW_MODAL) {
+    if (!this.SHOW_MODAL || !this.SHOW_MODAL_REVIEW) {
       document.body.style.overflowY = "auto";
     }
   },
 
   methods: {
     ...mapActions([
-      'GET_MODAL_SHOW'
+      'GET_MODAL_SHOW',
     ]),
     closeModal() {
-      this.GET_MODAL_SHOW()
-      // this.$emit("close_modal");
+      this.$store.commit('GLOSE_MODAL')
     },
   },
   computed: {
     ...mapGetters([
-        'SHOW_MODAL'
+        'SHOW_MODAL',
+        'SHOW_MODAL_REVIEW'
     ]),
 
   }

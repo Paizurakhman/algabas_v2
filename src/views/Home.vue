@@ -96,9 +96,9 @@
             <h2>садик</h2>
           </div>
         </div>
-        <TabBar :tabs="homePageData.gallery" @currentPage="currentPageData"/>
+        <TabBar :tabs="homePageData.gallery" @currentPage="currentPageData" />
       </div>
-      <TabBarContent :active-tab="currentId" :slides="homePageData.gallery"/>
+      <TabBarContent :active-tab="currentId" :slides="homePageData.gallery" />
       <router-link :to="{ name: 'Gallery' }" class="btn_a main-button"
         >Смотреть все</router-link
       >
@@ -236,23 +236,23 @@
             v-for="(des, index) in homePageData.question"
             :key="index"
           >
-            <div class="question_content col-xl-10 col-10">
+            <div class="question_content col-xl-12 col-12">
               <div class="question_head">
                 <p>{{ des.question }}</p>
+                <div class="hide_show">
+                  <span
+                    :class="{ hide_active: q === index }"
+                    @click="hideOrShow(index)"
+                  ></span>
+                </div>
               </div>
-              <transition name="hide">
+              <transition name="slide">
                 <div class="question_title" v-if="q === index">
                   <p>
                     {{ des.answer }}
                   </p>
                 </div>
               </transition>
-            </div>
-            <div class="hide_show col-xl-2 col-2">
-              <span
-                :class="{ hide_active: q === index }"
-                @click="hideOrShow(index)"
-              ></span>
             </div>
           </div>
         </div>
@@ -277,10 +277,10 @@
             </div>
             <div class="inputs">
               <input type="text" placeholder="Ваше имя" />
-               <the-mask
-                  :mask="['#(###) ###-####']"
-                  placeholder="Номер телефона"
-                />
+              <the-mask
+                :mask="['#(###) ###-####']"
+                placeholder="Номер телефона"
+              />
               <input type="text" placeholder="Возраст ребенка" />
             </div>
             <button class="main-button">Отправить</button>
@@ -316,7 +316,7 @@ export default {
       homePageData: null,
       show: false,
       q: 0,
-      currentId: '',
+      currentId: "",
       cards: [
         {
           id: "young_group",
@@ -353,7 +353,7 @@ export default {
       this.GET_MODAL_SHOW();
     },
     currentPageData(current) {
-      this.currentId = current
+      this.currentId = current;
     },
     hideOrShow(index) {
       if (this.q === index) {
@@ -369,12 +369,16 @@ export default {
   },
 
   mounted() {
-    
     this.$axios
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`
       )
-      .then((response) => (this.homePageData = response.data, this.currentId = response.data.gallery[0].id));
+      .then(
+        (response) => (
+          (this.homePageData = response.data),
+          (this.currentId = response.data.gallery[0].id)
+        )
+      );
   },
 };
 </script>
@@ -822,28 +826,31 @@ export default {
         margin: 0;
         border-top: 1px solid #ff7948;
         .question_content {
-          padding: 0;
+          padding: 16px 0 16px;
           .question_head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
             p {
               font-size: 1.5em;
               font-weight: 600;
+              margin-bottom: 0;
             }
           }
           .question_title {
             p {
               font-size: 1.2em;
+              margin-bottom: 0;
             }
           }
           p {
             text-align: left !important;
-            margin: 16px 0;
           }
         }
         .hide_show {
           padding: 0;
           span {
             float: right;
-            margin: 16px 0;
             display: block;
             background: #ff7948;
             width: 40px;
@@ -954,6 +961,38 @@ export default {
       }
     }
   }
+
+  .slide-enter-active {
+   -moz-transition-duration: 0.3s;
+   -webkit-transition-duration: 0.3s;
+   -o-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+   -moz-transition-timing-function: ease-in;
+   -webkit-transition-timing-function: ease-in;
+   -o-transition-timing-function: ease-in;
+   transition-timing-function: ease-in;
+}
+
+.slide-leave-active {
+   -moz-transition-duration: 0.3s;
+   -webkit-transition-duration: 0.3s;
+   -o-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to, .slide-leave {
+   max-height: 100px;
+   overflow: hidden;
+}
+
+.slide-enter, .slide-leave-to {
+   overflow: hidden;
+   max-height: 0;
+}
 }
 
 @keyframes click_anim {
