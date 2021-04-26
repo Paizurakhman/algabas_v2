@@ -1,6 +1,6 @@
  <template>
-  <div>
-    <div class="page_info">
+  <div v-if="galleryPageData">
+    <div class="page_info" >
       <div class="container h-100">
         <div class="row h-100 align-items-center">
           <div class="col-xl-7 col-md-6 position-static">

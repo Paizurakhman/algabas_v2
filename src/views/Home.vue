@@ -70,14 +70,14 @@
       </div>
       <div class="wrapper">
         <div class="title mobile">
-          <div class="left" v-if="current === homePageData.gallery[0].title">
+          <div class="left" v-if="currentId === homePageData.gallery[0].id">
             <h2>Как проходят</h2>
             <h2>занятия</h2>
           </div>
           <div>
             <h2 class="none_mob">и</h2>
           </div>
-          <div v-if="current === homePageData.gallery[1].title" class="right">
+          <div v-if="currentId === homePageData.gallery[1].id" class="right">
             <h2>Как выглядит</h2>
             <h2>садик</h2>
           </div>
@@ -96,9 +96,9 @@
             <h2>садик</h2>
           </div>
         </div>
-        <TabBar @tabChange="current = $event" :current="homePageData.gallery" />
+        <TabBar :tabs="homePageData.gallery" @currentPage="currentPageData"/>
       </div>
-      <TabBarContent :slides="homePageData.gallery" :activeTab="current" />
+      <TabBarContent :active-tab="currentId" :slides="homePageData.gallery"/>
       <router-link :to="{ name: 'Gallery' }" class="btn_a main-button"
         >Смотреть все</router-link
       >
@@ -311,9 +311,9 @@ export default {
   data() {
     return {
       homePageData: null,
-      current: "",
       show: false,
       q: 0,
+      currentId: '',
       cards: [
         {
           id: "young_group",
@@ -349,6 +349,9 @@ export default {
     modalShow() {
       this.GET_MODAL_SHOW();
     },
+    currentPageData(current) {
+      this.currentId = current
+    },
     hideOrShow(index) {
       if (this.q === index) {
         this.q = null;
@@ -368,7 +371,7 @@ export default {
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`
       )
-      .then((response) => (this.homePageData = response.data, this.current = this.homePageData?.gallery[0].title));
+      .then((response) => (this.homePageData = response.data, this.currentId = response.data.gallery[0].id));
   },
 };
 </script>

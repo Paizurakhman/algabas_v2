@@ -1,6 +1,6 @@
 <template>
   <div class="slider">
-    <div class="container" v-if="activeTab === slides[0].title">
+    <div class="container" v-if="activeTab === slides[0].id">
       <VueSlickCarousel
         ref="c1"
         :asNavFor="$refs.c2"
@@ -23,7 +23,7 @@
       </VueSlickCarousel>
     </div>
 
-    <div class="container" v-if="activeTab === slides[1].title">
+    <div class="container" v-if="activeTab === slides[1].id">
       <VueSlickCarousel
         ref="c1"
         :asNavFor="$refs.c2"

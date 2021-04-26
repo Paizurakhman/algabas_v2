@@ -4,7 +4,8 @@
       <p>{{review.reviews}}</p>
     </div>
     <div class="contact-profile">
-      <img :src="$staticImageUrl.staticImgUrl(review.image)" alt="" class="avatar" />
+      <img v-if="review.image" :src="$staticImageUrl.staticImgUrl(review.image)" alt="" class="avatar" />
+      <img v-else class="avatar" src="@/assets/img/userno_image.png" alt="">
       <a v-if="review.facebook" :href="review.facebook" target="blank">
         <img src="@/assets/img/facebook_icon.svg" alt="" />
       </a>

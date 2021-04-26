@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Navbar :nav="header"  />
+    <Navbar :contacts="contactsData"  />
     <router-view />
-    <Footer />
+    <Footer :contacts="contactsData"/>
   </div>
 </template>
 
@@ -14,13 +14,14 @@ export default {
   data: () => ({
     header: "header",
     navFix: false,
+    contactsData: null
   }),
   mounted() {
     this.$axios
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/get-contacts?lang=${this.$lang}`
       )
-      .then((response) => console.log(response));
+      .then((response) => this.contactsData = response.data);
   },
 
 

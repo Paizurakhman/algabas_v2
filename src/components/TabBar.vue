@@ -2,8 +2,7 @@
   <div>
     <div class="tab-nav">
       <div class="select">
-        <button class="current" @click="isSelect = !isSelect">{{ selected }}</button>
-
+        <button class="current" @click="isSelect = !isSelect">{{ selectedItem }}</button>
         <svg :class="{ active_select: isSelect }" @click="isSelect = !isSelect" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1L6 6L11 1" stroke="black" stroke-width="2"/>
         </svg>
@@ -11,27 +10,22 @@
       <transition name="button">
         <nav class="tab" v-if="isSelect">
           <button
-              @click="updateTab('lessons')"
-              :class="{ active: current === 'lessons'}"
-          >{{ current[0].title }}</button>
-          <button
-              @click="updateTab('garden')"
-              :class="{ active: current === 'garden'}"
-          >{{ current[1].title }}</button>
+              v-for="tab in tabs"
+              :key="tab.id"
+              @click="selected(tab.title); updateBtn(tab.id)"
+          >{{ tab.title }}</button>
         </nav>
       </transition>
-        <pre>{{ current }}</pre>
 
       <nav class="tab_desktop">
 
         <button
-            @click="updateTab(current[0].title)"
-            :class="{ active: current[0].title === current[0].title}"
-        >{{ current[0].title }}</button>
-        <button
-            @click="updateTab(current[1].title)"
-            :class="{ active: current === current[1].title}"
-        >{{ current[1].title }}</button>
+            v-for="tab in tabs"
+            :key="tab.id"
+            @click="updateBtn(tab.id)"
+            :class="{ active: currentId === tab.id}"
+        >{{ tab.title }}</button>
+
       </nav>
     </div>
     <div class="bottom"></div>
@@ -41,27 +35,23 @@
 <script>
 export default {
   name: "TabBar",
-  props: ['current'],
+  props: ['tabs'],
   data() {
     return {
+      currentId: this.tabs[0].id,
       isSelect: false,
+      selectedItem: this.tabs[0].title
     }
   },
   methods: {
-    updateTab(by){
-      this.$emit('tabChange', by)
-      this.isSelect = false;
-    }
-  },
-  computed: {
-    selected() {
-      if (this.current === this.current[0].title) {
-        return 'Занятия'
-      }
-      if (this.current === this.current[1].title) {
-        return 'Садик'
-      }
-    }
+    updateBtn(id) {
+      this.$emit('currentPage', id)
+      this.currentId = id
+    },
+    selected(title) {
+      this.selectedItem = title
+      this.isSelect = false
+    },
   }
 }
 </script>

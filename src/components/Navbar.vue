@@ -1,7 +1,9 @@
 <template>
   <nav :class="{ activeNavbar: navFix }">
     <div class="nav_content">
-      <router-link to="/"><img class="logo" src="../assets/logo.png" alt="logo" /></router-link>
+      <router-link to="/"
+        ><img class="logo" src="../assets/logo.png" alt="logo"
+      /></router-link>
       <div class="links mob-none">
         <router-link to="/">Главная</router-link>
         <router-link to="/about">О нас</router-link>
@@ -13,16 +15,26 @@
         <router-link to="/contacts">Контакты</router-link>
       </div>
       <button
-          class="mob-none"
-          :class="{ 'main-button': navFix }"
-          @click="requestCallModal"
+        class="mob-none"
+        :class="{ 'main-button': navFix }"
+        @click="requestCallModal"
       >
         Заказать звонок
       </button>
-      <div class="social-networks mob-none">
-        <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
-        <img src="../assets/icons/instagram.png" alt="instagram" />
-        <img src="../assets/icons/facebook.png" alt="facebook" />
+      <div class="social-networks mob-none" v-if="contacts">
+        <a
+          :href="'https://api.whatsapp.com/send?phone=' + contacts.whats_app"
+          v-if="contacts.whats_app"
+          target="blank"
+        >
+          <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
+        </a>
+        <a :href="contacts.instagram" v-if="contacts.instagram">
+          <img src="../assets/icons/instagram.png" alt="instagram" />
+        </a>
+        <a :href="'mailto:' + contacts.facebook" v-if="contacts.facebook">
+          <img src="../assets/icons/facebook.png" alt="facebook" />
+        </a>
       </div>
       <div class="language mob-none">
         <h5 class="lang">RU</h5>
@@ -30,73 +42,83 @@
       </div>
 
       <div
-          @click="toggleMenu"
-          class="mobile_burger_toggle desk-none"
-          :class="{ burger_active: mobileNav }"
+        @click="toggleMenu"
+        class="mobile_burger_toggle desk-none"
+        :class="{ burger_active: mobileNav }"
       >
         <span></span>
       </div>
       <div v-if="mobileNav" class="bg"></div>
       <div class="mobile_nav" :class="{ mobileNavActive: mobileNav }">
-        <router-link to="/"><img class="logo" src="../assets/logo.png" alt="logo" /></router-link>
-          <div class="mobile_header">
-            <div class="links">
-              <router-link to="/">Главная</router-link>
-              <router-link to="/about">О нас</router-link>
-              <router-link to="/sales">Акции</router-link>
-              <router-link to="/reviews">Отзывы</router-link>
-              <router-link to="/ourTeam">Наши сотрудники</router-link>
-              <router-link to="/gallery">Галерея</router-link>
-              <router-link to="/contacts">Контакты</router-link>
-            </div>
-            <div class="language">
-              <h5 class="lang">RU</h5>
-              <h5 class="lang">KZ</h5>
-            </div>
+        <router-link to="/"
+          ><img class="logo" src="../assets/logo.png" alt="logo"
+        /></router-link>
+        <div class="mobile_header">
+          <div class="links">
+            <router-link to="/">Главная</router-link>
+            <router-link to="/about">О нас</router-link>
+            <router-link to="/sales">Акции</router-link>
+            <router-link to="/reviews">Отзывы</router-link>
+            <router-link to="/ourTeam">Наши сотрудники</router-link>
+            <router-link to="/gallery">Галерея</router-link>
+            <router-link to="/contacts">Контакты</router-link>
           </div>
-        <div class="contacts">
-          <p>+7 (777) 777-77-77</p>
+          <div class="language">
+            <h5 class="lang">RU</h5>
+            <h5 class="lang">KZ</h5>
+          </div>
+        </div>
+        <div class="contacts" v-if="contacts">
+          <p>{{ contacts.phone_number }}</p>
           <div class="social-networks desk-none">
-            <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
-            <img src="../assets/icons/instagram.png" alt="instagram" />
-            <img src="../assets/icons/facebook.png" alt="facebook" />
+            <a
+              :href="
+                'https://api.whatsapp.com/send?phone=' + contacts.whats_app
+              "
+              v-if="contacts.whats_app"
+              target="blank"
+            >
+              <img src="../assets/icons/whatsapp.png" alt="whatsapp" />
+            </a>
+            <a :href="contacts.instagram" v-if="contacts.instagram">
+              <img src="../assets/icons/instagram.png" alt="instagram" />
+            </a>
+            <a :href="'mailto:' + contacts.facebook" v-if="contacts.facebook">
+              <img src="../assets/icons/facebook.png" alt="facebook" />
+            </a>
           </div>
         </div>
-        </div>
+      </div>
     </div>
-    <div class="bg" v-if="SHOW_MODAL">
-
-    </div>
+    <div class="bg" v-if="SHOW_MODAL"></div>
     <img
-        v-if="SHOW_MODAL"
-        @click="requestCallModal"
-        class="close_img"
-        src="../assets/icons/close.svg"
-        alt="close"
+      v-if="SHOW_MODAL"
+      @click="requestCallModal"
+      class="close_img"
+      src="../assets/icons/close.svg"
+      alt="close"
     />
     <transition name="review">
-      <Modal v-if="SHOW_MODAL"/>
+      <Modal v-if="SHOW_MODAL" />
     </transition>
   </nav>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 import Modal from "@/components/Modal";
 export default {
   name: "Navbar",
-  components: {Modal},
-  props: ["header"],
+  components: { Modal },
+  props: ["contacts"],
   data: () => ({
     mobileNav: false,
     navFix: false,
   }),
   methods: {
-    ...mapActions([
-        'GET_MODAL_SHOW'
-    ]),
+    ...mapActions(["GET_MODAL_SHOW"]),
     requestCallModal() {
-      this.GET_MODAL_SHOW()
+      this.GET_MODAL_SHOW();
     },
     toggleMenu() {
       this.mobileNav = !this.mobileNav;
@@ -119,9 +141,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters([
-        'SHOW_MODAL'
-    ])
+    ...mapGetters(["SHOW_MODAL"]),
   },
 
   mounted() {
@@ -164,7 +184,6 @@ nav {
   left: 0;
   height: 100%;
   z-index: 1000;
-
 }
 .close_img {
   position: fixed;
@@ -181,7 +200,6 @@ nav {
   .main-button {
     border: 1px solid $secondary !important;
   }
-
 }
 .nav_content {
   display: flex;
@@ -374,7 +392,7 @@ nav {
   }
 }
 @media screen and (max-width: 768px) {
-    .language {
+  .language {
     display: flex;
     align-items: center;
     justify-content: center;
