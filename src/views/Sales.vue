@@ -15,9 +15,8 @@
               </h1>
             </div>
             <div class="description_text mt-4">
-              <p>
-                {{ salesPageData.page.description }}
-              </p>
+              <span v-html="salesPageData.page.description">
+              </span>
             </div>
             <div class="socials">
               <a href="#">

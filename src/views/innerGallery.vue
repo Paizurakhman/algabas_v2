@@ -1,8 +1,8 @@
 <template>
-  <div v-if="innerGaleryImg">
-    <div class="banner">
+  <div v-if="innerGaleryData">
+    <div class="banner" :style="{ backgroundImage:' url(' + $staticImageUrl.staticImgUrl(innerGaleryData.gallery.oblozhka) + ')'}">
       <div>
-        <h1>Занятия</h1>
+        <h1>{{ innerGaleryData.gallery.title }}</h1>
         <div class="border_title"></div>
       </div>
     </div>
@@ -23,14 +23,14 @@
         <div class="row">
           <div
             class="col-xl-3 col-md-6 col-lg-4"
-            v-for="(card, idx) in innerGaleryImg.images"
+            v-for="(card, idx) in innerGaleryData.images"
             :key="idx"
           >
             <div class="gallery_card">
               <img
                 :src="$staticImageUrl.staticImgUrl(card.image)"
                 alt=""
-                @click="galleryModalToggle(innerGaleryImg.images, idx)"
+                @click="galleryModalToggle(innerGaleryData.images, idx)"
               />
             </div>
           </div>
@@ -69,7 +69,7 @@ export default {
   },
 
   data: () => ({
-    innerGaleryImg: null,
+    innerGaleryData: null,
     galleryModal: null,
     idxImg: 1,
   }),
@@ -98,7 +98,7 @@ export default {
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/gallery/${slug}?lang=${this.$lang}`
       )
-      .then((response) => (this.innerGaleryImg = response.data));
+      .then((response) => (this.innerGaleryData = response.data));
   },
   updated() {
     if (this.galleryModal !== null) {
@@ -130,6 +130,7 @@ export default {
     background-image: url("../assets/img/border.svg");
     display: block;
     height: 24px;
+    background-size: cover;
   }
 }
 .gallery {

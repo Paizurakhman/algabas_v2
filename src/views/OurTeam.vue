@@ -16,9 +16,8 @@
               </h1>
             </div>
             <div class="description_text mt-4">
-              <p>
-                {{ ourTeamPageData.page.description }}
-              </p>
+              <span v-html="ourTeamPageData.page.description">
+              </span>
             </div>
             <div class="socials">
               <a href="#">
@@ -187,6 +186,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 89888;
+  overflow-y: auto;
   .close {
     position: fixed;
     right: 5%;
