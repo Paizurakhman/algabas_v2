@@ -209,9 +209,9 @@ nav {
     font-size: 18px;
     transition: all 0.5s ease;
     &:hover {
-      background: #000;
+      background: #ff7948;
       color: #fff;
-      border: 1px solid #000;
+      border: 1px solid #ff7948;
     }
   }
   .social-networks img {
