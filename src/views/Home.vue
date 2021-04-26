@@ -313,7 +313,7 @@ export default {
       homePageData: null,
       show: false,
       q: 0,
-      currentId: 8,
+      currentId: '',
       cards: [
         {
           id: "young_group",
@@ -371,7 +371,7 @@ export default {
       .get(
         `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`
       )
-      .then((response) => (this.homePageData = response.data, this.current = this.homePageData?.gallery[0].title));
+      .then((response) => (this.homePageData = response.data, this.currentId = response.data.gallery[0].id));
   },
 };
 </script>
