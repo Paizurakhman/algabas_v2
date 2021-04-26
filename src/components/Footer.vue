@@ -12,7 +12,7 @@
             <router-link to="/about">О нас</router-link>
             <router-link to="/sales">Акции</router-link>
             <router-link to="/reviews">Отзывы</router-link>
-            <router-link to="/ourTeam">Наши сотрудники</router-link>
+            <router-link to="/our-team">Наши сотрудники</router-link>
             <router-link to="/gallery">Галерея</router-link>
             <router-link to="/contacts">Контакты</router-link>
           </div>
@@ -36,7 +36,9 @@
                 <h5>Телефон:</h5>
               </div>
               <div class="end_element">
-                <a :href="'tel:'+ contacts.phone_number">{{ contacts.phone_number }}</a>
+                <a :href="'tel:' + contacts.phone_number">{{
+                  contacts.phone_number
+                }}</a>
               </div>
             </div>
 
@@ -45,7 +47,7 @@
                 <img src="../assets/icons/footer-icons/mail.svg" alt="" />
                 <h5>Почта:</h5>
               </div>
-              <div class="end_element" >
+              <div class="end_element">
                 <a :href="'mailto:' + contacts.email">{{ contacts.email }}</a>
               </div>
             </div>
@@ -72,9 +74,7 @@
 export default {
   name: "Footer",
   props: ["contacts"],
-  data:()=>({
-  }),
-
+  data: () => ({}),
 };
 </script>
 
@@ -127,34 +127,23 @@ footer {
     color: #181818;
   }
   .map {
-      max-width: 300px;
-      height: 300px;
-      margin-left: auto;
-      iframe {
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-  @media screen and (max-width: 576px){
-    footer {
-      padding: 0 20px;
-      .logo_block {
-        text-align: center;
-      }
+    max-width: 300px;
+    height: 300px;
+    margin-left: auto;
+    iframe {
+      width: 100%;
+      height: 100%;
     }
   }
 }
-
 @media screen and (max-width: 576px) {
   footer {
-    padding: 50px 20px;
+    padding: 0 20px;
     .logo_block {
       text-align: center;
     }
   }
 }
-
 @media screen and (max-width: 768px) {
   .margin_all {
     margin-bottom: 30px;
@@ -163,7 +152,6 @@ footer {
     max-width: 100% !important;
   }
 }
-
 @media screen and (max-width: 1024px) {
   img.logo {
     max-width: 200px !important;

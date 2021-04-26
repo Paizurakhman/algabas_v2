@@ -1,7 +1,7 @@
 <template>
   <div class="review-item">
     <div class="review">
-      <p>{{review.reviews}}</p>
+      <span v-html="review.reviews"></span>
     </div>
     <div class="contact-profile">
       <img v-if="review.image" :src="$staticImageUrl.staticImgUrl(review.image)" alt="" class="avatar" />
