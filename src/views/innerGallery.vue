@@ -16,7 +16,7 @@
       <span class="fix_el"><img src="@/assets/img/Vector3.png" alt="" /></span>
 
       <div class="container">
-        <a @click="$router.go(-1)" class="back_router"
+        <a @click.prevent="$router.go(-1)" class="back_router"
           ><i class="fas fa-chevron-left"></i>Назад</a
         >
 

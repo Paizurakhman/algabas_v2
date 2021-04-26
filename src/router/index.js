@@ -57,6 +57,13 @@ const routes = [{
         component: () =>
             import ('../views/GroupPage.vue'),
         props: true
+    },
+    {
+        path: '/services',
+        name: 'Services',
+        component: () =>
+            import ('../views/Services.vue'),
+        props: true
     }
 ]
 

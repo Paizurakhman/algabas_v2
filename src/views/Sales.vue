@@ -200,7 +200,7 @@ export default {
   img {
     position: absolute;
     bottom: -70px;
-    width: 100%;
+    width: 90%;
     max-width: 600px;
   }
   .btn_info {

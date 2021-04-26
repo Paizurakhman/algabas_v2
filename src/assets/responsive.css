@@ -16,7 +16,7 @@
   }
 
   body {
-    font-size: 12px;
+    font-size: 14px;
   }
   body #section-two .title {
     display: flex;
@@ -124,7 +124,7 @@
   }
 
   body {
-    font-size: 10px;
+    font-size: 12px;
     overflow-x: hidden;
   }
 
@@ -152,7 +152,7 @@
     right: 0 !important;
   }
   .header .click {
-    top: 65% !important;
+    top: 80% !important;
     max-width: 70px !important;
     right: 40% !important;
   }
@@ -225,6 +225,17 @@
   #section-four .card_content {
     padding-top: 0 !important;
   }
+  #section-four .card_content .wrapper {
+    margin-bottom: 0 !important;
+  }
+  #section-four .card_content img {
+    top: -60px;
+  }
+  #section-four .card_content .btn_sales {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
   #section-four .wrapper {
     width: 100% !important;
   }
@@ -284,15 +295,16 @@
     width: 300px;
   }
 
-  #section-seven {
-    margin: 0 10px;
-  }
   #section-seven .fix_elems img:nth-child(1) {
     top: 45% !important;
   }
   #section-seven .fix_elems img:nth-child(2) {
     right: 0 !important;
     top: 5% !important;
+  }
+  #section-seven .form {
+    padding: 0 !important;
+    padding-bottom: 50px !important;
   }
   #section-seven button {
     width: 100%;
@@ -347,6 +359,14 @@
 
   .container_schedule .days_of_the_week {
     text-align: center !important;
+  }
+
+  .question_title p {
+    font-size: 1.5em !important;
+  }
+
+  .questions .fix_elems img:nth-child(3) {
+    display: none;
   }
 }
 

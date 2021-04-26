@@ -28,9 +28,8 @@
       </div>
       <div class="container">
         <div class="wrapper">
-          <p class="about_title">
-            {{ aboutPageData.content.content }}
-          </p>
+          <div class="about_title" v-html="aboutPageData.content.content">
+          </div>
         </div>
       </div>
     </div>
