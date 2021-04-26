@@ -138,6 +138,7 @@ export default {
     left: 0;
     background-size: cover;
     background-image: url("../assets/icons/prev.svg");
+    z-index: 15;
   }
   .slick-next {
     right: 0;

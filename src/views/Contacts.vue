@@ -70,7 +70,7 @@
           <input type="text" placeholder="Ваше имя" />
           <input type="text" placeholder="Номер телефона" />
           <input type="text" placeholder="Возраст ребенка" />
-          <input type="submit" class="main-button" />
+          <button class="main-button">Отправить</button>
         </form>
       </div>
       <div class="container">
@@ -114,6 +114,10 @@ export default {};
     top: 40%;
     right: 1%;
   }
-
+  .contacts_form {
+    form {
+      text-align: center;
+    }
+  }
 </style>
 
