@@ -378,6 +378,10 @@
   .questions .fix_elems img:nth-child(3) {
     display: none;
   }
+
+  .about_us .fix_elems img:nth-child(1) {
+    top: 0 !important;
+  }
 }
 
 /*# sourceMappingURL=responsive.css.map */
