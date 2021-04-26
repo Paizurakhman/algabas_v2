@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div v-if="innerGaleryImg">
     <div class="banner">
       <div>
         <h1>Занятия</h1>
         <div class="border_title"></div>
       </div>
     </div>
+
     <div class="gallery">
       <span class="fix_el"><img src="@/assets/img/Vector1.svg" alt="" /></span>
       <span class="fix_el"
@@ -13,75 +14,64 @@
       /></span>
       <span class="fix_el"><img src="@/assets/img/Vector4.png" alt="" /></span>
       <span class="fix_el"><img src="@/assets/img/Vector3.png" alt="" /></span>
+
       <div class="container">
+        <a @click.prevent="$router.go(-1)" class="back_router"
+          ><i class="fas fa-chevron-left"></i>Назад</a
+        >
+
         <div class="row">
           <div
             class="col-xl-3 col-md-6 col-lg-4"
-            v-for="(card, idx) in galleryImage"
-            :key="card"
+            v-for="(card, idx) in innerGaleryImg.images"
+            :key="idx"
           >
             <div class="gallery_card">
               <img
-                :src="card.src"
+                :src="$staticImageUrl.staticImgUrl(card.image)"
                 alt=""
-                @click="galleryModalToggle(galleryImage, idx)"
+                @click="galleryModalToggle(innerGaleryImg.images, idx)"
               />
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="gallery_modal_wrapper" v-if="galleryModal">
-      <div class="gallery_modal">
-        <img
-          src="@/assets/img/close.svg"
-          alt=""
-          class="close_modal"
-          @click="galleryModal = null"
-        />
-        <div>
-          <img :src="galleryModal[idxImg].src" alt="" class="main_modal_img" />
-        </div>
-        <div class="arrows">
+    <div class="bg" v-if="galleryModal"></div>
+    <transition name="review">
+      <div class="gallery_modal_wrapper" v-if="galleryModal">
+        <div class="gallery_modal">
           <img
-            src="@/assets/img/next_img.svg"
-            @click="nextImg"
-            class="next_img"
+            src="@/assets/img/close.svg"
             alt=""
+            class="close_modal"
+            @click="galleryModal = null"
           />
-          <img
-            src="@/assets/img/prev_img.svg"
-            @click="prevImg"
-            class="prev_img"
-            alt=""
-          />
+          <VueSlickCarousel class="gallery_slider">
+            <div v-for="image in galleryModal" :key="image.id">
+              <img :src="$staticImageUrl.staticImgUrl(image.image)" alt="" />
+            </div>
+          </VueSlickCarousel>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+
 export default {
+  components: {
+    VueSlickCarousel,
+  },
+
   data: () => ({
-    galeryImg: null,
+    innerGaleryImg: null,
     galleryModal: null,
     idxImg: 1,
-    galleryImage: [
-      { id: 1, src: require("@/assets/img/slider_img.png") },
-      { id: 2, src: require("@/assets/img/team_modal_img.png") },
-      { id: 3, src: require("@/assets/img/slider_img.png") },
-      { id: 4, src: require("@/assets/img/team_modal_img.png") },
-      { id: 5, src: require("@/assets/img/slider_img.png") },
-      { id: 6, src: require("@/assets/img/team_modal_img.png") },
-      { id: 7, src: require("@/assets/img/gallery_img.png") },
-      { id: 8, src: require("@/assets/img/team_modal_img.png") },
-      { id: 9, src: require("@/assets/img/gallery_img.png") },
-      { id: 10, src: require("@/assets/img/team_modal_img.png") },
-      { id: 11, src: require("@/assets/img/gallery_img.png") },
-      { id: 12, src: require("@/assets/img/team_modal_img.png") },
-    ],
   }),
   methods: {
     galleryModalToggle(card, idx) {
@@ -102,8 +92,13 @@ export default {
       }
     },
   },
-  created() {
-    console.log(this.$route);
+  mounted() {
+    let slug = this.$route.params.id;
+    this.$axios
+      .get(
+        `http://www.back-collibri.astudiodigital.ru/api/gallery/${slug}?lang=${this.$lang}`
+      )
+      .then((response) => (this.innerGaleryImg = response.data));
   },
 };
 </script>
@@ -154,6 +149,45 @@ export default {
     bottom: 10%;
   }
 }
+
+.back_router {
+  color: red;
+  cursor: pointer;
+  font-size: 20px;
+  i{
+    margin-right: 10px;
+  }
+  &:hover{
+    color: #000;
+    text-decoration: none;
+  }
+}
+.gallery_slider {
+  max-width: 600px;
+  margin: 0 auto;
+  img {
+    max-height: 400px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .slick-arrow {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    &::before {
+      display: none;
+    }
+  }
+  .slick-next {
+    right: -20%;
+    background-image: url("../assets/img/next_img.svg");
+  }
+  .slick-prev {
+    left: -20%;
+    background-image: url("../assets/img/prev_img.svg");
+  }
+}
+
 .col-xl-3 {
   margin: 40px 0 20px;
 }
@@ -176,7 +210,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #0000008c;
+  z-index: 89888;
 }
 .gallery_modal {
   position: relative;

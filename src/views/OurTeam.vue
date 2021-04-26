@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="ourTeamPageData">
     <div class="page_info">
       <div class="container h-100">
         <div class="row h-100 align-items-center">
@@ -10,17 +10,14 @@
           </div>
           <div class="col-xl-5 col-md-6">
             <div class="title_page">
-              <h1><span class="orange_text">Сотрудники</span> нашего садика</h1>
+              <h1>
+                <span class="orange_text">Сотрудники</span>
+                {{ ourTeamPageData.page.title }}
+              </h1>
             </div>
             <div class="description_text mt-4">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh
-                libero sed est sapien, risus, tellus sed pulvinar. Sit sed id
-                amet leo mauris sollicitudin vestibulum, arcu erat. Sed massa
-                nunc nullam ullamcorper sit lectus sed. Odio scelerisque
-                adipiscing pellentesque nisi, suscipit. Ut porta lectus vitae
-                nibh. Cum pellentesque ullamcorper semper aliquam fusce lectus
-                purus.
+                {{ ourTeamPageData.page.description }}
               </p>
             </div>
             <div class="socials">
@@ -43,9 +40,9 @@
     </div>
     <div class="our_team">
       <div class="fix_elems">
-        <img src="../assets/img/red_tick.svg" alt="">
-        <img src="../assets/img/blue_romb.svg" alt="">
-        <img src="../assets/img/green_star.svg" alt="">
+        <img src="../assets/img/red_tick.svg" alt="" />
+        <img src="../assets/img/blue_romb.svg" alt="" />
+        <img src="../assets/img/green_star.svg" alt="" />
       </div>
       <div class="title_page">
         <h2>Наша <span class="orange_text">команда</span></h2>
@@ -55,15 +52,15 @@
           <div class="wrapper">
             <div class="card-command row">
               <div
-                v-for="command in 8"
+                v-for="(card, index) in ourTeamPageData.our_team"
                 class="col-xl-3 col-md-6 col-lg-4 card_team"
-                :key="command"
-                @click="modalTeam = true"
+                :key="index"
+                @click="teamInfo(card)"
               >
-                <img src="../assets/img/image22.png" alt="" />
-                <p class="name text-bold">Анастасия</p>
-                <p>Стаж 3 года</p>
-                <p>Младшая группа</p>
+                <img :src="$staticImageUrl.staticImgUrl(card.image)" alt="" />
+                <p class="name text-bold">{{ card.name }}</p>
+                <p>Стаж {{ card.year }} года</p>
+                <p>{{ card.group_name }}</p>
               </div>
             </div>
           </div>
@@ -71,47 +68,74 @@
       </div>
       <button class="main-button m-auto d-block">Подробнее</button>
     </div>
-    <div class="team_modal_wrapper" v-if="modalTeam">
-      <span class="close"
-        ><img
-          src="@/assets/img/close.svg"
-          alt=""
-          class="close_modal"
-          @click="modalTeam = false"
-      /></span>
-      <div class="team_modal">
-        <img src="../assets/img/team_modal_img.png" alt="" />
-        <div class="team_modal_content">
-          <div class="team_modal_title">
-            <h4>Анастасия</h4>
-            <p>Стаж 3 года</p>
-            <p>Младшая группа</p>
-          </div>
-          <div class="team_modal_text">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh
-              libero sed est sapien, risus, tellus sed pulvinar. Sit sed id amet
-              leo mauris sollicitudin vestibulum, arcu erat. Sed massa nunc
-              nullam ullamcorper sit lectus sed. Odio scelerisque adipiscing
-              pellentesque nisi, suscipit. Ut porta lectus vitae nibh. Cum
-              pellentesque ullamcorper semper aliquam fusce lectus purus.
-            </p>
+    <div class="bg" v-if="modalTeam"></div>
+    <transition name="review">
+      <div
+        class="team_modal_wrapper"
+        v-if="modalTeam"
+        @click.self="modalTeam = null"
+      >
+        <span class="close"
+          ><img
+            src="@/assets/img/close.svg"
+            alt=""
+            class="close_modal"
+            @click="modalTeam = false"
+        /></span>
+        <div class="team_modal">
+          <img :src="$staticImageUrl.staticImgUrl(modalTeam.image)" alt="" />
+          <div class="team_modal_content">
+            <div class="team_modal_title">
+              <h4>{{ modalTeam.name }}</h4>
+              <p>Стаж {{ modalTeam.year }} года</p>
+              <p>{{ modalTeam.group_name }}</p>
+            </div>
+            <div class="team_modal_text">
+              <span v-html="modalTeam.content"></span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    modalTeam: false,
+    modalTeam: null,
+    ourTeamPageData: null,
   }),
+
+  methods: {
+    teamInfo(card) {
+      this.modalTeam = card;
+    },
+  },
+
+  mounted() {
+    this.$axios
+      .get(
+        `http://www.back-collibri.astudiodigital.ru/api/our-team?lang=${this.$lang}`
+      )
+      .then((response) => (this.ourTeamPageData = response.data));
+  },
+
+  updated() {
+    if (this.modalTeam !== null) {
+      document.body.style.overflowY = "hidden";
+    }else{
+      document.body.style.overflowY = "auto";
+    }
+  },
+
 };
 </script>
 
 <style lang="scss">
+.close{
+  opacity: 1 !important;
+}
 .our_team {
   position: relative;
   padding: 120px 0;
@@ -161,7 +185,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #00000057;
+  z-index: 89888;
   .close {
     position: fixed;
     right: 5%;
@@ -176,6 +200,8 @@ export default {
   width: 100%;
   img {
     width: 100%;
+    max-height: 400px;
+    object-fit: contain;
   }
   .team_modal_title {
     text-align: center;
@@ -201,7 +227,7 @@ export default {
       z-index: 9;
     }
   }
-  .our_team_content{
+  .our_team_content {
     margin: 30px 0 !important;
   }
 }

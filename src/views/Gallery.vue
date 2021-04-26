@@ -92,18 +92,21 @@
         <div class="row">
           <div
             class="col-xl-4 col-md-6 col-lg-4"
-            v-for="card in images"
-            :key="card"
+            v-for="card in galleryPageData.gallery"
+            :key="card.id"
           >
             <div class="gallery_card">
               <router-link
                 :to="{
                   name: 'innerGallery',
-                  params: { id: card.id },
+                  params: { id: card.slug },
                 }"
               >
-                <img :src="card.src" alt="" />
-                <h4>Наш садик</h4>
+                <img
+                  :src="$staticImageUrl.staticImgUrl(card.oblozhka)"
+                  alt=""
+                />
+                <h4>{{ card.title }}</h4>
               </router-link>
             </div>
           </div>
@@ -117,6 +120,7 @@
  <script>
 export default {
   data: () => ({
+    galleryPageData: null,
     galleryModal: null,
     idxImg: 1,
     images: [
@@ -162,6 +166,14 @@ export default {
       { id: 8, src: require("@/assets/img/team_modal_img.png") },
     ],
   }),
+
+  mounted() {
+    this.$axios
+      .get(
+        `http://www.back-collibri.astudiodigital.ru/api/gallery?lang=${this.$lang}`
+      )
+      .then((response) => (this.galleryPageData = response.data));
+  },
 };
 </script>
  
@@ -191,12 +203,14 @@ export default {
 }
 .gallery_card {
   text-align: center;
-  a{
+  a {
     color: #000;
     text-decoration: none;
   }
   img {
     width: 100%;
+    max-height: 185px;
+    object-fit: cover;
   }
   h4 {
     margin-top: 30px;

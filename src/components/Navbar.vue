@@ -1,7 +1,7 @@
 <template>
   <nav :class="{ activeNavbar: navFix }">
     <div class="nav_content">
-      <img class="logo" src="../assets/logo.png" alt="logo" />
+      <router-link to="/"><img class="logo" src="../assets/logo.png" alt="logo" /></router-link>
       <div class="links mob-none">
         <router-link to="/">Главная</router-link>
         <router-link to="/about">О нас</router-link>
@@ -37,7 +37,7 @@
       </div>
       <div v-if="mobileNav" class="bg"></div>
       <div class="mobile_nav" :class="{ mobileNavActive: mobileNav }">
-        <img class="logo" src="../assets/logo.png" alt="logo" />
+        <router-link to="/"><img class="logo" src="../assets/logo.png" alt="logo" /></router-link>
           <div class="mobile_header">
             <div class="links">
               <router-link to="/">Главная</router-link>
@@ -143,11 +143,13 @@ export default {
 @import "src/assets/variables";
 
 .router-link-exact-active {
-  color: red !important;
+  color: #ff7948 !important;
 }
 
 nav {
   transition: all 0.5s ease;
+  position: relative;
+  z-index: 9;
   img.logo {
     width: 80px;
   }
@@ -190,9 +192,6 @@ nav {
   .desk-none {
     display: none;
   }
-  .mob-none {
-    display: block;
-  }
   .links a {
     margin: 0 10px;
     text-decoration: none;
@@ -218,6 +217,8 @@ nav {
     margin: 0 10px;
   }
   .language {
+    display: flex;
+    align-items: center;
     h5.lang {
       display: inline-block;
       margin-left: 10px;
@@ -369,6 +370,13 @@ nav {
     .mobile_nav {
       width: 100% !important;
     }
+  }
+}
+@media screen and (max-width: 768px) {
+    .language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

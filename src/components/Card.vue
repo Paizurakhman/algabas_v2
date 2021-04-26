@@ -14,7 +14,7 @@
     </div>
     <router-link
       class="btn_details"
-      :to="{ name: 'Berries', params: { id: cardItem.id } }"
+      :to="{ name: 'GroupPage', params: { id: cardItem.slug } }"
       >Подробнее</router-link
     >
   </div>

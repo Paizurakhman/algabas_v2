@@ -11,18 +11,12 @@
           <div class="col-xl-6 col-md-6">
             <div class="title_page">
               <h1>
-                <span class="orange_text">Акции</span> максимальная выгода
+                <span class="orange_text">Акции</span> {{ salesPageData.page.title }}
               </h1>
             </div>
             <div class="description_text mt-4">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh
-                libero sed est sapien, risus, tellus sed pulvinar. Sit sed id
-                amet leo mauris sollicitudin vestibulum, arcu erat. Sed massa
-                nunc nullam ullamcorper sit lectus sed. Odio scelerisque
-                adipiscing pellentesque nisi, suscipit. Ut porta lectus vitae
-                nibh. Cum pellentesque ullamcorper semper aliquam fusce lectus
-                purus.
+                {{ salesPageData.page.description }}
               </p>
             </div>
             <div class="socials">
@@ -170,7 +164,6 @@ export default {
   position: relative;
 }
 .sales_card {
-  //background: linear-gradient(90deg, #fcd635 0%, #ffed2b 100%);
   padding: 70px 0;
   position: relative;
   margin-bottom: 130px;
@@ -207,7 +200,7 @@ export default {
   img {
     position: absolute;
     bottom: -70px;
-    width: 100%;
+    width: 90%;
     max-width: 600px;
   }
   .btn_info {
