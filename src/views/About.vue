@@ -56,6 +56,9 @@ export default {
   position: relative;
   background: #fbf9f5;
   padding: 80px 0;
+  .about_title p{
+    position: relative;
+  }
   .fix_elems {
     img {
       &:nth-child(1) {

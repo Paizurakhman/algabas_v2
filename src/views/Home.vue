@@ -765,6 +765,9 @@ export default {
   }
   #section-six {
     position: relative;
+    .container {
+      position: relative;
+    }
     .fix_elems {
       img {
         &:nth-child(1) {

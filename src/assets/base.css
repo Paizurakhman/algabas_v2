@@ -75,6 +75,7 @@ body, html {
 }
 
 .title_page {
+  position: relative;
   text-align: center;
   margin: 0 -15px;
   width: fit-content;
