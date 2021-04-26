@@ -189,9 +189,6 @@ export default {
     margin-bottom: 40px;
   }
 }
-.main-button {
-  margin-top: 60px !important;
-}
 .gallery_card {
   text-align: center;
   a{

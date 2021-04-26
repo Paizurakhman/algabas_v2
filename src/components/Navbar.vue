@@ -13,7 +13,7 @@
       </div>
       <button
           class="mob-none"
-          :class="{ 'button_active_nav': navFix }"
+          :class="{ 'main-button': navFix }"
           @click="requestCallModal"
       >
         Заказать звонок
@@ -175,14 +175,8 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  .button_active_nav {
-    background: transparent !important;
+  .main-button {
     border: 1px solid $secondary !important;
-    color: $secondary !important;
-    &:hover {
-      background: $secondary !important;
-      color: white !important;
-    }
   }
 
 }
@@ -206,11 +200,10 @@ nav {
     color: $primary;
   }
   button {
-    width: 170px;
-    height: 50px;
+    padding: 12px 15px;
     border-radius: 30px;
     border: 1px solid #181818;
-    background: 0;
+    background: transparent;
     outline: 0;
     cursor: pointer;
     font-size: 18px;

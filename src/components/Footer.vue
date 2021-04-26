@@ -1,47 +1,51 @@
 <template>
   <footer>
-    <div class="footer">
-      <img class="logo" src="../assets/logo-big.png" alt="logo-img">
-      <div class="menu padding">
-        <p class="title">Меню</p>
-        <router-link to="/">Главная</router-link>
-        <router-link to="/about">О нас</router-link>
-        <router-link to="/sales">Акции</router-link>
-        <router-link to="/reviews">Отзывы</router-link>
-        <router-link to="/ourTeam">Наши сотрудники</router-link>
-        <router-link to="/gallery">Галерея</router-link>
-        <router-link to="/contacts">Контакты</router-link>
-      </div>
-      <div class="contacts padding">
-        <p class="title">Контакты</p>
-
-        <div class="container">
-          <img src="../assets/icons/footer-icons/address.svg" alt="">
-          <div class="address">
-            <h5>Адрес:</h5>
-            <p>Москва, IQ-Park
-              Ул. Угрешская, д.2, стр. 146</p>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-3">
+          <img class="logo" src="../assets/logo-big.png" alt="logo-img">
         </div>
-
-        <div class="container">
-          <img src="../assets/icons/footer-icons/call.svg" alt="">
-          <div class="phone">
-            <h5 >Телефон:</h5>
-            <a href="tel: +7(777) 777-77-77">+7 (777) 777-77-77</a>
-          </div>
-        </div>
-
-        <div class="container">
-          <img src="../assets/icons/footer-icons/mail.svg" alt="">
-          <div class="mail">
-            <h5>Почта:</h5>
-            <a href="mailto: algabas@alga.kz">algabas@alga.kz</a>
-          </div>
+      <div class="col-xl-3">
+        <div class="menu padding">
+          <p class="title">Меню</p>
+          <router-link to="/">Главная</router-link>
+          <router-link to="/about">О нас</router-link>
+          <router-link to="/sales">Акции</router-link>
+          <router-link to="/reviews">Отзывы</router-link>
+          <router-link to="/ourTeam">Наши сотрудники</router-link>
+          <router-link to="/gallery">Галерея</router-link>
+          <router-link to="/contacts">Контакты</router-link>
         </div>
       </div>
-      <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6318.671017469124!2d76.86046120570192!3d43.22665268251757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x526479d5fcfdeff7!2sMOSKVA%20metropolitan!5e0!3m2!1sen!2skz!4v1618835105926!5m2!1sen!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div class="col-xl-3">
+        <div class="contacts padding">
+          <p class="title">Контакты</p>
+
+            <img src="../assets/icons/footer-icons/address.svg" alt="">
+            <div class="address">
+              <h5>Адрес:</h5>
+              <p>Москва, IQ-Park
+                Ул. Угрешская, д.2, стр. 146</p>
+            </div>
+
+            <img src="../assets/icons/footer-icons/call.svg" alt="">
+            <div class="phone">
+              <h5 >Телефон:</h5>
+              <a href="tel: +7(777) 777-77-77">+7 (777) 777-77-77</a>
+            </div>
+
+            <img src="../assets/icons/footer-icons/mail.svg" alt="">
+            <div class="mail">
+              <h5>Почта:</h5>
+              <a href="mailto: algabas@alga.kz">algabas@alga.kz</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6318.671017469124!2d76.86046120570192!3d43.22665268251757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x526479d5fcfdeff7!2sMOSKVA%20metropolitan!5e0!3m2!1sen!2skz!4v1618835105926!5m2!1sen!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
@@ -56,15 +60,10 @@ export default {
 <style lang="scss">
   footer {
     background: #FBF9F5;
-    .footer {
-      background: #FBF9F5;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      .padding {
-        padding: 50px 0;
-      }
+
+    .padding {
+      padding: 50px 0;
+    }
       img {
         padding-right: 40px;
       }
@@ -111,9 +110,8 @@ export default {
           height: 100%;
         }
       }
-    }
   }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 576px) and (min-width: 769px){
   .footer {
     grid-template-columns: repeat(1, 1fr) !important;
 
