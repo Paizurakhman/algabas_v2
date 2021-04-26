@@ -51,7 +51,7 @@
       <div v-if="mobileNav" class="bg"></div>
       <div class="mobile_nav" :class="{ mobileNavActive: mobileNav }">
         <router-link to="/"
-          ><img class="logo" src="../assets/logo.png" alt="logo"
+          ><img class="logo" src="../assets/img/logo.svg" alt="logo"
         /></router-link>
         <div class="mobile_header">
           <div class="links">
@@ -60,7 +60,7 @@
             <router-link to="/sales">Акции</router-link>
             <router-link to="/reviews">Отзывы</router-link>
              <router-link to="/services">Услуги</router-link>
-            <router-link to="/ourTeam">Наши сотрудники</router-link>
+            <router-link to="/our-team">Наши сотрудники</router-link>
             <router-link to="/gallery">Галерея</router-link>
             <router-link to="/contacts">Контакты</router-link>
           </div>
@@ -174,9 +174,6 @@ nav {
   transition: all 0.5s ease;
   position: relative;
   z-index: 9;
-  img.logo {
-    width: 80px;
-  }
 }
 
 .bg {
