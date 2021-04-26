@@ -113,9 +113,11 @@
         src="../assets/icons/close.svg"
         alt="close"
     />
-    <Modal style="position:relative;z-index: 100001 !important;" v-if="SHOW_MODAL_REVIEW">
-      <template v-slot:title>Оставить отзыв</template>
-    </Modal>
+    <transition name="review">
+      <Modal style="position:relative;z-index: 100001 !important;" v-if="SHOW_MODAL_REVIEW">
+        <template v-slot:title>Оставить отзыв</template>
+      </Modal>
+    </transition>
   </div>
 </template>
 
