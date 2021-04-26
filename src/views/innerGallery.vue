@@ -100,6 +100,13 @@ export default {
       )
       .then((response) => (this.innerGaleryImg = response.data));
   },
+  updated() {
+    if (this.galleryModal !== null) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }
 };
 </script>
 

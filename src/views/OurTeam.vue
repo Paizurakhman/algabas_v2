@@ -124,7 +124,8 @@ export default {
   updated() {
     if (this.modalTeam !== null) {
       document.body.style.overflowY = "hidden";
-    }else{
+    }
+    if (!this.modalTeam){
       document.body.style.overflowY = "auto";
     }
   },

@@ -2,11 +2,11 @@
   <footer>
     <div class="container">
       <div class="row">
-        <div class="col-xl-3">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-12 logo_block">
           <img class="logo" src="../assets/logo-big.png" alt="logo-img">
         </div>
-      <div class="col-xl-3">
-        <div class="menu padding">
+      <div class="col-xl-2 col-lg-2 col-md-4 col-12">
+        <div class="menu margin_all">
           <p class="title">Меню</p>
           <router-link to="/">Главная</router-link>
           <router-link to="/about">О нас</router-link>
@@ -17,32 +17,43 @@
           <router-link to="/contacts">Контакты</router-link>
         </div>
       </div>
-        <div class="col-xl-3">
-        <div class="contacts padding">
-          <p class="title">Контакты</p>
-
-            <img src="../assets/icons/footer-icons/address.svg" alt="">
-            <div class="address">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-12">
+          <div class="contacts margin_all">
+            <p class="title">Контакты</p>
+          <div class="address">
+            <div class="contacts_head_title">
+              <img src="../assets/icons/footer-icons/address.svg" alt="">
               <h5>Адрес:</h5>
+            </div>
+            <div class="end_element">
               <p>Москва, IQ-Park
-                Ул. Угрешская, д.2, стр. 146</p>
+                  Ул. Угрешская, д.2, стр. 146</p>
             </div>
+          </div>
 
-            <img src="../assets/icons/footer-icons/call.svg" alt="">
             <div class="phone">
-              <h5 >Телефон:</h5>
-              <a href="tel: +7(777) 777-77-77">+7 (777) 777-77-77</a>
+              <div class="contacts_head_title">
+                <img src="../assets/icons/footer-icons/call.svg" alt="">
+                <h5 >Телефон:</h5>
+              </div>
+              <div class="end_element">
+                <a href="tel: +7(777) 777-77-77">+7 (777) 777-77-77</a>
+              </div>
             </div>
 
-            <img src="../assets/icons/footer-icons/mail.svg" alt="">
             <div class="mail">
-              <h5>Почта:</h5>
-              <a href="mailto: algabas@alga.kz">algabas@alga.kz</a>
+              <div class="contacts_head_title">
+                <img src="../assets/icons/footer-icons/mail.svg" alt="">
+                <h5>Почта:</h5>
+              </div>
+              <div class="end_element">
+                <a href="mailto: algabas@alga.kz">algabas@alga.kz</a>
+              </div>
             </div>
         </div>
         </div>
-        <div class="col-xl-3">
-          <div class="map">
+        <div class="col-xl-4 col-lg-4 col-md-12 col-12">
+          <div class="map margin_all">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6318.671017469124!2d76.86046120570192!3d43.22665268251757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x526479d5fcfdeff7!2sMOSKVA%20metropolitan!5e0!3m2!1sen!2skz!4v1618835105926!5m2!1sen!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
           </div>
         </div>
@@ -59,93 +70,86 @@ export default {
 
 <style lang="scss">
   footer {
+    padding: 50px 0;
     background: #FBF9F5;
 
-    .padding {
-      padding: 50px 0;
+    img.logo {
+      max-width: 300px;
     }
-      img {
-        padding-right: 40px;
-      }
-      .title {
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 24.5px;
-        margin-bottom: 30px;
-      }
-      .menu a {
-        display: block;
-        padding: 5px 0;
+
+    .contacts{
+      .end_element {
+        margin-left: 20px;
+        margin-top: 15px;
         font-size: 15px;
-        text-decoration: none;
-        color: #181818;
-      }
-      .contacts {
-        margin-left: -27%;
-        padding-right: 35px;
-        .container {
-          display: flex;
-          align-items: flex-start;
-          box-sizing: border-box;
-          margin-top: 20px;
-          img {
-            padding: 3px 10px 0 0;
-          }
-          h5 {
-            margin-bottom: 10px;
-          }
+        a {
+          text-decoration: none;
+          color: #181818;
         }
+      }
+      .mail {
+        margin-top: 15px;
+      }
+    }
 
-        h5 {
-          font-size: 15px;
-          align-items: center;
-          font-weight: 600;
-        }
+    .contacts_head_title {
+      display: flex;
+      img {
+        margin-right: 10px;
       }
-      .map {
-        margin-top: 60px;
-        max-height: 300px;
-        iframe {
-          width: 100%;
-          height: 100%;
-        }
+      h5 {
+        margin-bottom: 0;
       }
-  }
-@media screen and (max-width: 576px) and (min-width: 769px){
-  .footer {
-    grid-template-columns: repeat(1, 1fr) !important;
+    }
 
-    .contacts {
-      margin: 0 0 0 50px !important;
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24.5px;
+      margin-bottom: 30px;
+    }
+
+    .menu a {
+      display: block;
+      padding: 5px 0;
+      font-size: 15px;
+      text-decoration: none;
+      color: #181818;
     }
 
     .map {
-      display: flex;
-      justify-content: center;
-      margin: 0 !important;
-      padding-bottom: 50px;
+      max-width: 300px;
+      height: 300px;
+      margin-left: auto;
 
       iframe {
-        max-width: 220px !important;
+        width: 100%;
+        height: 100%;
       }
-    }
-
-    .logo {
-      padding: 0 !important;
-      width: 220px;
-      margin: 0 auto;
-    }
-
-    .contacts {
-      .container {
-        padding: 0;
-      }
-    }
-
-    .menu, .contacts {
-      margin-left: 50px;
-      padding: 10px !important;
     }
   }
-}
+
+  @media screen and (max-width: 576px){
+    footer {
+      padding: 50px 20px;
+      .logo_block {
+        text-align: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px){
+    .margin_all {
+      margin-bottom: 30px;
+    }
+    .map {
+      max-width: 100% !important;
+    }
+  }
+
+  @media screen and (max-width: 1024px){
+    img.logo {
+      max-width: 200px !important;
+    }
+  }
 </style>
