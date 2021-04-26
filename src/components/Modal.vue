@@ -1,7 +1,7 @@
 <template>
     <div class="fixed_modal" @click.self="closeModal">
       <div class="review_modal">
-        <p class="review_header">Оставить отзыв</p>
+        <p class="review_header">Заказать звонок</p>
         <input type="text" placeholder="Имя" />
         <input type="email" placeholder="Email" />
         <textarea v-model="review" placeholder="Отзыв"></textarea>

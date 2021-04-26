@@ -7,7 +7,8 @@ import axios from 'axios'
 import './assets/base.sass'
 // responsive style
 import './assets/responsive.sass'
-
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
 const getImageFunc = {
     staticImgUrl: (img) => {
         return 'http://static-collibri.astudiodigital.ru/' + img

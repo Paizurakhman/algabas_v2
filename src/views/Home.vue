@@ -277,7 +277,10 @@
             </div>
             <div class="inputs">
               <input type="text" placeholder="Ваше имя" />
-              <input type="text" placeholder="Номер телефона" />
+               <the-mask
+                  :mask="['#(###) ###-####']"
+                  placeholder="Номер телефона"
+                />
               <input type="text" placeholder="Возраст ребенка" />
             </div>
             <button class="main-button">Отправить</button>

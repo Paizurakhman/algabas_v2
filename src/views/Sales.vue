@@ -11,12 +11,12 @@
           <div class="col-xl-6 col-md-6">
             <div class="title_page">
               <h1>
-                <span class="orange_text">Акции</span> {{ salesPageData.page.title }}
+                <span class="orange_text">Акции</span>
+                {{ salesPageData.page.title }}
               </h1>
             </div>
             <div class="description_text mt-4">
-              <span v-html="salesPageData.page.description">
-              </span>
+              <span v-html="salesPageData.page.description"> </span>
             </div>
             <div class="socials">
               <a href="#">
@@ -38,7 +38,8 @@
     </div>
     <div class="sales_content">
       <div
-        class="sales_card left_card" v-random
+        class="sales_card left_card"
+        v-random
         v-for="(card, index) in salesPageData.sales"
         :key="index"
       >
@@ -94,7 +95,9 @@
                 <p>{{ card.short_description }}</p>
                 <!-- <p class="price">Цена - 8 000 тг.</p> -->
               </div>
-              <button class="btn btn_info">ПОДРОБНЕЕ</button>
+              <button class="btn btn_info" @click="modalToggle(card)">
+                ПОДРОБНЕЕ
+              </button>
             </div>
             <div class="col-xl-6 col-md-6 m_order_2">
               <img :src="$staticImageUrl.staticImgUrl(card.img_block)" alt="" />
@@ -102,18 +105,20 @@
           </div>
         </div>
 
-        <div class="container" v-else> 
+        <div class="container" v-else>
           <div class="row">
             <div class="col-xl-6 col-md-6 m_order_2">
               <img :src="$staticImageUrl.staticImgUrl(card.img_block)" alt="" />
             </div>
             <div class="col-xl-6 col-md-6 m_order_1">
               <div class="sales_description">
-               <h3>{{ card.title }}</h3>
+                <h3>{{ card.title }}</h3>
                 <p>{{ card.short_description }}</p>
                 <!-- <p class="price">Цена - 8 000 тг.</p> -->
               </div>
-              <button class="btn btn_info">ПОДРОБНЕЕ</button>
+              <button class="btn btn_info" @click="modalToggle(card)">
+                ПОДРОБНЕЕ
+              </button>
             </div>
           </div>
         </div>
@@ -132,12 +137,42 @@
         </div>
         <form action="">
           <input type="text" placeholder="Ваше имя" />
-          <input type="text" placeholder="Номер телефона" />
+          <the-mask :mask="['#(###) ###-####']" placeholder="Номер телефона" />
           <input type="text" placeholder="Возраст ребенка" />
           <button class="main-button">Отправить</button>
         </form>
       </div>
     </div>
+    <div class="bg" v-if="modalData"></div>
+    <transition name="review">
+      <div
+        class="team_modal_wrapper"
+        v-if="modalData"
+        @click.self="modalData = null"
+      >
+        <span class="close"
+          ><img
+            src="@/assets/img/close.svg"
+            alt=""
+            class="close_modal"
+            @click="modalData = false"
+        /></span>
+        <div class="team_modal">
+          <img
+            :src="$staticImageUrl.staticImgUrl(modalData.img_popup)"
+            alt=""
+          />
+          <div class="team_modal_content">
+            <div class="team_modal_title">
+              <h4>{{ modalData.title }}</h4>
+            </div>
+            <div class="team_modal_text">
+              <span v-html="modalData.short_description"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -145,7 +180,13 @@
 export default {
   data: () => ({
     salesPageData: null,
+    modalData: null,
   }),
+  methods: {
+    modalToggle(card) {
+      this.modalData = card;
+    },
+  },
   mounted() {
     this.$axios
       .get(
@@ -153,10 +194,56 @@ export default {
       )
       .then((response) => (this.salesPageData = response.data));
   },
+
+  updated() {
+    if (this.modalData !== null) {
+      document.body.style.overflowY = "hidden";
+    }
+    if (!this.modalData) {
+      document.body.style.overflowY = "auto";
+    }
+  },
 };
 </script>
 
 <style lang="scss">
+.team_modal_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 89888;
+  overflow-y: auto;
+  .close {
+    position: fixed;
+    right: 5%;
+    top: 5%;
+    cursor: pointer;
+  }
+}
+.team_modal {
+  position: relative;
+  background-color: #fff;
+  max-width: 50%;
+  width: 100%;
+  img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+  }
+  .team_modal_title {
+    text-align: center;
+  }
+  .team_modal_content {
+    padding: 50px;
+  }
+  .team_modal_text {
+    margin-top: 50px;
+  }
+}
 .sales_content {
   background-color: #fbf9f5;
   padding-top: 220px;

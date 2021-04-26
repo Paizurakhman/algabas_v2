@@ -58,7 +58,8 @@
               >
                 <img :src="$staticImageUrl.staticImgUrl(card.image)" alt="" />
                 <p class="name text-bold">{{ card.name }}</p>
-                <p>Стаж {{ card.year }} года</p>
+                <p v-if="card.year > 5">Стаж {{ card.year }} лет</p>
+                <p v-if="card.year < 5">Стаж {{ card.year }} года</p>
                 <p>{{ card.group_name }}</p>
               </div>
             </div>
@@ -86,7 +87,8 @@
           <div class="team_modal_content">
             <div class="team_modal_title">
               <h4>{{ modalTeam.name }}</h4>
-              <p>Стаж {{ modalTeam.year }} года</p>
+              <p v-if="modalTeam.year > 5">Стаж {{ modalTeam.year }} лет</p>
+              <p v-if="modalTeam.year < 5">Стаж {{ modalTeam.year }} года</p>
               <p>{{ modalTeam.group_name }}</p>
             </div>
             <div class="team_modal_text">
