@@ -14,9 +14,8 @@
               <h1><span class="orange_text">Отзывы</span>{{ reviewsPageData.page.title }}</h1>
             </div>
             <div class="description_text mt-4">
-              <p>
-                {{ reviewsPageData.page.description }}
-              </p>
+              <span v-html="reviewsPageData.page.description">
+              </span>
             </div>
           </div>
           <div v-else></div>

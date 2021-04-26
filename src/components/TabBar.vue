@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="tab-nav">
-
       <div class="select">
 
         <button class="current" @click="isSelect = !isSelect">{{ selected }}</button>
@@ -15,22 +14,22 @@
           <button
               @click="updateTab('lessons')"
               :class="{ active: current === 'lessons'}"
-          >Занятия</button>
+          >{{ current[0].title }}</button>
           <button
               @click="updateTab('garden')"
               :class="{ active: current === 'garden'}"
-          >Садик</button>
+          >{{ current[1].title }}</button>
         </nav>
       </transition>
       <nav class="tab_desktop">
         <button
-            @click="updateTab('lessons')"
-            :class="{ active: current === 'lessons'}"
-        >Занятия</button>
+            @click="updateTab(current[0].title)"
+            :class="{ active: current === current[0].title}"
+        >{{ current[0].title }}</button>
         <button
-            @click="updateTab('garden')"
-            :class="{ active: current === 'garden'}"
-        >Садик</button>
+            @click="updateTab(current[1].title)"
+            :class="{ active: current === current[1].title}"
+        >{{ current[1].title }}</button>
       </nav>
     </div>
     <div class="bottom"></div>
@@ -54,10 +53,10 @@ export default {
   },
   computed: {
     selected() {
-      if (this.current === 'lessons') {
+      if (this.current === this.current[0].title) {
         return 'Занятия'
       }
-      if (this.current === 'garden') {
+      if (this.current === this.current[1].title) {
         return 'Садик'
       }
     }

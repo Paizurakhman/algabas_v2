@@ -70,14 +70,14 @@
       </div>
       <div class="wrapper">
         <div class="title mobile">
-          <div class="left" v-if="current === 'lessons'">
+          <div class="left" v-if="current === homePageData.gallery[0].title">
             <h2>Как проходят</h2>
             <h2>занятия</h2>
           </div>
           <div>
             <h2 class="none_mob">и</h2>
           </div>
-          <div v-if="current === 'garden'" class="right">
+          <div v-if="current === homePageData.gallery[1].title" class="right">
             <h2>Как выглядит</h2>
             <h2>садик</h2>
           </div>
@@ -96,7 +96,7 @@
             <h2>садик</h2>
           </div>
         </div>
-        <TabBar @tabChange="current = $event" :current="current" />
+        <TabBar @tabChange="current = $event" :current="homePageData.gallery" />
       </div>
       <TabBarContent :slides="homePageData.gallery" :activeTab="current" />
       <router-link :to="{ name: 'Gallery' }" class="btn_a main-button"
@@ -203,11 +203,15 @@
             <h1>Отзывы <span class="orange_text">наших клиентов</span></h1>
           </div>
           <div class="reviews my-4">
-              <div class="row">
-                <div v-for="review in homePageData.review" :key="review.key" class="col-xl-6">
-                  <ReviewItem :review="review" />
-                </div>
+            <div class="row">
+              <div
+                v-for="review in homePageData.review"
+                :key="review.key"
+                class="col-xl-6"
+              >
+                <ReviewItem :review="review" />
               </div>
+            </div>
           </div>
           <router-link :to="{ name: 'Reviews' }" class="btn_a main-button"
             >Смотреть все</router-link
@@ -218,9 +222,9 @@
 
     <div class="questions">
       <div class="fix_elems">
-        <img src="../assets/img/smile_question.png" alt="">
-        <img src="../assets/img/red_tick.svg" alt="">
-        <img src="../assets/img/yello_bigromb.svg" alt="">
+        <img src="../assets/img/smile_question.png" alt="" />
+        <img src="../assets/img/red_tick.svg" alt="" />
+        <img src="../assets/img/yello_bigromb.svg" alt="" />
       </div>
       <div class="title_page">
         <h1><span class="orange_text">Вопросы</span>часто задаваемые</h1>
@@ -307,7 +311,7 @@ export default {
   data() {
     return {
       homePageData: null,
-      current: "lessons",
+      current: "",
       show: false,
       q: 0,
       cards: [
@@ -356,6 +360,12 @@ export default {
 
   computed: {
     ...mapGetters(["SHOW_MODAL"]),
+
+    // current() {
+    //   this.currentNull = this.homePageData.gallery[0].title;
+    //   return this.currentNull
+    //   // return this.homePageData.gallery[0].title
+    // },
   },
 
   mounted() {
@@ -364,6 +374,10 @@ export default {
         `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`
       )
       .then((response) => (this.homePageData = response.data));
+
+    if (this.homePageData) {
+      this.current = this.homePageData.gallery[0].title;
+    }
   },
 };
 </script>
@@ -912,7 +926,6 @@ export default {
             color: black;
             font-weight: 600;
           }
-
         }
         .inputs {
           margin-bottom: 60px;
