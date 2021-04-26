@@ -2,7 +2,7 @@
   <nav :class="{ activeNavbar: navFix }">
     <div class="nav_content">
       <router-link to="/"
-        ><img class="logo" src="../assets/logo.png" alt="logo"
+        ><img class="logo" src="../assets/img/logo.svg" alt="logo"
       /></router-link>
       <div class="links mob-none">
         <router-link to="/">Главная</router-link>

@@ -19,7 +19,7 @@
               </h1>
             </div>
             <div class="description_text mt-4">
-              <span v-html="groupPageData.groups.description.slice(0,300)+'...'"></span>
+              <span v-html="groupPageData.groups.description"></span>
             </div>
           </div>
         </div>

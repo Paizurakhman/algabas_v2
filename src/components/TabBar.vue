@@ -45,8 +45,8 @@ export default {
   },
   methods: {
     updateBtn(id) {
-      this.$emit('currentPage', id)
-      this.currentId = id
+      this.$emit('currentPage', id);
+      this.currentId = id;
     },
     selected(title) {
       this.selectedItem = title

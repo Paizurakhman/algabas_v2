@@ -180,7 +180,8 @@
           <div v-for="command in homePageData.our_team" :key="command.id">
             <img :src="$staticImageUrl.staticImgUrl(command.avatar)" alt="" />
             <p class="name text-bold">{{ command.name }}</p>
-            <p>Стаж {{ command.year }} года</p>
+            <p v-if="command.year < 5">Стаж {{ command.year }} года</p>
+            <p v-if="command.year > 5">Стаж {{ command.year }} лет</p>
             <p>{{ command.group_name }}</p>
           </div>
         </div>
