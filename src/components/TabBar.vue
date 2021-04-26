@@ -26,7 +26,7 @@
 
         <button
             @click="updateTab(current[0].title)"
-            :class="{ active: current === current[0].title}"
+            :class="{ active: current[0].title === current[0].title}"
         >{{ current[0].title }}</button>
         <button
             @click="updateTab(current[1].title)"
