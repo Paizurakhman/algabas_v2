@@ -183,6 +183,7 @@
   .advantages {
     grid-template-columns: repeat(2, 1fr) !important;
     padding: 0 20px !important;
+    margin-top: 40px;
   }
   .advantages p {
     font-size: 16px !important;

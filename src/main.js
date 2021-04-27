@@ -8,6 +8,11 @@ import './assets/base.sass'
 // responsive style
 import './assets/responsive.sass'
 import VueTheMask from 'vue-the-mask'
+
+// Slider
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+
 Vue.use(VueTheMask)
 const getImageFunc = {
     staticImgUrl: (img) => {
