@@ -101,10 +101,10 @@ export default {
       focusOnSelect: true,
     },
   }),
-  mounted() {
-    this.$nextTick(this.$forceUpdate);
+  updated() {
+    this.$refs.c2.goTo(0);
+    // this.$refs.c1.goTo(0);
   },
-
 };
 </script>
 

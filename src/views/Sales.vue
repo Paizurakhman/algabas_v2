@@ -361,5 +361,8 @@ export default {
   .sales_description {
     margin-top: -80px;
   }
+  .team_modal{
+    max-width: 90% !important;
+  }
 }
 </style>
