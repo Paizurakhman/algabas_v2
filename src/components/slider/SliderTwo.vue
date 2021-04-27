@@ -37,6 +37,9 @@ export default {
   name: "SliderTwo",
   props: ['slides'],
   components: { VueSlickCarousel },
+  mounted() {
+    this.$nextTick(this.$forceUpdate);
+  },
   data: () => ({
     settingsMainNav: {
       arrows: true,

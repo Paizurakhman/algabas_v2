@@ -38,6 +38,9 @@ export default {
   name: "SliderOne",
   components: { VueSlickCarousel },
   props: ['slides'],
+  mounted() {
+    this.$nextTick(this.$forceUpdate);
+  },
   data: () => ({
     settingsMainNav: {
       arrows: true,
