@@ -176,6 +176,7 @@ export default {
       height: 100%;
       border-radius: 50%;
       margin-bottom: 30px;
+      object-fit: cover;
     }
   }
 }
