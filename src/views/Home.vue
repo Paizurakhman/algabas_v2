@@ -12,7 +12,7 @@
       <div class="babies"></div>
       <div class="index">
         <h1>ALGABAS</h1>
-        <h4>с современной методикой обучения</h4>
+        <h4>с углубленным изучением английского языка</h4>
         <button @click.self="modalShow" class="main-button">
           Заказать звонок
         </button>
@@ -112,12 +112,7 @@
         <img src="../assets/img/blue_moon.svg" alt="" />
       </div>
       <div class="title_page">
-        <h2>
-          <span class="orange_text">Наши</span> группы<span class="orange_text">
-            и</span
-          >
-          цены
-        </h2>
+        <h2 class="orange_text">Наши группы и цены</h2>
       </div>
       <div class="cards">
         <div class="row">
@@ -171,24 +166,24 @@
         <img src="../assets/img/green_star.svg" alt="" />
         <img src="../assets/img/blue_romb.svg" alt="" />
       </div>
-      <div class="wrapper">
-        <div class="title_page">
-          <h2>Наша<span class="orange_text"> команда</span></h2>
-        </div>
-
         <div class="card-command">
-          <div v-for="command in homePageData.our_team" :key="command.id">
-            <img :src="$staticImageUrl.staticImgUrl(command.avatar)" alt="" />
-            <p class="name text-bold">{{ command.name }}</p>
-            <p v-if="command.year < 5">Стаж {{ command.year }} года</p>
-            <p v-if="command.year > 5">Стаж {{ command.year }} лет</p>
-            <p>{{ command.group_name }}</p>
+          <div class="container">
+            <div class="title_page">
+              <h2>Наша<span class="orange_text"> команда</span></h2>
+            </div>
+            <div class="row command_content">
+                <div class="col-xl-3 col-lg-3 col-md-6" v-for="command in homePageData.our_team" :key="command.id">
+                    <img :src="$staticImageUrl.staticImgUrl(command.avatar)" alt="" />
+                    <p class="name text-bold">{{ command.name }}</p>
+                    <p v-if="command.year < 5">Стаж {{ command.year }} года</p>
+                    <p v-if="command.year > 5">Стаж {{ command.year }} лет</p>
+                    <p>{{ command.group_name }}</p>
+                  </div>
+            </div>
+            <router-link :to="{ name: 'OurTeam' }" class="btn_a main-button">Подробнее</router-link>
           </div>
         </div>
-        <router-link :to="{ name: 'OurTeam' }" class="btn_a main-button"
-          >Подробнее</router-link
-        >
-      </div>
+
     </section>
 
     <section id="section-six">
@@ -274,7 +269,7 @@
           />
           <form>
             <div class="title_page">
-              <h2><span class="orange_text">Свяжитесь</span> с нами</h2>
+              <h2><span class="orange_text">Заказать</span> звонок</h2>
             </div>
             <div class="inputs">
               <input type="text" placeholder="Ваше имя" />
@@ -719,6 +714,9 @@ export default {
     background: #fbf9f5;
     padding: 60px 0;
     position: relative;
+    .command_content {
+      margin: 40px 0;
+    }
     .fix_elems {
       img {
         &:nth-child(1) {
@@ -735,31 +733,25 @@ export default {
         }
       }
     }
-    .wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-      .card-command {
-        margin: 50px 0;
-        display: flex;
-        justify-content: space-between;
 
-        div {
-          max-width: 200px;
-          margin: 0 10px;
-          img {
-            width: 100%;
-            border-radius: 50%;
-          }
-          .name {
-            font-size: 24px;
-          }
+    .card-command {
+      img {
+        width: 100%;
+        border-radius: 50%;
+        max-width: 200px;
+        max-height: 200px;
+        height: 100%;
+        object-fit: cover;
+      }
 
-          p {
-            font-size: 16px;
-            padding: 5px 0;
-            color: black;
-          }
-        }
+      .name {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 16px;
+        padding: 5px 0;
+        color: black;
       }
     }
   }
@@ -833,7 +825,7 @@ export default {
           padding: 16px 0 16px;
           .question_head {
             display: flex;
-            align-items: end;
+            align-items: flex-end;
             justify-content: space-between;
             p {
               font-size: 1.5em;

@@ -272,11 +272,11 @@
   #section-five .fix_elems img:nth-child(3) {
     bottom: 30% !important;
   }
-  #section-five .wrapper .card-command {
-    flex-wrap: wrap;
+  #section-five .card-command a {
+    display: block;
   }
-  #section-five .wrapper .card-command div {
-    margin: 0 auto 30px !important;
+  #section-five .card-command .command_content {
+    margin-bottom: 120px;
   }
 
   #section-six {

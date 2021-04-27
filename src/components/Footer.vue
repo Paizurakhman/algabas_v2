@@ -97,11 +97,13 @@ footer {
 
   .contacts_head_title {
     display: flex;
+    padding-top: 2px;
     img {
       margin-right: 10px;
     }
     h5 {
       margin-bottom: 0;
+      font-size: 15px;
     }
   }
 
@@ -114,7 +116,7 @@ footer {
 
   .menu a {
     display: block;
-    padding: 5px 0;
+    padding-bottom: 5px;
     font-size: 15px;
     text-decoration: none;
     color: #181818;

@@ -100,8 +100,17 @@
       alt="close"
     />
     <transition name="review">
+
       <Modal v-if="SHOW_MODAL">
         <template v-slot:title>Заказать звонок</template>
+        <template v-slot:input>
+          <input type="text" placeholder="Имя" />
+          <input type="email" placeholder="Email" />
+          <the-mask :mask="['#(###) ###-####']" placeholder="Номер телефона" />
+        </template>
+        <template v-slot:button>
+          <button class="main-button">Отправить</button>
+        </template>
       </Modal>
     </transition>
   </nav>

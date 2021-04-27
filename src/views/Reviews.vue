@@ -116,6 +116,14 @@
     <transition name="review">
       <Modal v-if="SHOW_MODAL_REVIEW">
         <template v-slot:title>Оставить отзыв</template>
+        <template v-slot:input>
+          <input type="text" placeholder="Имя" />
+          <input type="email" placeholder="Email" />
+          <textarea placeholder="Отзыв"></textarea>
+        </template>
+        <template v-slot:button>
+          <button class="main-button">Отправить отзыв</button>
+        </template>
       </Modal>
     </transition>
   </div>

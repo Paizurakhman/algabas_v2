@@ -1,13 +1,12 @@
 <template>
     <div class="fixed_modal" @click.self="closeModal">
       <div class="review_modal">
-        <p class="review_header">
-          <slot name="title"></slot>
-        </p>
-        <input type="text" placeholder="Имя" />
-        <input type="email" placeholder="Email" />
-        <textarea v-model="review" placeholder="Отзыв"></textarea>
-        <button class="main-button">Отправить отзыв</button>
+        <p class="review_header"><slot name="title"></slot></p>
+        <slot name="input"></slot>
+
+        <div class="action">
+          <slot name="button"></slot>
+        </div>
       </div>
     </div>
 
@@ -20,7 +19,7 @@ export default {
   name: "Modal",
   data() {
     return {
-      review: "",
+
     };
   },
 
@@ -94,6 +93,9 @@ export default {
   }
   button {
     width: 100%;
+  }
+  .action {
+    margin-top: 20px !important;
   }
 }
 
