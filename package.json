@@ -1,5 +1,5 @@
 {
-    "name": "algabas_v2",
+    "name": "algabas",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -13,7 +13,8 @@
         "vue-router": "^3.2.0",
         "vue-slick-carousel": "^1.0.6",
         "vue-the-mask": "^0.11.1",
-        "vuex": "^3.4.0"
+        "vuex": "^3.4.0",
+        "vuelidate": "^0.7.6"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "~4.5.0",

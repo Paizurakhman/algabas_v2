@@ -10,7 +10,7 @@
           </div>
           <div class="col-xl-5 col-md-6">
             <div class="title_page">
-              <h1><span class="orange_text">Галерея</span> {{ galleryPageData.page.title }}</h1>
+              <h1><span class="orange_text">{{$locale[$lang].navBarCategory.gallery}}</span> {{ galleryPageData.page.title }}</h1>
             </div>
             <div class="description_text mt-4">
               <span v-html="galleryPageData.page.description"></span>
@@ -104,7 +104,7 @@
           </div>
         </div>
       </div>
-      <button class="main-button m-auto d-block">Смотреть все</button>
+      <button class="main-button m-auto d-block">{{$locale[$lang].buttons.seeAll}}</button>
     </div>
   </div>
 </template>
@@ -162,7 +162,7 @@ export default {
   mounted() {
     this.$axios
       .get(
-        `http://www.back-collibri.astudiodigital.ru/api/gallery?lang=${this.$lang}`
+        `https://admin.sadik-algabas.kz/api/gallery?lang=${this.$lang}`
       )
       .then((response) => (this.galleryPageData = response.data));
   },

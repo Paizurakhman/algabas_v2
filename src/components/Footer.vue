@@ -7,19 +7,36 @@
         </div>
         <div class="col-xl-2 col-lg-2 col-md-4 col-12">
           <div class="menu margin_all">
-            <p class="title">Меню</p>
-            <router-link to="/">Главная</router-link>
-            <router-link to="/about">О нас</router-link>
-            <router-link to="/sales">Акции</router-link>
-            <router-link to="/reviews">Отзывы</router-link>
-            <router-link to="/our-team">Наши сотрудники</router-link>
-            <router-link to="/gallery">Галерея</router-link>
-            <router-link to="/contacts">Контакты</router-link>
+            <p class="title">{{$locale[$lang].footer.main}}</p>
+            <router-link to="/">{{
+              $locale[$lang].navBarCategory.main
+            }}</router-link>
+            <router-link to="/about">{{
+              $locale[$lang].navBarCategory.aboutUs
+            }}</router-link>
+            <router-link to="/sales">{{
+              $locale[$lang].navBarCategory.promotions
+            }}</router-link>
+            <router-link to="/reviews">{{
+              $locale[$lang].navBarCategory.testImonials
+            }}</router-link>
+            <router-link to="/services">{{
+              $locale[$lang].navBarCategory.services
+            }}</router-link>
+            <router-link to="/our-team">{{
+              $locale[$lang].navBarCategory.ourEmployees
+            }}</router-link>
+            <router-link to="/gallery">{{
+              $locale[$lang].navBarCategory.gallery
+            }}</router-link>
+            <router-link to="/contacts">{{
+              $locale[$lang].navBarCategory.contacts
+            }}</router-link>
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-4 col-12" v-if="contacts">
           <div class="contacts margin_all">
-            <p class="title">Контакты</p>
+            <p class="title">{{$locale[$lang].footer.contacts}}</p>
             <div class="address" v-if="contacts.address">
               <div class="contacts_head_title">
                 <img src="../assets/icons/footer-icons/address.svg" alt="" />
@@ -55,7 +72,7 @@
         </div>
         <div class="col-xl-4 col-lg-4 col-md-12 col-12">
           <div class="map margin_all">
-            <div id="map" style="width:100%; height:100%"></div>
+            <div id="map" style="width: 100%; height: 100%"></div>
           </div>
         </div>
       </div>

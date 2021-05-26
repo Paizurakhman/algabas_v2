@@ -5,21 +5,37 @@
         ><img class="logo" src="../assets/img/logo.svg" alt="logo"
       /></router-link>
       <div class="links mob-none">
-        <router-link to="/">Главная</router-link>
-        <router-link to="/about">О нас</router-link>
-        <router-link to="/sales">Акции</router-link>
-        <router-link to="/reviews">Отзывы</router-link>
-        <router-link to="/services">Услуги</router-link>
-        <router-link to="/our-team">Наши сотрудники</router-link>
-        <router-link to="/gallery">Галерея</router-link>
-        <router-link to="/contacts">Контакты</router-link>
+        <router-link to="/">{{
+          $locale[$lang].navBarCategory.main
+        }}</router-link>
+        <router-link to="/about">{{
+          $locale[$lang].navBarCategory.aboutUs
+        }}</router-link>
+        <router-link to="/sales">{{
+          $locale[$lang].navBarCategory.promotions
+        }}</router-link>
+        <router-link to="/reviews">{{
+          $locale[$lang].navBarCategory.testImonials
+        }}</router-link>
+        <router-link to="/services">{{
+          $locale[$lang].navBarCategory.services
+        }}</router-link>
+        <router-link to="/our-team">{{
+          $locale[$lang].navBarCategory.ourEmployees
+        }}</router-link>
+        <router-link to="/gallery">{{
+          $locale[$lang].navBarCategory.gallery
+        }}</router-link>
+        <router-link to="/contacts">{{
+          $locale[$lang].navBarCategory.contacts
+        }}</router-link>
       </div>
       <button
         class="mob-none"
         :class="{ 'main-button': navFix }"
         @click="requestCallModal"
       >
-        Заказать звонок
+        {{ $locale[$lang].buttons.requestCall }}
       </button>
       <div class="social-networks mob-none" v-if="contacts">
         <a
@@ -37,8 +53,20 @@
         </a>
       </div>
       <div class="language mob-none">
-        <h5 class="lang">RU</h5>
-        <h5 class="lang">KZ</h5>
+        <h5
+          class="lang"
+          @click="switchLang('ru')"
+          :class="{ activeLang: langActive === 'ru' }"
+        >
+          RU
+        </h5>
+        <h5
+          class="lang"
+          @click="switchLang('kz')"
+          :class="{ activeLang: langActive === 'kz' }"
+        >
+          KZ
+        </h5>
       </div>
 
       <div
@@ -59,7 +87,7 @@
             <router-link to="/about">О нас</router-link>
             <router-link to="/sales">Акции</router-link>
             <router-link to="/reviews">Отзывы</router-link>
-             <router-link to="/services">Услуги</router-link>
+            <router-link to="/services">Услуги</router-link>
             <router-link to="/our-team">Наши сотрудники</router-link>
             <router-link to="/gallery">Галерея</router-link>
             <router-link to="/contacts">Контакты</router-link>
@@ -100,16 +128,53 @@
       alt="close"
     />
     <transition name="review">
-
       <Modal v-if="SHOW_MODAL">
         <template v-slot:title>Заказать звонок</template>
         <template v-slot:input>
-          <input type="text" placeholder="Имя" />
-          <input type="email" placeholder="Email" />
-          <the-mask :mask="['#(###) ###-####']" placeholder="Номер телефона" />
+          <form action="" @submit.prevent="submit">
+            <p v-if="success">Успешно отправлено!</p>
+            <input
+              type="text"
+              placeholder="Ваше имя"
+              v-model.trim="name"
+              :class="{ invalid: $v.name.$dirty && !$v.name.required }"
+            />
+            <span v-if="$v.name.$error" class="text-left error"
+              >Имя не правильно заполнено!</span
+            >
+            <the-mask
+              :mask="['#(###) ###-####']"
+              placeholder="Номер телефона"
+              v-model.trim="phone"
+              :class="{
+                invalid:
+                  ($v.phone.$dirty && !$v.phone.required) ||
+                  ($v.phone.$dirty && !$v.phone.minLength),
+              }"
+            />
+            <span v-if="$v.phone.$error" class="error"
+              >Номер телефона должен быть из 11 символов. Сейчас он
+              {{ phone.length }}</span
+            >
+            <the-mask
+              :mask="['##']"
+              placeholder="Возраст ребенка"
+              v-model.trim="age"
+              :class="{
+                invalid:
+                  ($v.age.$dirty && !$v.age.required) ||
+                  ($v.age.$dirty && !$v.age.minLength),
+              }"
+            />
+            <span v-if="$v.age.$error" class="text-left error"
+              >Обязательное поле!</span
+            >
+          </form>
         </template>
         <template v-slot:button>
-          <button class="main-button">Отправить</button>
+          <button class="main-button" @click="submit">
+            {{ $locale[$lang].buttons.sendMessage }}
+          </button>
         </template>
       </Modal>
     </transition>
@@ -118,6 +183,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { required, minLength } from "vuelidate/lib/validators";
 import Modal from "@/components/Modal";
 export default {
   name: "Navbar",
@@ -126,12 +192,40 @@ export default {
   data: () => ({
     mobileNav: false,
     navFix: false,
+    name: "",
+    phone: "",
+    age: "",
+    phone: "",
+    success: false,
   }),
+
+  validations: {
+    name: {
+      required,
+      minLength: minLength(3),
+    },
+    phone: {
+      required,
+      minLength: minLength(11),
+    },
+    age: {
+      required,
+      minLength: minLength(1),
+    },
+  },
+
   methods: {
     ...mapActions(["GET_MODAL_SHOW"]),
+
+    switchLang(lang) {
+      localStorage.setItem("lang", lang);
+      window.location.reload();
+    },
+
     requestCallModal() {
       this.GET_MODAL_SHOW();
     },
+
     toggleMenu() {
       this.mobileNav = !this.mobileNav;
       if (this.mobileNav) {
@@ -150,10 +244,47 @@ export default {
         }
       };
     },
+
+    submit() {
+      this.$v.$touch();
+      this.submitStatus = "PENDING";
+
+      if (this.$v.$invalid) {
+        return false;
+      } else {
+        this.$axios
+          .post(`https://admin.sadik-algabas.kz/api/callback`, {
+            name: this.name,
+            phone: this.phone,
+            age: this.age,
+          })
+          .then((response) => {
+            this.success = true;
+            setTimeout(() => {
+              this.name = "";
+              this.phone = "";
+              this.age = "";
+              this.$v.$reset();
+              this.success = false;
+              this.requestCallModal();
+            }, 2000);
+          });
+      }
+    },
   },
 
   computed: {
     ...mapGetters(["SHOW_MODAL"]),
+
+    langActive() {
+      return localStorage.getItem("lang");
+    },
+  },
+
+  created() {
+    if (localStorage.getItem("lang") == null) {
+      return localStorage.setItem("lang", "ru");
+    }
   },
 
   mounted() {
@@ -176,6 +307,10 @@ export default {
 @import "src/assets/variables";
 
 .router-link-exact-active {
+  color: #ff7948 !important;
+}
+
+.activeLang {
   color: #ff7948 !important;
 }
 
@@ -220,12 +355,18 @@ nav {
   .desk-none {
     display: none;
   }
-  .links a {
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 16px;
-    color: $primary;
+  .links {
+    display: flex;
+    width: 60%;
+    align-items: center;
+    justify-content: space-between;
+    a {
+      text-decoration: none;
+      font-size: 16px;
+      color: $primary;
+    }
   }
+
   button {
     padding: 12px 15px;
     border-radius: 30px;
@@ -253,9 +394,7 @@ nav {
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 0;
-      &:nth-child(1) {
-        color: $secondary;
-      }
+      cursor: pointer;
     }
   }
   .mobile_burger_toggle {
@@ -405,6 +544,11 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .mobile_nav {
+    .links {
+      display: block !important;
+    }
   }
 }
 </style>

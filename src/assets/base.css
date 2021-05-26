@@ -1,179 +1,194 @@
 .container {
-  max-width: 1200px;
+    max-width: 1200px;
 }
 
 @font-face {
-  font-family: Gilroy;
-  src: url("fonts/Gilroy-Regular.ttf") format("opentype");
-  font-style: normal;
-  font-weight: 400;
+    font-family: Gilroy, sans-serif;
+    src: url("fonts/Gilroy-Regular.ttf") format("opentype");
+    font-style: normal;
+    font-weight: 400;
 }
+
 @font-face {
-  font-family: Gilroy;
-  src: url("fonts/Gilroy-SemiBold.ttf") format("opentype");
-  font-style: normal;
-  font-weight: 600;
+    font-family: Gilroy;
+    src: url("fonts/Gilroy-SemiBold.ttf") format("opentype");
+    font-style: normal;
+    font-weight: 600;
 }
+
 @font-face {
-  font-family: Gilroy;
-  src: url("fonts/Gilroy-Bold.ttf") format("opentype");
-  font-style: normal;
-  font-weight: 700;
+    font-family: Gilroy;
+    src: url("fonts/Gilroy-Bold.ttf") format("opentype");
+    font-style: normal;
+    font-weight: 700;
 }
+
 @font-face {
-  font-family: Baby Eliot;
-  src: url("fonts/Baby Eliot.otf") format("opentype");
-  font-style: normal;
+    font-family: Baby Eliot;
+    src: url("fonts/Baby Eliot.otf") format("opentype");
+    font-style: normal;
 }
+
 * {
-  font-family: Gilroy;
-  margin: 0;
-  padding: 0;
+    font-family: Gilroy;
+    margin: 0;
+    padding: 0;
 }
 
-body, html {
-  background: #FCF3DA;
-  color: #181818;
+body,
+html {
+    background: #FCF3DA;
+    color: #181818;
 }
 
 .text-semi-bold {
-  font-family: Gilroy;
+    font-family: Gilroy;
 }
 
 .main-button {
-  border: 1px solid #FF7948;
-  padding: 16px 60px;
-  color: #ffffff;
-  background: #FF7948 !important;
-  font-size: 18px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    border: 1px solid #FF7948;
+    padding: 16px 60px;
+    color: #ffffff;
+    background: #FF7948 !important;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
+
 .main-button:hover {
-  background: transparent !important;
-  border: 1px solid #FF7948 !important;
-  color: #FF7948 !important;
+    background: transparent !important;
+    border: 1px solid #FF7948 !important;
+    color: #FF7948 !important;
 }
 
 .main-heading {
-  display: inline-block;
-  font-size: 3em;
-  font-family: Gilroy;
-  line-height: 58px;
+    display: inline-block;
+    font-size: 3em;
+    font-family: Gilroy;
+    line-height: 58px;
 }
+
 .main-heading:nth-child(2) {
-  color: #FF7948;
+    color: #FF7948;
 }
 
 .margin {
-  margin: 0 5px 30px;
+    margin: 0 5px 30px;
 }
 
 .block {
-  display: block;
+    display: block;
 }
 
 .title_page {
-  position: relative;
-  text-align: center;
-  margin: 0 -15px;
-  width: fit-content;
-  margin: 0 auto;
+    position: relative;
+    text-align: center;
+    margin: 0 -15px;
+    width: fit-content;
+    margin: 0 auto;
 }
+
 .title_page h1 {
-  font-family: Gilroy;
-  font-weight: 700;
-  font-size: 3em;
+    font-family: Gilroy;
+    font-weight: 700;
+    font-size: 3em;
 }
+
 .title_page h1 .orange_text {
-  display: block;
+    display: block;
 }
+
 .title_page h2 {
-  font-family: Gilroy;
-  font-weight: 700;
-  font-size: 2.3em;
+    font-family: Gilroy;
+    font-weight: 700;
+    font-size: 2.3em;
 }
+
 .title_page .orange_text {
-  color: #ff7948;
+    color: #ff7948;
 }
 
 .page_info {
-  height: 100%;
-  min-height: 70vh;
-  position: relative;
+    height: 100%;
+    min-height: 70vh;
+    position: relative;
 }
+
 .page_info .row {
-  min-height: 70vh;
+    min-height: 70vh;
 }
+
 .page_info .page_main_img {
-  max-width: 50%;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+    max-width: 50%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
+
 .page_info .page_main_img img {
-  width: 70%;
+    width: 70%;
 }
+
 .page_info .socials {
-  margin-top: 40px;
+    margin-top: 40px;
 }
+
 .page_info .socials a {
-  margin-right: 20px;
+    margin-right: 20px;
 }
+
 .page_info .desk-none {
-  display: block;
+    display: block;
 }
+
 .page_info .mob-none {
-  display: none;
+    display: none;
 }
 
 .btn_info {
-  background: #FFFFFF;
-  border-radius: 50px;
-  display: block;
-  padding: 15px 3rem;
-  font-size: 18px;
-  font-family: Gilroy;
+    background: #FFFFFF;
+    border-radius: 50px;
+    display: block;
+    padding: 15px 3rem;
+    font-size: 18px;
+    font-family: Gilroy;
 }
 
 @media screen and (max-width: 576px) {
-  .page_info {
-    height: auto !important;
-  }
-
-  .page_main_img {
-    max-width: 100% !important;
-    position: static !important;
-    text-align: center !important;
-    margin-bottom: 2rem;
-  }
-  .page_main_img img {
-    width: 100%;
-  }
-
-  .btn_info {
-    width: 100%;
-  }
+    .page_info {
+        height: auto !important;
+    }
+    .page_main_img {
+        max-width: 100% !important;
+        position: static !important;
+        text-align: center !important;
+        margin-bottom: 2rem;
+    }
+    .page_main_img img {
+        width: 100%;
+    }
+    .btn_info {
+        width: 100%;
+    }
 }
+
 @media screen and (max-width: 768px) {
-  .questions p {
-    font-size: 1.5em !important;
-  }
-
-  .title_page h2 {
-    font-size: 3em;
-  }
-
-  .main-heading {
-    line-height: 30px;
-    margin-bottom: 20px !important;
-  }
-
-  .review-item .review p {
-    font-size: 14px;
-  }
+    .questions p {
+        font-size: 1.5em !important;
+    }
+    .title_page h2 {
+        font-size: 3em;
+    }
+    .main-heading {
+        line-height: 30px;
+        margin-bottom: 20px !important;
+    }
+    .review-item .review p {
+        font-size: 14px;
+    }
 }
+
 
 /*# sourceMappingURL=base.css.map */

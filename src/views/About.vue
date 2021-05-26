@@ -10,7 +10,7 @@
           </div>
           <div class="col-xl-5 col-md-6">
             <div class="title_page">
-              <h1><span class="orange_text">О нас</span> {{ aboutPageData.page.title }}</h1>
+              <h1><span class="orange_text">{{$locale[$lang].navBarCategory.aboutUs}}</span> {{ aboutPageData.page.title }}</h1>
             </div>
             <div class="description_text mt-4">
               <span v-html="aboutPageData.page.description"></span>
@@ -44,7 +44,7 @@ export default {
   mounted() {
     this.$axios
       .get(
-        `http://www.back-collibri.astudiodigital.ru/api/about?lang=${this.$lang}`
+        `https://admin.sadik-algabas.kz/api/about?lang=${this.$lang}`
       )
       .then((response) => (this.aboutPageData = response.data));
   },

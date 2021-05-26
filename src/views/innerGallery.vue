@@ -17,7 +17,7 @@
 
       <div class="container">
         <a @click.prevent="$router.go(-1)" class="back_router"
-          ><i class="fas fa-chevron-left"></i>Назад</a
+          ><i class="fas fa-chevron-left"></i>{{$locale[$lang].back}}</a
         >
 
         <div class="row">
@@ -96,7 +96,7 @@ export default {
     let slug = this.$route.params.id;
     this.$axios
       .get(
-        `http://www.back-collibri.astudiodigital.ru/api/gallery/${slug}?lang=${this.$lang}`
+        `https://admin.sadik-algabas.kz/api/gallery/${slug}?lang=${this.$lang}`
       )
       .then((response) => (this.innerGaleryData = response.data));
   },

@@ -14,7 +14,9 @@
           <div class="col-xl-5 col-md-6">
             <div class="title_page">
               <h1>
-                <span class="orange_text">Услуги</span>
+                <span class="orange_text">{{
+                  $locale[$lang].navBarCategory.services
+                }}</span>
                 {{ servicesPageData.page.title }}
               </h1>
             </div>
@@ -51,7 +53,7 @@
         </div>
         <div class="additional">
           <div class="title_page">
-            <h2>Дополнительные <span class="orange_text">занятия</span></h2>
+            <h2>{{$locale[$lang].additionalLessons.text1}} <span class="orange_text">{{$locale[$lang].additionalLessons.text2}}</span></h2>
           </div>
           <div class="lessons_content">
             <div class="row">
@@ -74,8 +76,8 @@
         <div class="additional">
           <div class="title_page">
             <h2>
-              Дополнительные платные услуги, <br />
-              <span class="orange_text">для детей посещающих сад:</span>
+              {{$locale[$lang].additionalPaidServices.text1}}, <br />
+              <span class="orange_text">{{$locale[$lang].additionalPaidServices.text2}}:</span>
             </h2>
           </div>
           <div class="lessons_content">
@@ -110,9 +112,7 @@ export default {
   mounted() {
     let slug = this.$route.params.id;
     this.$axios
-      .get(
-        `http://www.back-collibri.astudiodigital.ru/api/services?lang=${this.$lang}`
-      )
+      .get(`https://admin.sadik-algabas.kz/api/services?lang=${this.$lang}`)
       .then((response) => (this.servicesPageData = response.data));
   },
 };

@@ -5,19 +5,18 @@
         <div class="row h-100 align-items-center">
           <div class="col-xl-7 col-md-6 position-static">
             <div class="page_main_img">
-              <img src="@/assets/img/owrTeam.png" alt="" />
+              <img :src="$staticImageUrl.staticImgUrl(ourTeamPageData.page.image)" alt="" />
             </div>
           </div>
           <div class="col-xl-5 col-md-6">
             <div class="title_page">
               <h1>
-                <span class="orange_text">Сотрудники</span>
+                <span class="orange_text">{{$locale[$lang].navBarCategory.ourEmployees}}</span>
                 {{ ourTeamPageData.page.title }}
               </h1>
             </div>
             <div class="description_text mt-4">
-              <span v-html="ourTeamPageData.page.description">
-              </span>
+              <span v-html="ourTeamPageData.page.description"> </span>
             </div>
             <div class="socials">
               <a href="#">
@@ -58,15 +57,18 @@
               >
                 <img :src="$staticImageUrl.staticImgUrl(card.image)" alt="" />
                 <p class="name text-bold">{{ card.name }}</p>
-                <p v-if="card.year > 5">Стаж {{ card.year }} лет</p>
-                <p v-if="card.year < 5">Стаж {{ card.year }} года</p>
-                <p>{{ card.group_name }}</p>
+                <p v-if="card.year > 5">{{$locale[$lang].ourTeamPage.position}}: {{ card.year }} лет</p>
+                <p v-if="card.year < 5">{{$locale[$lang].ourTeamPage.position}}: {{ card.year }} года</p>
+                <p v-if="card.position">
+                  {{$locale[$lang].ourTeamPage.experience}}: {{ card.position.position_name }}
+                </p>
+                <p v-if="card.group">{{ card.group.group_name }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button class="main-button m-auto d-block">Подробнее</button>
+      <!-- <button class="main-button m-auto d-block">Подробнее</button> -->
     </div>
     <div class="bg" v-if="modalTeam"></div>
     <transition name="review">
@@ -87,8 +89,12 @@
           <div class="team_modal_content">
             <div class="team_modal_title">
               <h4>{{ modalTeam.name }}</h4>
-              <p v-if="modalTeam.year > 5">Стаж {{ modalTeam.year }} лет</p>
-              <p v-if="modalTeam.year < 5">Стаж {{ modalTeam.year }} года</p>
+              <p v-if="modalTeam.year > 5">Стаж: {{ modalTeam.year }} лет</p>
+              <p v-if="modalTeam.year < 5">Стаж: {{ modalTeam.year }} года</p>
+              <p v-if="modalTeam.position">
+                Должность: {{ modalTeam.position.position_name }}
+              </p>
+              <p v-if="modalTeam.group">{{ modalTeam.group.group_name }}</p>
               <p>{{ modalTeam.group_name }}</p>
             </div>
             <div class="team_modal_text">
@@ -117,7 +123,7 @@ export default {
   mounted() {
     this.$axios
       .get(
-        `http://www.back-collibri.astudiodigital.ru/api/our-team?lang=${this.$lang}`
+        `https://admin.sadik-algabas.kz/api/our-team?lang=${this.$lang}`
       )
       .then((response) => (this.ourTeamPageData = response.data));
   },
@@ -126,16 +132,15 @@ export default {
     if (this.modalTeam !== null) {
       document.body.style.overflowY = "hidden";
     }
-    if (!this.modalTeam){
+    if (!this.modalTeam) {
       document.body.style.overflowY = "auto";
     }
   },
-
 };
 </script>
 
 <style lang="scss">
-.close{
+.close {
   opacity: 1 !important;
 }
 .our_team {
@@ -176,7 +181,9 @@ export default {
       height: 100%;
       border-radius: 50%;
       margin-bottom: 30px;
+      -o-object-fit: cover;
       object-fit: cover;
+      object-position: center 0px;
     }
   }
 }
@@ -202,6 +209,7 @@ export default {
   background-color: #fff;
   max-width: 50%;
   width: 100%;
+  padding-top: 35px;
   img {
     width: 100%;
     max-height: 400px;
@@ -211,7 +219,7 @@ export default {
     text-align: center;
   }
   .team_modal_content {
-    padding: 50px;
+    padding: 30px 50px;
   }
   .team_modal_text {
     margin-top: 50px;

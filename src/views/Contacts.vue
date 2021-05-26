@@ -11,7 +11,8 @@
           <div class="col-xl-5 col-md-6" v-if="contactPageData">
             <div class="title_page">
               <h1>
-                <span class="orange_text">Контакты</span>{{contactPageData.page.title}}
+                <span class="orange_text">{{$locale[$lang].navBarCategory.contacts}}</span
+                >{{ contactPageData.page.title }}
               </h1>
             </div>
             <div class="description_text mt-4">
@@ -98,40 +99,125 @@
         <div class="title_page">
           <h2>Свяжитесь <span class="orange_text">с нами</span></h2>
         </div>
-        <form action="">
-          <input type="text" placeholder="Ваше имя" />
-          <the-mask :mask="['#(###) ###-####']" placeholder="Номер телефона" />
-          <input type="text" placeholder="Возраст ребенка" />
-          <button class="main-button">Отправить</button>
+        <form action="" @submit.prevent="submit">
+          <p v-if="success">{{ $locale[$lang].modalReviews.success }}</p>
+
+          <input
+            type="text"
+            :placeholder="$locale[$lang].form.yourName" 
+            v-model.trim="name"
+            :class="{ invalid: $v.name.$dirty && !$v.name.required }"
+          />
+          <span v-if="$v.name.$error" class="text-left error"
+            >{{ $locale[$lang].modalReviews.errorName }}</span
+          >
+          <the-mask
+            :mask="['#(###) ###-####']"
+           :placeholder="$locale[$lang].form.yourName" 
+            v-model.trim="phone"
+            :class="{
+              invalid:
+                ($v.phone.$dirty && !$v.phone.required) ||
+                ($v.phone.$dirty && !$v.phone.minLength),
+            }"
+          />
+          <span v-if="$v.phone.$error" class="error"
+            >{{$locale[$lang].modalReviews.errorPhone}}. {{$locale[$lang].modalReviews.errorPhoneLength}}
+            {{ phone.length }}</span
+          >
+          <the-mask
+            :mask="['##']"
+           :placeholder="$locale[$lang].form.childAge" 
+            v-model.trim="age"
+            :class="{
+              invalid:
+                ($v.age.$dirty && !$v.age.required) ||
+                ($v.age.$dirty && !$v.age.minLength),
+            }"
+          />
+          <span v-if="$v.age.$error" class="text-left error"
+            >{{$locale[$lang].additionalLessons.requiredField}}</span
+          >
+          <button class="main-button">{{$locale[$lang].buttons.sendMessage}}</button>
         </form>
       </div>
-      <div class="container">
-        <div class="map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23256.206370184256!2d76.82893478498845!3d43.22991879791284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x388369a4fe7b8ac3%3A0xf6227333a2d6a595!2z0JHQsNGB0YHQtdC50L3RiyBJbnRleA!5e0!3m2!1sru!2skz!4v1618829258175!5m2!1sru!2skz"
-            width="100%"
-            height="520"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
-        </div>
+      <div class="container mt-5">
+        <div id="mapContact" style="width: 100%; height: 520px"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { required, minLength } from "vuelidate/lib/validators";
 export default {
-  data:()=>({
-    contactPageData: null
+  data: () => ({
+    contactPageData: null,
+    name: "",
+    phone: "",
+    age: "",
+    phone: "",
+    success: false,
   }),
+
+  validations: {
+    name: {
+      required,
+      minLength: minLength(3),
+    },
+    phone: {
+      required,
+      minLength: minLength(11),
+    },
+    age: {
+      required,
+      minLength: minLength(1),
+    },
+  },
+
+  methods: {
+    submit() {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return false;
+      } else {
+        this.$axios
+          .post(`https://admin.sadik-algabas.kz/api/callback`, {
+            name: this.name,
+            phone: this.phone,
+            age: this.age,
+          })
+          .then((response) => {
+            this.success = true;
+            setTimeout(() => {
+              this.name = "";
+              this.phone = "";
+              this.age = "";
+              this.$v.$reset();
+              this.success = false;
+            }, 2000);
+          });
+      }
+    },
+  },
+
   mounted() {
     this.$axios
       .get(
-        `http://www.back-collibri.astudiodigital.ru/api/contacts?lang=${this.$lang}`
+        `https://admin.sadik-algabas.kz/api/contacts?lang=${this.$lang}`
       )
-      .then((response) => this.contactPageData = response.data);
+      .then((response) => (this.contactPageData = response.data));
+  },
+
+  created() {
+    DG.then(function () {
+      map = DG.map("mapContact", {
+        center: [43.233376, 76.907811],
+        zoom: 17,
+      });
+
+      DG.marker([43.233376, 76.907811]).addTo(map).bindPopup("Садик Алгабас");
+    });
   },
 };
 </script>
@@ -157,9 +243,10 @@ export default {
   top: 40%;
   right: 1%;
 }
-.contacts_form {
-  form {
-    text-align: center;
+
+@media only screen and (max-width: 576px) {
+  #mapContact {
+    height: 350px !important;
   }
 }
 </style>

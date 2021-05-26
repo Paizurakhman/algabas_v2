@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Navbar :contacts="contactsData"  />
+    <Navbar :contacts="contactsData" />
     <router-view />
-    <Footer :contacts="contactsData"/>
+    <Footer :contacts="contactsData" />
   </div>
 </template>
 
@@ -14,18 +14,15 @@ export default {
   data: () => ({
     header: "header",
     navFix: false,
-    contactsData: null
+    contactsData: null,
   }),
   mounted() {
     this.$axios
       .get(
-        `http://www.back-collibri.astudiodigital.ru/api/get-contacts?lang=${this.$lang}`
+        `https://admin.sadik-algabas.kz/api/get-contacts?lang=${this.$lang}`
       )
-      .then((response) => this.contactsData = response.data);
+      .then((response) => (this.contactsData = response.data));
   },
-
-
-
 };
 </script>
 
@@ -62,7 +59,7 @@ a.btn_a {
     input {
       width: 100%;
       display: block;
-      margin-bottom: 30px;
+      margin-top: 30px;
       padding: 30px;
       border: none;
       &::placeholder {
@@ -78,10 +75,25 @@ a.btn_a {
     //  padding: 0 60px;
     //  margin: 0 auto;
     //}
+    .main-button {
+      display: block;
+      margin: 30px auto 0;
+    }
+
+    .invalid {
+      border: 1px solid #ff7948 !important;
+    }
   }
+
   .map {
     margin-top: 150px;
   }
+}
+.error {
+  display: inline-block;
+
+  color: #dc1717;
+  font-size: 14px;
 }
 
 @media only screen and (max-width: 768px) {

@@ -5,17 +5,22 @@
         <div class="row h-100 align-items-center">
           <div class="col-xl-7 col-md-6 position-static">
             <div class="page_main_img" v-if="reviewsPageData">
-              <img :src="$staticImageUrl.staticImgUrl(reviewsPageData.page.image)" alt="" />
+              <img
+                :src="$staticImageUrl.staticImgUrl(reviewsPageData.page.image)"
+                alt=""
+              />
             </div>
             <div v-else></div>
           </div>
           <div class="col-xl-5 col-md-6" v-if="reviewsPageData">
             <div class="title_page">
-              <h1><span class="orange_text">Отзывы</span>{{ reviewsPageData.page.title }}</h1>
+              <h1>
+                <span class="orange_text">{{ $locale[$lang].navBarCategory.testImonials}}</span
+                >{{ reviewsPageData.page.title }}
+              </h1>
             </div>
             <div class="description_text mt-4">
-              <span v-html="reviewsPageData.page.description">
-              </span>
+              <span v-html="reviewsPageData.page.description"> </span>
             </div>
           </div>
           <div v-else></div>
@@ -91,38 +96,79 @@
 
       <div class="container" v-if="reviewsPageData">
         <div class="row">
-          <div class="col-xl-6 col-lg-6" v-for="(review, index) in reviewsPageData.review" :key="index">
-            <ReviewItem :review="review"/>
+          <div
+            class="col-xl-6 col-lg-6"
+            v-for="(review, index) in reviewsPageData.review"
+            :key="index"
+          >
+            <ReviewItem :review="review" />
           </div>
         </div>
-        <button class="btn main-button d_block">Смотреть еще</button>
+        <button class="btn main-button d_block">{{$locale[$lang].buttons.seeAll}}</button>
 
         <div @click="hideOrShow" class="comment_block">
           <img src="@/assets/img/comment_icon.svg" alt="" />
-          <input type="text" placeholder="Оставьте свой отзыв" />
+          <input type="text" :placeholder="$locale[$lang].buttons.sendReview" />
         </div>
       </div>
     </div>
-    <div @click.self="hideOrShow" class="bg" v-if="SHOW_MODAL_REVIEW">
-
-    </div>
+    <div @click.self="hideOrShow" class="bg" v-if="SHOW_MODAL_REVIEW"></div>
     <img
-        v-if="SHOW_MODAL_REVIEW"
-        @click="hideOrShow"
-        class="close_img"
-        src="../assets/icons/close.svg"
-        alt="close"
+      v-if="SHOW_MODAL_REVIEW"
+      @click="hideOrShow"
+      class="close_img"
+      src="../assets/icons/close.svg"
+      alt="close"
     />
     <transition name="review">
       <Modal v-if="SHOW_MODAL_REVIEW">
-        <template v-slot:title>Оставить отзыв</template>
+        <template v-slot:title>{{$locale[$lang].buttons.sendReview}}</template>
         <template v-slot:input>
-          <input type="text" placeholder="Имя" />
-          <input type="email" placeholder="Email" />
-          <textarea placeholder="Отзыв"></textarea>
+          <form action="">
+            <p v-if="success">{{ $locale[$lang].modalReviews.success }}</p>
+            <input
+              type="text"
+              :placeholder="$locale[$lang].modalReviews.yourName"
+              v-model.trim="name"
+              :class="{ invalid: $v.name.$dirty && !$v.name.required }"
+            />
+            <span v-if="$v.name.$error" class="text-left error"
+              >{{$locale[$lang].modalReviews.yourInstagram}}</span
+            >
+            <input
+              type="text"
+              :placeholder="$locale[$lang].modalReviews.yourInstagram"
+              v-model.trim="instagram"
+            />
+            <input
+              type="text"
+              :placeholder="$locale[$lang].modalReviews.yourInstagram"
+              v-model.trim="facebook"
+            />
+            <div>
+              <input
+                name="file"
+                type="file"
+                id="file"
+                ref="file"
+                v-on:change="handleFileUpload()"
+              />
+            </div>
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="3"
+              :placeholder="$locale[$lang].modalReviews.feedback"
+              v-model.trim="reviews"
+            ></textarea>
+            <span v-if="$v.reviews.$error" class="text-left error"
+              >{{$locale[$lang].additionalLessons.requiredField}}</span
+            >
+          </form>
         </template>
         <template v-slot:button>
-          <button class="main-button">Отправить отзыв</button>
+          <button class="main-button" @click="submit">{{$locale[$lang].buttons.sendReview}}</button>
         </template>
       </Modal>
     </transition>
@@ -132,35 +178,96 @@
 <script>
 import Modal from "@/components/Modal";
 import ReviewItem from "@/components/ReviewItem";
-import {mapActions, mapGetters } from 'vuex'
-
+import { mapActions, mapGetters } from "vuex";
+import { required, minLength } from "vuelidate/lib/validators";
 export default {
   components: { Modal, ReviewItem },
   data: () => ({
     reviewsPageData: null,
+    name: "",
+    reviews: "",
+    instagram: "",
+    facebook: "",
+    image: "",
+    imageViewing: "",
+    success: false,
   }),
 
+  validations: {
+    name: {
+      required,
+      minLength: minLength(3),
+    },
+    reviews: {
+      required,
+    },
+  },
+
   methods: {
-    ...mapActions([
-        'GET_MODAL_REVIEW'
-    ]),
+    ...mapActions(["GET_MODAL_REVIEW"]),
     hideOrShow() {
-      this.GET_MODAL_REVIEW()
+      this.GET_MODAL_REVIEW();
+    },
+
+    handleFileUpload() {
+      let formData = new FormData();
+      this.image = document.getElementById("file").files[0];
+      formData.append("image", document.getElementById("file").files[0]);
+      this.image = formData.get("file");
+    },
+
+    submit() {
+      let formData = new FormData();
+      this.image = document.getElementById("file").files[0];
+      formData.append("image", this.image);
+      formData.append("name", this.name);
+      formData.append("reviews", this.reviews);
+      formData.append("instagram", this.instagram);
+      formData.append("facebook", this.facebook);
+
+      console.log(formData);
+
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return false;
+      } else {
+        this.$axios
+          .post(
+            `https://admin.sadik-algabas.kz/api/reviews`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((response) => {
+            this.success = true;
+            setTimeout(() => {
+              this.name = "";
+              this.reviews = "";
+              this.instagram = "";
+              this.facebook = "";
+              this.image = "";
+              this.$v.$reset();
+              this.hideOrShow();
+              this.success = false;
+            }, 2000);
+          });
+      }
     },
   },
   computed: {
-    ...mapGetters([
-        'SHOW_MODAL_REVIEW'
-    ])
+    ...mapGetters(["SHOW_MODAL_REVIEW"]),
   },
 
-  mounted () {
-     this.$axios
-     .get(
-        `http://www.back-collibri.astudiodigital.ru/api/review?lang=${this.$lang}`
+  mounted() {
+    this.$axios
+      .get(
+        `https://admin.sadik-algabas.kz/api/review?lang=${this.$lang}`
       )
-      .then(response => this.reviewsPageData = response.data)
-      .catch(err => console.log(err.message))
+      .then((response) => (this.reviewsPageData = response.data))
+      .catch((err) => console.log(err.message));
   },
 };
 </script>
@@ -168,6 +275,21 @@ export default {
 <style lang="scss">
 @import "src/assets/variables";
 @import "src/assets/mixins";
+
+.img_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    max-width: 80px;
+  }
+}
+.delete_img {
+  background: #ff7948;
+  width: fit-content !important;
+  padding: 5px 20px;
+  font-size: 14px;
+}
 
 .reviews_content {
   background-color: #fbf9f5;
@@ -276,7 +398,6 @@ export default {
   left: 0;
   height: 100%;
   z-index: 9999;
-
 }
 .close_img {
   position: fixed;

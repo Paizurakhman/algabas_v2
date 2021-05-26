@@ -15,7 +15,7 @@
     <router-link
       class="btn_details"
       :to="{ name: 'GroupPage', params: { id: cardItem.slug } }"
-      >Подробнее</router-link
+      >{{ $locale[$lang].buttons.readMore }}</router-link
     >
   </div>
 </template>

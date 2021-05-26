@@ -86,7 +86,7 @@ export default {
   textarea {
     width: 100%;
     box-sizing: border-box;
-    margin: 10px 0;
+    margin: 10px 0 10px ;
     padding: 15px 20px;
     border: 0;
     background: rgba(236, 235, 235, 0.3);

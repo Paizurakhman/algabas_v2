@@ -159,7 +159,7 @@ export default {
     let slug = this.$route.params.id;
     this.$axios
       .get(
-        `http://www.back-collibri.astudiodigital.ru/api/group/${slug}?lang=${this.$lang}`
+        `https://admin.sadik-algabas.kz/api/group/${slug}?lang=${this.$lang}`
       )
       .then((response) => (this.groupPageData = response.data));
   },

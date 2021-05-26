@@ -11,7 +11,7 @@
           <div class="col-xl-6 col-md-6">
             <div class="title_page">
               <h1>
-                <span class="orange_text">Акции</span>
+                <span class="orange_text">{{$locale[$lang].navBarCategory.promotions}}</span>
                 {{ salesPageData.page.title }}
               </h1>
             </div>
@@ -96,7 +96,7 @@
                 <!-- <p class="price">Цена - 8 000 тг.</p> -->
               </div>
               <button class="btn btn_info" @click="modalToggle(card)">
-                ПОДРОБНЕЕ
+                {{ $locale[$lang].buttons.readMore }}
               </button>
             </div>
             <div class="col-xl-6 col-md-6 m_order_2">
@@ -117,7 +117,7 @@
                 <!-- <p class="price">Цена - 8 000 тг.</p> -->
               </div>
               <button class="btn btn_info" @click="modalToggle(card)">
-                ПОДРОБНЕЕ
+                {{ $locale[$lang].buttons.readMore }}
               </button>
             </div>
           </div>
@@ -133,13 +133,13 @@
       <span class="fix_el"><img src="@/assets/img/Vector3.png" alt="" /></span>
       <div class="col-xl-5 col-lg-7 m-auto">
         <div class="title_page">
-          <h2>Свяжитесь <span class="orange_text">с нами</span></h2>
+          <h2>{{$locale[$lang].form.contactUs.text1}} <span class="orange_text">{{$locale[$lang].form.contactUs.text2}}</span></h2>
         </div>
         <form action="">
-          <input type="text" placeholder="Ваше имя" />
-          <the-mask :mask="['#(###) ###-####']" placeholder="Номер телефона" />
-          <input type="text" placeholder="Возраст ребенка" />
-          <button class="main-button">Отправить</button>
+          <input type="text" :placeholder="$locale[$lang].form.yourName" />
+          <the-mask :mask="['#(###) ###-####']" :placeholder="$locale[$lang].form.phoneNumber" />
+          <input type="text" :placeholder="$locale[$lang].form.childAge" />
+          <button class="main-button">{{$locale[$lang].buttons.sendMessage}}</button>
         </form>
       </div>
     </div>
@@ -190,7 +190,7 @@ export default {
   mounted() {
     this.$axios
       .get(
-        `http://www.back-collibri.astudiodigital.ru/api/sales?lang=${this.$lang}`
+        `https://admin.sadik-algabas.kz/api/sales?lang=${this.$lang}`
       )
       .then((response) => (this.salesPageData = response.data));
   },

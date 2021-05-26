@@ -1,7 +1,7 @@
 <template>
   <div class="home" v-if="homePageData">
     <div class="header">
-      <h4>Детский сад</h4>
+      <h4>{{ $locale[$lang].logoTopText }}</h4>
       <div class="baby"></div>
       <div class="fix_elems_wrapper">
         <img class="star" src="../assets/img/star.svg" alt="" />
@@ -12,9 +12,9 @@
       <div class="babies"></div>
       <div class="index">
         <h1>ALGABAS</h1>
-        <h4>с углубленным изучением английского языка</h4>
+        <h4>{{ $locale[$lang].logoBottomText }}</h4>
         <button @click.self="modalShow" class="main-button">
-          Заказать звонок
+          {{ $locale[$lang].buttons.requestCall }}
         </button>
         <img class="click" src="../assets/img/image4.png" alt="" />
       </div>
@@ -35,7 +35,7 @@
       <div class="container">
         <div class="our_principles">
           <div class="title_page">
-            <h2><span class="orange_text">Наши</span> преимущества</h2>
+            <h2><span class="orange_text">{{ $locale[$lang].ourAdvantages.text1 }}</span> {{ $locale[$lang].ourAdvantages.text2 }}</h2>
           </div>
           <div class="advantages">
             <div class="row">
@@ -71,36 +71,36 @@
       <div class="wrapper">
         <div class="title mobile">
           <div class="left" v-if="currentId === homePageData.gallery[0].id">
-            <h2>Как проходят</h2>
-            <h2>занятия</h2>
+            <h2></h2>{{ $locale[$lang].HowAreTheyClasses.text1 }}</h2>
+            <h2>{{ $locale[$lang].HowAreTheyClasses.text2 }}</h2>
           </div>
           <div>
             <h2 class="none_mob">и</h2>
           </div>
           <div v-if="currentId === homePageData.gallery[1].id" class="right">
-            <h2>Как выглядит</h2>
-            <h2>садик</h2>
+            <h2>{{ $locale[$lang].lookLikeKindergarten.text1 }}</h2>
+            <h2>{{ $locale[$lang].lookLikeKindergarten.text2 }}</h2>
           </div>
         </div>
 
         <div class="title desktop">
           <div class="left">
-            <h2>Как проходят</h2>
-            <h2>занятия</h2>
+            <h2>{{ $locale[$lang].HowAreTheyClasses.text1 }}</h2>
+            <h2>{{ $locale[$lang].HowAreTheyClasses.text2 }}</h2>
           </div>
           <div>
             <h2 class="none_mob">и</h2>
           </div>
           <div class="right">
-            <h2>Как выглядит</h2>
-            <h2>садик</h2>
+            <h2>{{ $locale[$lang].lookLikeKindergarten.text1 }}</h2>
+            <h2>{{ $locale[$lang].lookLikeKindergarten.text2 }}</h2>
           </div>
         </div>
         <TabBar :tabs="homePageData.gallery" @currentPage="currentPageData" />
       </div>
       <TabBarContent :active-tab="currentId" :slides="homePageData.gallery" />
       <router-link :to="{ name: 'Gallery' }" class="btn_a main-button"
-        >Смотреть все</router-link
+        >{{ $locale[$lang].buttons.seeAll }}</router-link
       >
     </section>
 
@@ -112,7 +112,7 @@
         <img src="../assets/img/blue_moon.svg" alt="" />
       </div>
       <div class="title_page">
-        <h2 class="orange_text">Наши группы и цены</h2>
+        <h2 class="orange_text">{{ $locale[$lang].ourGroupsAndPrices }}</h2>
       </div>
       <div class="cards">
         <div class="row">
@@ -148,7 +148,7 @@
               </p>
             </div>
             <router-link class="btn_a btn_sales" :to="{ name: 'Sales' }"
-              >ПОДРОБНЕЕ</router-link
+              >{{ $locale[$lang].buttons.readMore }}</router-link
             >
           </div>
         </div>
@@ -166,24 +166,37 @@
         <img src="../assets/img/green_star.svg" alt="" />
         <img src="../assets/img/blue_romb.svg" alt="" />
       </div>
-        <div class="card-command">
-          <div class="container">
-            <div class="title_page">
-              <h2>Наша<span class="orange_text"> команда</span></h2>
-            </div>
-            <div class="row command_content">
-                <div class="col-xl-3 col-lg-3 col-md-6" v-for="command in homePageData.our_team" :key="command.id">
-                    <img :src="$staticImageUrl.staticImgUrl(command.avatar)" alt="" />
-                    <p class="name text-bold">{{ command.name }}</p>
-                    <p v-if="command.year < 5">Стаж {{ command.year }} года</p>
-                    <p v-if="command.year > 5">Стаж {{ command.year }} лет</p>
-                    <p>{{ command.group_name }}</p>
-                  </div>
-            </div>
-            <router-link :to="{ name: 'OurTeam' }" class="btn_a main-button">Подробнее</router-link>
+      <div class="card-command">
+        <div class="container">
+          <div class="title_page">
+            <h2>{{ $locale[$lang].ourTeam.text1 }}<span class="orange_text"> {{ $locale[$lang].ourTeam.text2 }}</span></h2>
           </div>
+          <div class="row command_content">
+            <div
+              class="col-xl-3 col-lg-3 col-md-6"
+              v-for="command in homePageData.our_team"
+              :key="command.id"
+            >
+              <div class="card_command">
+                <img
+                  :src="$staticImageUrl.staticImgUrl(command.avatar)"
+                  alt=""
+                />
+                <p class="name text-bold">{{ command.name }}</p>
+                <p v-if="command.year < 5">Стаж {{ command.year }} года</p>
+                <p v-if="command.year > 5">Стаж {{ command.year }} лет</p>
+                <p v-if="command.position">
+                  Должность: {{ command.position.position_name }}
+                </p>
+                <p v-if="command.group">{{ command.group.group_name }}</p>
+              </div>
+            </div>
+          </div>
+          <router-link :to="{ name: 'OurTeam' }" class="btn_a main-button"
+            >{{ $locale[$lang].buttons.readMore }}</router-link
+          >
         </div>
-
+      </div>
     </section>
 
     <section id="section-six">
@@ -196,7 +209,7 @@
       <div class="review_content">
         <div class="container">
           <div class="title_page">
-            <h1>Отзывы <span class="orange_text">наших клиентов</span></h1>
+            <h1>{{ $locale[$lang].reviews.text1 }} <span class="orange_text">{{ $locale[$lang].reviews.text2 }}</span></h1>
           </div>
           <div class="reviews my-4">
             <div class="row">
@@ -210,7 +223,7 @@
             </div>
           </div>
           <router-link :to="{ name: 'Reviews' }" class="btn_a main-button"
-            >Смотреть все</router-link
+            >{{$locale[$lang].buttons.seeAll}}</router-link
           >
         </div>
       </div>
@@ -223,7 +236,7 @@
         <img src="../assets/img/yello_bigromb.svg" alt="" />
       </div>
       <div class="title_page">
-        <h1><span class="orange_text">Вопросы</span>часто задаваемые</h1>
+        <h1><span class="orange_text">{{ $locale[$lang].questions.text1 }}</span>{{ $locale[$lang].questions.text2 }}</h1>
       </div>
       <div class="container">
         <div class="wrapper">
@@ -269,17 +282,17 @@
           />
           <form>
             <div class="title_page">
-              <h2><span class="orange_text">Заказать</span> звонок</h2>
+              <h2><span class="orange_text">{{ $locale[$lang].requewstCall.text1 }}</span> {{ $locale[$lang].requewstCall.text1 }}</h2>
             </div>
             <div class="inputs">
-              <input type="text" placeholder="Ваше имя" />
+              <input type="text" :placeholder="$locale[$lang].requewstCall.text3" />
               <the-mask
                 :mask="['#(###) ###-####']"
-                placeholder="Номер телефона"
+                :placeholder="$locale[$lang].requewstCall.text4"
               />
-              <input type="text" placeholder="Возраст ребенка" />
+              <input type="text" :placeholder="$locale[$lang].requewstCall.text5" />
             </div>
-            <button class="main-button">Отправить</button>
+            <button class="main-button">{{$locale[$lang].buttons.sendMessage}}</button>
           </form>
           <img
             class="none-image"
@@ -366,9 +379,7 @@ export default {
 
   mounted() {
     this.$axios
-      .get(
-        `http://www.back-collibri.astudiodigital.ru/api/home-page?lang=${this.$lang}`
-      )
+      .get(`https://admin.sadik-algabas.kz/api/home-page?lang=${this.$lang}`)
       .then(
         (response) => (
           (this.homePageData = response.data),
@@ -735,12 +746,15 @@ export default {
     }
 
     .card-command {
+      .card_command {
+        margin-bottom: 20px;
+      }
       img {
         width: 100%;
         border-radius: 50%;
-        max-width: 200px;
-        max-height: 200px;
-        height: 100%;
+        width: 200px;
+        height: 200px;
+        // height: 100%;
         object-fit: cover;
       }
 
@@ -752,6 +766,7 @@ export default {
         font-size: 16px;
         padding: 5px 0;
         color: black;
+        margin-bottom: 0;
       }
     }
   }
@@ -825,7 +840,7 @@ export default {
           padding: 16px 0 16px;
           .question_head {
             display: flex;
-            align-items: flex-end;
+            align-items: end;
             justify-content: space-between;
             p {
               font-size: 1.5em;
@@ -959,36 +974,38 @@ export default {
   }
 
   .slide-enter-active {
-   -moz-transition-duration: 0.3s;
-   -webkit-transition-duration: 0.3s;
-   -o-transition-duration: 0.3s;
-   transition-duration: 0.3s;
-   -moz-transition-timing-function: ease-in;
-   -webkit-transition-timing-function: ease-in;
-   -o-transition-timing-function: ease-in;
-   transition-timing-function: ease-in;
-}
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
 
-.slide-leave-active {
-   -moz-transition-duration: 0.3s;
-   -webkit-transition-duration: 0.3s;
-   -o-transition-duration: 0.3s;
-   transition-duration: 0.3s;
-   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
+  .slide-leave-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
 
-.slide-enter-to, .slide-leave {
-   max-height: 100px;
-   overflow: hidden;
-}
+  .slide-enter-to,
+  .slide-leave {
+    max-height: 100px;
+    overflow: hidden;
+  }
 
-.slide-enter, .slide-leave-to {
-   overflow: hidden;
-   max-height: 0;
-}
+  .slide-enter,
+  .slide-leave-to {
+    overflow: hidden;
+    max-height: 0;
+  }
 }
 
 @keyframes click_anim {
