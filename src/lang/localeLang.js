@@ -91,7 +91,7 @@ let locale = {
                 text2: 'команда',
             },
             position: 'Опыт ',
-            experience: 'Должност',
+            experience: 'Должность',
         },
         footer: {
             main: 'Меню',
