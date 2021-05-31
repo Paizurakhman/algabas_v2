@@ -236,7 +236,7 @@
         <img src="../assets/img/yello_bigromb.svg" alt="" />
       </div>
       <div class="title_page">
-        <h1><span class="orange_text">{{ $locale[$lang].questions.text1 }}</span>{{ $locale[$lang].questions.text2 }}</h1>
+        <h2><span class="orange_text">{{ $locale[$lang].questions.text1 }}</span>{{ $locale[$lang].questions.text2 }}</h2>
       </div>
       <div class="container">
         <div class="wrapper">
@@ -282,7 +282,7 @@
           />
           <form>
             <div class="title_page">
-              <h2><span class="orange_text">{{ $locale[$lang].requewstCall.text1 }}</span> {{ $locale[$lang].requewstCall.text1 }}</h2>
+              <h2><span class="orange_text">{{ $locale[$lang].requewstCall.text1 }}</span> {{ $locale[$lang].requewstCall.text2 }}</h2>
             </div>
             <div class="inputs">
               <input type="text" :placeholder="$locale[$lang].requewstCall.text3" />
@@ -828,12 +828,15 @@ export default {
         }
         &:nth-child(3) {
           right: 15%;
+          z-index: 0;
         }
       }
     }
     .wrapper {
       margin: 50px 0;
       .row_question {
+        position: relative;
+        z-index: 10;
         margin: 0;
         border-top: 1px solid #ff7948;
         .question_content {

@@ -29,8 +29,8 @@ let locale = {
             text2: 'наших клиентов',
         },
         questions: {
-            text1: 'Вопросы',
-            text2: 'часто задаваемые'
+            text1: 'Вопрос',
+            text2: '-Ответ'
         },
         ourAdvantages: {
             text1: 'Наши',
@@ -41,8 +41,8 @@ let locale = {
             text2: 'команда'
         },
         requewstCall: {
-            text1: 'Заказать',
-            text2: 'звонок',
+            text1: 'Свяжитесь',
+            text2: 'с нами',
             text3: 'Ваше имя',
             text4: 'Номер телефона',
             text5: 'Возраст ребенка',
@@ -91,7 +91,7 @@ let locale = {
                 text2: 'команда',
             },
             position: 'Опыт ',
-            experience: 'Стаж',
+            experience: 'Должность',
         },
         footer: {
             main: 'Меню',
@@ -135,8 +135,8 @@ let locale = {
             text5: 'Баланың жасы',
         },
         questions: {
-            text1: 'Сұрақтар',
-            text2: 'жиі сұралатың'
+            text1: 'Сұрақ',
+            text2: '-Жауап'
         },
         reviews: {
             text1: 'Біздің',
